@@ -19,6 +19,7 @@ import { TooltipComponent } from './dashboard-feature/schedule/tooltip/tooltip.c
 import { ErrorPopoverComponent } from './shared/error-popover/error-popover.component';
 import { ActionPopoverComponent } from './shared/action-popover/action-popover.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ErrorPopoverComponent,
     ActionPopoverComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
