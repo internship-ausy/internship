@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bogdan\\source\\repos\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj": {}
+    "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bogdan\\source\\repos\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj": {
+    "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bogdan\\source\\repos\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj",
+        "projectUniqueName": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj",
         "projectName": "ServiceManager.Api",
-        "projectPath": "C:\\Users\\Bogdan\\source\\repos\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj",
-        "packagesPath": "C:\\Users\\Bogdan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bogdan\\source\\repos\\ServiceManager\\ServiceManager.Api\\obj\\",
+        "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Api\\ServiceManager.Api.csproj",
+        "packagesPath": "C:\\Users\\tului\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Bogdan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tului\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +31,17 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj": {
+                "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj"
+              },
+              "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Dal\\ServiceManager.Dal.csproj": {
+                "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Dal\\ServiceManager.Dal.csproj"
+              },
+              "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj": {
+                "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -43,6 +57,26 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -68,7 +102,220 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
+        "projectName": "ServiceManager.Application",
+        "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
+        "packagesPath": "C:\\Users\\tului\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tului\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj": {
+                "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Dal\\ServiceManager.Dal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Dal\\ServiceManager.Dal.csproj",
+        "projectName": "ServiceManager.Dal",
+        "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Dal\\ServiceManager.Dal.csproj",
+        "packagesPath": "C:\\Users\\tului\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Dal\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tului\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj": {
+                "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj",
+        "projectName": "ServiceManager.Domain",
+        "projectPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj",
+        "packagesPath": "C:\\Users\\tului\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tului\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

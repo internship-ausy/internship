@@ -1,0 +1,12 @@
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\bin\Debug\net7.0\ServiceManager.Domain.deps.json
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\bin\Debug\net7.0\ServiceManager.Domain.dll
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\bin\Debug\net7.0\ServiceManager.Domain.pdb
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.csproj.AssemblyReference.cache
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.AssemblyInfoInputs.cache
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.AssemblyInfo.cs
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.csproj.CoreCompileInputs.cache
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.dll
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\refint\ServiceManager.Domain.dll
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ServiceManager.Domain.pdb
+C:\Users\tului\Desktop\internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Domain\obj\Debug\net7.0\ref\ServiceManager.Domain.dll
