@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceManager.Api;
-using ServiceManager.Domain.Interfaces.Services;
+using ServiceManager.Application.Dtos.User;
+using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Models;
 
 namespace ServiceManager.Api.Controllers
@@ -14,12 +15,14 @@ namespace ServiceManager.Api.Controllers
         {
             _service = service;
         }
-        [HttpGet(Name = "GetUsers")]
-        public IList<User> Get()
-        {
-            return _service.getAllUsers();
-        }
 
+        
+        [HttpGet(Name = "GetUsers")]
+        public ActionResult<ServiceResponse<List<GetUserDto>>> Get()
+        {
+            return Ok(_service.getAllUsers());
+        }
+        
     }
 }
 

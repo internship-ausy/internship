@@ -9,7 +9,7 @@ namespace ServiceManager.Domain.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        List<User> getUsers();
+        Task<IList<User>> getUsers();
 
     }
 }

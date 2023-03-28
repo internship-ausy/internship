@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceManager.Domain.Interfaces.Services
+namespace ServiceManager.Application.Interfaces
 {
     public interface IReservationService
     {

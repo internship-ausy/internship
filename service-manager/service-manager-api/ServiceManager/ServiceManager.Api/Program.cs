@@ -1,10 +1,10 @@
-
 using Microsoft.EntityFrameworkCore;
+using ServiceManager.Application.Interfaces;
 using ServiceManager.Application.Services;
 using ServiceManager.Dal.DataContext;
 using ServiceManager.Dal.Repository;
 using ServiceManager.Domain.Interfaces.Repositories;
-using ServiceManager.Domain.Interfaces.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 

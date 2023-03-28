@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SGb5ogxiFQf5UrEXj68QKq6oOt9242NmzshSEo920D6j1TFmYfTnizUsSc2rGlkQn7UAGzI21fku2MssbkUgCQ==",
+  "dgSpecHash": "BykbWhc8jEqWfR9fw1UNZQADWa/sjvYlELeyAi6Qj+SFAAqiGaXV2EqUhUnfrhzuW0VtmFCQi1KKUOSp64Fjxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tului\\Desktop\\internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

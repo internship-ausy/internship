@@ -1,4 +1,6 @@
-﻿using ServiceManager.Domain.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using ServiceManager.Dal.DataContext;
+using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -10,24 +12,15 @@ namespace ServiceManager.Dal.Repository
 {
     public class UserRepository : IUserRepository
     {
+        private readonly DatabaseContext _context;
 
-        public List<User> getUsers()
+        public UserRepository(DatabaseContext context)
         {
-            var user1 = new User();
-            var user2 = new User();
-            user1.FullName = "tibi";
-            user1.Username = "tibi";
-            user1.Email = "tibi@gmail.com";
-            user1.Password = "tibi";
-
-            user2.FullName = "vali";
-            user2.Username = "vali";
-            user2.Email = "vali@gmail.com";
-            user2.Password = "vali";
-            return new List<User>()
-            {
-                user1, user2
-            };
+            _context = context;
+        }
+        public async Task<IList<User>> getUsers()
+        {
+            return await _context.Users.ToListAsync();
         }
     }
 }
