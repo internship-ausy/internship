@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -18,8 +19,8 @@ import { CardComponent } from './dashboard-feature/dashboard/card/card.component
 import { TooltipComponent } from './dashboard-feature/schedule/tooltip/tooltip.component';
 import { ErrorPopoverComponent } from './shared/error-popover/error-popover.component';
 import { ActionPopoverComponent } from './shared/action-popover/action-popover.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,12 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     ErrorPopoverComponent,
     ActionPopoverComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    BrowserAnimationsModule, 
+    AppRoutingModule,
+    AngularMaterialModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

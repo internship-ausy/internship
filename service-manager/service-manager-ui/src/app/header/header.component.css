@@ -1,0 +1,38 @@
+.divider {
+    cursor: default;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.header-row {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-color: #0062A1;
+    padding: 0 19px;
+}
+
+.language-select {
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.language-select-container {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+}
+
+.logout-icon {
+    padding-left: 1.5rem;
+}
+
+.mat-toolbar {
+    min-height: 50px; 
+    height: 50px;
+}
+  
+.mat-toolbar-row {
+    min-height: 50px; 
+    height: 50px;
+}
