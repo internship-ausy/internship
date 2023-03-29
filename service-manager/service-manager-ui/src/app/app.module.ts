@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -22,6 +20,7 @@ import { TooltipComponent } from './dashboard-feature/schedule/tooltip/tooltip.c
 import { ErrorPopoverComponent } from './shared/error-popover/error-popover.component';
 import { ActionPopoverComponent } from './shared/action-popover/action-popover.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     BrowserModule, 
     BrowserAnimationsModule, 
     AppRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
