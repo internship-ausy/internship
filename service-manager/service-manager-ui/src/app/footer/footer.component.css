@@ -1,0 +1,22 @@
+footer {
+  background-color: #FDFCFF;
+  padding: 20px;
+  text-align: left;
+  border-top: 1px solid #73777F;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.dateDiv {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.versionDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
