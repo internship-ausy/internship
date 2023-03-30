@@ -11,5 +11,6 @@ namespace ServiceManager.Application.Dtos.User
         public string? FullName { get; set; }
         public string? Username { get; set; }
         public string? Email { get; set; }
+        public List<Domain.Models.Reservation>? Reservations { get; set; }
     }
 }
