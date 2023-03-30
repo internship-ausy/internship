@@ -1,10 +1,12 @@
+
 <footer>
-  <div class="versionDiv">
+  <div class="footer-elements" [ngClass]="{'navbar-showing': showNavbar}">
     <div>
-      <p> Service Manager v1.0</p>
+      <p>Service Manager v1.0</p>
     </div>
-    <div class="dateDiv">
-      <p> {{ currentDate }}</p>
+    <div class="date-section">
+      <p>{{ currentDate }}</p>
     </div>
   </div>
 </footer>
+

@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 })
 export class FooterComponent {
   currentDate!: string;
+  showNavbar: boolean = false;
 
   constructor(public datePipe: DatePipe) {
 
