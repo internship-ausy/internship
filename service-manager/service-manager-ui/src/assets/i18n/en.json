@@ -1,4 +1,11 @@
 {
-	"demo.heading": "App Translation Demo",
-	"demo.text": "This tutorial explains how you can easily translate your Angular application."
+  "navigation": {
+    "text": "navigation works!"
+  },
+  "login": {
+    "text": "login works!"
+  },
+  "footer": {
+    "text": "footer works!"
+  }
 }

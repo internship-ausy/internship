@@ -1,4 +1,11 @@
 {
-	"demo.heading": "Demo traducere aplicație",
-	"demo.text": "Acest tutorial explică cum vă puteți traduce cu ușurință aplicația Angular."
+  "navigation": {
+    "text": "navigația funcționează!"
+  },
+  "login": {
+    "text": "autentificarea funcționează!"
+  },
+  "footer": {
+    "text": "subsolul funcționează!"
+  }
 }
