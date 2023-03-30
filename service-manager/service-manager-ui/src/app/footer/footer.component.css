@@ -1,0 +1,33 @@
+footer {
+  background-color: #FDFCFF;
+  padding: 0 20px;
+  text-align: left;
+  border-top: 1px solid #73777F;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 0;
+  flex-basis: auto;
+  flex-shrink: 0;
+}
+
+.date-section{
+  text-align: center;
+  flex-grow: 1;
+  justify-content: center
+}
+
+.footer-elements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 180px;
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+
+.navbar-showing {
+  margin-left: 220px;
+  margin-right: 350px;
+}

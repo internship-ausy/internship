@@ -28,6 +28,23 @@ C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\ser
 C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\refint\ServiceManager.Application.dll
 C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.pdb
 C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ref\ServiceManager.Application.dll
+<<<<<<< HEAD
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Application.deps.json
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Application.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Application.pdb
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Domain.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Domain.pdb
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.AssemblyInfo.cs
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.csproj.CopyComplete
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\refint\ServiceManager.Application.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.pdb
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ref\ServiceManager.Application.dll
+=======
 C:\Users\tului\Desktop\project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Application.deps.json
 C:\Users\tului\Desktop\project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Application.dll
 C:\Users\tului\Desktop\project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\bin\Debug\net7.0\ServiceManager.Application.pdb
@@ -58,3 +75,4 @@ C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceMan
 C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\refint\ServiceManager.Application.dll
 C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ServiceManager.Application.pdb
 C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Application\obj\Debug\net7.0\ref\ServiceManager.Application.dll
+>>>>>>> main

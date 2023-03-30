@@ -32,6 +32,25 @@ C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\ser
 C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.pdb
 C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.genruntimeconfig.cache
 C:\Users\Ausy\Desktop\Projects\internship-project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ref\ServiceManager.Dal.dll
+<<<<<<< HEAD
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.deps.json
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.runtimeconfig.json
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.pdb
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Domain.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Domain.pdb
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.AssemblyInfo.cs
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.csproj.CopyComplete
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\refint\ServiceManager.Dal.dll
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.pdb
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.genruntimeconfig.cache
+C:\Users\Asus\Desktop\Internship\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ref\ServiceManager.Dal.dll
+=======
 C:\Users\tului\Desktop\project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.deps.json
 C:\Users\tului\Desktop\project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.runtimeconfig.json
 C:\Users\tului\Desktop\project\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\bin\Debug\net7.0\ServiceManager.Dal.dll
@@ -66,3 +85,4 @@ C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceMan
 C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.pdb
 C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ServiceManager.Dal.genruntimeconfig.cache
 C:\Users\tului\Desktop\internship\service-manager\service-manager-api\ServiceManager\ServiceManager.Dal\obj\Debug\net7.0\ref\ServiceManager.Dal.dll
+>>>>>>> main
