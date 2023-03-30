@@ -21,6 +21,9 @@ import { ErrorPopoverComponent } from './shared/error-popover/error-popover.comp
 import { ActionPopoverComponent } from './shared/action-popover/action-popover.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,12 +46,23 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     ActionPopoverComponent,
   ],
   imports: [
-    BrowserModule, 
-    BrowserAnimationsModule, 
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

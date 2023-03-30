@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "JjeOq3/OIuRoMUFSDZabrQl0gt2A/XUuLdSxhFLq1k3p79nLtTg/h8eiReYLqftMhdNQaev1TCKoMeDOWylxAA==",
+  "dgSpecHash": "IxKJG44obX9HUnkHOoK5xvJWRfmaLEAU2MhgnTbUacx21NKzl+b7KViPjhXCC8XQ0t1d9fV1Bx08J9eYtunwhw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
+  "projectFilePath": "C:\\Users\\tului\\Desktop\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Ausy\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
-    "C:\\Users\\Ausy\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
-    "C:\\Users\\Ausy\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
-    "C:\\Users\\Ausy\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Ausy\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
-    "C:\\Users\\Ausy\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
-    "C:\\Users\\Ausy\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\tului\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\tului\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\tului\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\tului\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\tului\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\tului\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\tului\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
