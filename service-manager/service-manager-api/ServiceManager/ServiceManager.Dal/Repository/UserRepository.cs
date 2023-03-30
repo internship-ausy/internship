@@ -20,7 +20,7 @@ namespace ServiceManager.Dal.Repository
         }
         public async Task<IList<User>> getUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(u => u.Reservations).ToListAsync();
         }
     }
 }

@@ -19,5 +19,6 @@ namespace ServiceManager.Dal.DataContext
             
         }
         public DbSet<User> Users => Set<User>();
+        public DbSet<Reservation> Reservations => Set<Reservation>();
     }
 }
