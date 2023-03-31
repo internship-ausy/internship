@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,6 +21,10 @@ import { ErrorPopoverComponent } from './shared/error-popover/error-popover.comp
 import { ActionPopoverComponent } from './shared/action-popover/action-popover.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     PasswordRecoveryComponent,
     ChangePasswordComponent,
     DashboardFeatureComponent,
+    DashboardComponent,
     EditServiceComponent,
     ScheduleComponent,
     LogsComponent,
@@ -43,12 +48,23 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     ActionPopoverComponent,
   ],
   imports: [
-    BrowserModule, 
-    BrowserAnimationsModule, 
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

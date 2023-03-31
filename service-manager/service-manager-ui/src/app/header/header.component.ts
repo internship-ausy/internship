@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,13 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   loggedIn: boolean = true;
 
+  constructor(public translate: TranslateService) {}
+
   onMenu() {}
 
   onLogout() {}
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
+  }
 }
