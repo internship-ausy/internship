@@ -25,6 +25,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.component';
+import { HistoryComponent } from './dashboard-feature/logs/history/history.component';
+import { UpcomingComponent } from './dashboard-feature/logs/upcoming/upcoming.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.comp
     TooltipComponent,
     ErrorPopoverComponent,
     ActionPopoverComponent,
+    HistoryComponent,
+    UpcomingComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,24 @@
-
 <mat-toolbar color="primary" class="header">
   <mat-toolbar-row class="header-row">
-    <mat-icon class="menu-icon" aria-hidden="false" (click)="onMenu()" *ngIf="loggedIn">menu</mat-icon>
+    <mat-icon
+      class="menu-icon"
+      aria-hidden="false"
+      (click)="onMenu()"
+      *ngIf="loggedIn"
+      >menu</mat-icon
+    >
     <span class="example-spacer"></span>
     <div class="language-select-container">
-        <a class="language-select" (click)="useLanguage('en')">EN</a>
-        <span class="divider">|</span>
-        <a class="language-select" (click)="useLanguage('ro')">RO</a>
+      <a class="language-select" (click)="useLanguage('en')">EN</a>
+      <span class="divider">|</span>
+      <a class="language-select" (click)="useLanguage('ro')">RO</a>
     </div>
-    <mat-icon class="logout-icon" aria-hidden="false" (click)="onLogout()" *ngIf="loggedIn">logout</mat-icon>
+    <mat-icon
+      class="logout-icon"
+      aria-hidden="false"
+      (click)="onLogout()"
+      *ngIf="loggedIn"
+      >logout</mat-icon
+    >
   </mat-toolbar-row>
 </mat-toolbar>
-<app-navigation></app-navigation>

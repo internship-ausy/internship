@@ -1,0 +1,52 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+    color: white;
+    height: 100%;
+    width: 100%;
+}
+
+.selected {
+    color: #E3B200;
+}
+
+.menu-item h4,
+.copyright span {
+    margin: 0;
+    margin-left: 5px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 50px);
+}
+
+.mat-drawer {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: #0062A1;
+}
+
+.copyright {
+    color: white;
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+.copyright .mat-icon {
+    height: 16px;
+    width: 16px;
+    font-size: 16px;
+}
+
+.copyright span {
+    font-size: 12px;
+}
+
+.copyright .mat-icon,
+.copyright span {
+    vertical-align: middle;
+}
