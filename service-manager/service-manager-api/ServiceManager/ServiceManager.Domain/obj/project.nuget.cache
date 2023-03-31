@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "rQ9lyIdlG1kHol2Hdx7idoF1vzvldCjjNyzXQ4YWJUXY1hY21PCsP2c8jeSJ1cvYfTGqPRG6UZPNM9wo/3LJhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Asus\\Desktop\\Internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj",
-=======
-  "dgSpecHash": "LTkIWH+97Tb8B8IwnaIMxinKajr24Q7Xp6dG0QFFpC7TtpQIhd2RKgNnZfPE8X6kHvsxdzlisz5gPJAZ886vsg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\tului\\Desktop\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj",
->>>>>>> main
   "expectedPackageFiles": [],
   "logs": []
 }

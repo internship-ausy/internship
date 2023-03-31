@@ -24,6 +24,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     PasswordRecoveryComponent,
     ChangePasswordComponent,
     DashboardFeatureComponent,
+    DashboardComponent,
     EditServiceComponent,
     ScheduleComponent,
     LogsComponent,
