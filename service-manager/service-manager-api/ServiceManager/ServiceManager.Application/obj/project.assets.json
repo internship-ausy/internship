@@ -328,19 +328,22 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ausy\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
       "projectName": "ServiceManager.Application",
-      "projectPath": "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
-      "packagesPath": "C:\\Users\\Ausy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\Internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\ServiceManager.Application.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\Internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Ausy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -354,8 +357,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj": {
-              "projectPath": "C:\\Users\\Ausy\\Desktop\\Projects\\internship-project\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj"
+            "C:\\Users\\Asus\\Desktop\\Internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj": {
+              "projectPath": "C:\\Users\\Asus\\Desktop\\Internship\\internship\\service-manager\\service-manager-api\\ServiceManager\\ServiceManager.Domain\\ServiceManager.Domain.csproj"
             }
           }
         }
@@ -391,7 +394,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
