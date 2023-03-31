@@ -10,6 +10,8 @@ import { DashboardComponent } from '../dashboard-feature/dashboard/dashboard.com
 import { EditServiceComponent } from '../dashboard-feature/edit-service/edit-service.component';
 import { LogsComponent } from '../dashboard-feature/logs/logs.component';
 import { ScheduleComponent } from '../dashboard-feature/schedule/schedule.component';
+import { UpcomingComponent } from '../dashboard-feature/logs/upcoming/upcoming.component';
+import { HistoryComponent } from '../dashboard-feature/logs/history/history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,7 +21,15 @@ const routes: Routes = [
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'edit-service', component: EditServiceComponent },
-  { path: 'logs', component: LogsComponent },
+  {
+    path: 'logs',
+    component: LogsComponent,
+    children: [
+      { path: '', redirectTo: 'upcoming', pathMatch: 'full' },
+      { path: 'upcoming', component: UpcomingComponent },
+      { path: 'history', component: HistoryComponent },
+    ],
+  },
   { path: 'schedule', component: ScheduleComponent },
 ];
 

@@ -1,29 +1,9 @@
 {
   "navigation": {
-    "text": "navigation works!"
-  },
-  "change-password": {
-    "text": "change-password works!"
-  },
-  "login": {
-    "text": "login works!"
-  },
-  "password-recovery": {
-    "text": "password-recovery works!"
-  },
-  "register": {
-    "text": "register works!"
-  },
-  "logs": {
-    "text": "logs works!"
-  },
-  "dashboard": {
-    "text": "dashboard works!"
-  },
-  "schedule": {
-    "text": "schedule works!"
-  },
-  "edit-service": {
-    "text": "edit-service works!"
+    "dashboard": "Dashboard",
+    "service": "Add Service",
+    "schedule": "Schedule",
+    "upcoming": "Upcoming",
+    "history": "History"
   }
 }

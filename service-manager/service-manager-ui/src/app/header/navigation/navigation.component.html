@@ -14,31 +14,41 @@
           routerLinkActive="selected"
         >
           <mat-icon mat-list-icon>dashboard</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Dashboard</h4>
+          <h4 mat-line *ngIf="isExpanded">
+            {{ "navigation.dashboard" | translate }}
+          </h4>
         </div>
       </a>
       <a mat-list-item routerLink="/edit-service">
         <div class="menu-item" routerLinkActive="selected">
           <mat-icon mat-list-icon>post_add</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Add Service</h4>
+          <h4 mat-line *ngIf="isExpanded">
+            {{ "navigation.service" | translate }}
+          </h4>
         </div>
       </a>
       <a mat-list-item routerLink="/schedule">
         <div class="menu-item" routerLinkActive="selected">
           <mat-icon mat-list-icon>schedule</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Schedule</h4>
+          <h4 mat-line *ngIf="isExpanded">
+            {{ "navigation.schedule" | translate }}
+          </h4>
         </div>
       </a>
-      <a mat-list-item routerLink="/logs">
+      <a mat-list-item routerLink="/logs/upcoming">
         <div class="menu-item" routerLinkActive="selected">
           <mat-icon mat-list-icon>event_note</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Upcoming</h4>
+          <h4 mat-line *ngIf="isExpanded">
+            {{ "navigation.upcoming" | translate }}
+          </h4>
         </div>
       </a>
-      <a mat-list-item routerLink="/logs">
+      <a mat-list-item routerLink="/logs/history">
         <div class="menu-item" routerLinkActive="selected">
           <mat-icon mat-list-icon>history</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">History</h4>
+          <h4 mat-line *ngIf="isExpanded">
+            {{ "navigation.history" | translate }}
+          </h4>
         </div>
       </a>
     </mat-nav-list>
