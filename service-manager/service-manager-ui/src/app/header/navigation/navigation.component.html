@@ -1,11 +1,5 @@
-<mat-drawer
-  #drawer
-  mode="side"
-  disableClose="true"
-  opened="true"
-  *ngIf="isLoggedIn"
->
-  <div class="menu">
+<mat-drawer #drawer mode="side" disableClose="false" opened="true">
+  <div class="menu" *ngIf="isLoggedIn">
     <mat-nav-list>
       <a mat-list-item routerLink="/dashboard">
         <div
