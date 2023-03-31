@@ -1,1 +1,50 @@
-<p>navigation works!</p>
+<mat-drawer
+  #drawer
+  mode="side"
+  disableClose="true"
+  opened="true"
+  *ngIf="isLoggedIn"
+>
+  <div class="menu">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard">
+        <div
+          class="menu-item"
+          routerLinkActive="selected"
+          routerLinkActive="selected"
+        >
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <h4 mat-line *ngIf="isExpanded">Dashboard</h4>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/edit-service">
+        <div class="menu-item" routerLinkActive="selected">
+          <mat-icon mat-list-icon>post_add</mat-icon>
+          <h4 mat-line *ngIf="isExpanded">Add Service</h4>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/schedule">
+        <div class="menu-item" routerLinkActive="selected">
+          <mat-icon mat-list-icon>schedule</mat-icon>
+          <h4 mat-line *ngIf="isExpanded">Schedule</h4>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/logs">
+        <div class="menu-item" routerLinkActive="selected">
+          <mat-icon mat-list-icon>event_note</mat-icon>
+          <h4 mat-line *ngIf="isExpanded">Upcoming</h4>
+        </div>
+      </a>
+      <a mat-list-item routerLink="/logs">
+        <div class="menu-item" routerLinkActive="selected">
+          <mat-icon mat-list-icon>history</mat-icon>
+          <h4 mat-line *ngIf="isExpanded">History</h4>
+        </div>
+      </a>
+    </mat-nav-list>
+    <div class="copyright" *ngIf="isExpanded">
+      <mat-icon mat-list-icon>copyright</mat-icon>
+      <span>Ausy Romania, 2023</span>
+    </div>
+  </div>
+</mat-drawer>
