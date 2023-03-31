@@ -2,10 +2,28 @@
   "navigation": {
     "text": "navigația funcționează!"
   },
+  "change-password": {
+    "text": "schimbaţi parola funcționează!"
+  },
   "login": {
     "text": "autentificarea funcționează!"
   },
-  "footer": {
-    "text": "subsolul funcționează!"
+  "password-recovery": {
+    "text": "recuperare parola funcționează!"
+  },
+  "register": {
+    "text": "Inregistreaza-te funcționează!"
+  },
+  "logs": {
+    "text": "înregistrări funcționează!"
+  },
+  "dashboard": {
+    "text": "tablou de bord funcționează!"
+  },
+  "schedule": {
+    "text": "programa funcționează!"
+  },
+  "edit-service": {
+    "text": "serviciu de editare funcționează!"
   }
 }
