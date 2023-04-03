@@ -28,6 +28,7 @@
     width: 100%;
     height: calc(100vh - 50px);
     background-color: #0062A1;
+    border: none;
 }
 
 .copyright {
