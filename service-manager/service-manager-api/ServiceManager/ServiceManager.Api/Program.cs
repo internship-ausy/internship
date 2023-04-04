@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ServiceManager.Api.Middleware;
 using ServiceManager.Application;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Application.Services;
@@ -22,6 +23,8 @@ builder.Services.ConfigureApplicationServices();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddTransient<GlobalExceptionHandleMiddleware>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +38,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseMiddleware<GlobalExceptionHandleMiddleware>();
 
 app.MapControllers();
 
