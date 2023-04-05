@@ -1,1 +1,4 @@
-<p>error-popover works!</p>
+<div class="snackbar">
+  <p class="error-message">{{ data?.message }}</p>
+  <button class="error-message-button" mat-button (click)="closeSnackBar()">{{ data?.action }}</button>
+</div>

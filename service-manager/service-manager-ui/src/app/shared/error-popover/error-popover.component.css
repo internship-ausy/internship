@@ -1,0 +1,44 @@
+/* Warning !!!*/
+/* will modify the styles from all the application*/
+
+.snackbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 512px;
+  height: 30px;
+  background-color: #ffdad6;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.error-message {
+  color: #7e0007;
+  margin-left: 1rem;
+}
+
+.error-message-button {
+  background-color: #ba1a1a;
+  color: #ffffff;
+  border-color: #ba1a1a;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 80px;
+  height: 21.95px;
+  margin-right: 1rem;
+}
+
+.mdc-snackbar__label {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mdc-snackbar__surface {
+  padding-right: 0;
+}
+
+.mat-typography p
+ {
+  margin: 0 0 0 1rem;
+ }
