@@ -7,7 +7,7 @@
 }
 
 .selected {
-    color: #E3B200;
+    color: var(--secondary);
 }
 
 .menu-item h4,
@@ -27,7 +27,7 @@
     display: block;
     width: 100%;
     height: calc(100vh - 50px);
-    background-color: #0062A1;
+    background-color: var(--primary);
     border: none;
 }
 
