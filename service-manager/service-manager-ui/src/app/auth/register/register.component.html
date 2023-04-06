@@ -1,1 +1,62 @@
-<p>{{ "register.text" | translate }}</p>
+
+<div class="register">
+    <h1>Register</h1>
+    <h3>Join for a safe ride</h3>
+    
+    <form [formGroup]="registerForm" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <mat-form-field class="row" appearance="fill">
+            <mat-label>Full name:</mat-label>
+            <input 
+                matInput 
+                type="text" 
+                formControlName="fullName"
+                placeholder="Your input field">
+            <mat-error *ngIf="fullName.invalid">{{getFullNameErrorMessage()}}</mat-error>
+        </mat-form-field>
+    <br>
+        <mat-form-field class="row" appearance="fill">
+            <mat-label>Username:</mat-label>
+            <input 
+                matInput 
+                type="text"
+                formControlName="username"
+                placeholder="Your input field">
+            <mat-error *ngIf="username.invalid">{{getUsernameErrorMessage()}}</mat-error>
+        </mat-form-field>
+    <br>
+        <mat-form-field class="row" appearance="fill">
+            <mat-label>Email:</mat-label>
+            <input 
+                matInput 
+                type="email" 
+                formControlName="email"
+                placeholder="Your input field">
+            <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+    <br>
+        <mat-form-field class="row" appearance="fill">
+            <mat-label>Password:</mat-label>
+            <input 
+                matInput 
+                type="password" 
+                #password
+                formControlName="password"
+                placeholder="Your input field">
+            <mat-error *ngIf="password">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+    <br>
+        <mat-form-field class="row" appearance="fill">
+            <mat-label>Confirm password:</mat-label>
+            <input 
+                matInput 
+                type="password" 
+                formControlName="confirmPassword"
+                pattern="{{ password.value }}"
+                placeholder="Your input field">
+            <mat-error *ngIf="confirmPassword.invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+    <br>
+        <button mat-raised-button class="register-btn">Submit</button>
+    <hr>
+    </form>
+</div>
