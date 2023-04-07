@@ -10,7 +10,7 @@ namespace ServiceManager.Application.Interfaces
 {
     public interface IAuthService
     {
-        ServiceResponse<IList<RegisterDto>> Register(RegisterDto user);
+        ServiceResponse<IList<RegisterDto>> RegisterUsers(User user);
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceManager.Application.Dtos.User;
+using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
 
@@ -10,16 +11,16 @@ namespace ServiceManager.Api.Controllers
     public class AuthController : ControllerBase
 
     {
-        private readonly IAuthRepository _authRepo;
-        public AuthController(IAuthRepository authRepo)
+        private readonly IAuthService _service;
+        public AuthController(IAuthService service)
         {
-            this._authRepo = authRepo;
+            _service = service;
         }
 
         [HttpPost("Register")]
-        public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterDto request)
+        public ActionResult<ServiceResponse<List<RegisterDto>>> Register(RegisterDto request)
         {
-            var response = await _authRepo.Register(
+            var response = _service.RegisterUsers(
                 new User 
                 { 
                     FullName = request.FullName, 
