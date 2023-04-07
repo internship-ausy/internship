@@ -18,17 +18,11 @@ namespace ServiceManager.Api.Controllers
         }
 
         [HttpPost("Register")]
-        public ActionResult<ServiceResponse<List<RegisterDto>>> Register(RegisterDto request)
+        public ActionResult<ServiceResponse<RegisterDto>> Register(RegisterDto newUser)
         {
-            var response = _service.RegisterUsers(
-                new User 
-                { 
-                    FullName = request.FullName, 
-                    Username = request.Username, 
-                    Email = request.Email,
-                    Password = request.Password,
-                }
-                );
+            var response = _service.RegisterUsers(newUser).Result;
+
+            
             if(!response.Success)
             {
                 return BadRequest(response);

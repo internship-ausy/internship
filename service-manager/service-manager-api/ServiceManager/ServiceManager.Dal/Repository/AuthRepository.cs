@@ -19,49 +19,40 @@ namespace ServiceManager.Dal.Repository
             _context = context;
         }
 
-        public async Task<IList<User>> Register()
+        public async Task<User> Register(User newUser)
         {
-            return await _context.Users.ToListAsync();
+            
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() == newUser.Username.ToLower());
+
+            
+
+            if ( user == null)
+                {
+                _context.Users.Add(newUser);
+                await _context.SaveChangesAsync();
+                //return user;
+                }
+            throw new Exception ("User not found");
+
         }
-        //public async Task<ServiceResponse<int>> Register(User user)
-        //{
-        //    var response = new ServiceResponse<int>();
-        //    if (await EmailExists(user.Email))
-        //    {
-        //        response.Success = false;
-        //        response.Message = "Email already exists.";
-        //        return response;
-        //    }
-        //    if (await UserExists(user.Username))
-        //    {
-        //        response.Success = false;
-        //        response.Message = "User already exists.";
-        //        return response;
-        //    }
-        //    _context.Users.Add(user);
-        //    await _context.SaveChangesAsync();
-        //    response.Data = user.Id;
-        //    response.Message = "User was successfully registered.";
-        //    return response;
+      
 
-        //}
+        public async Task<bool> UserExists(string username)
+        {
+            if (await _context.Users.AnyAsync(u => u.Username.ToLower() == username.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
 
-        //public async Task<bool> UserExists(string username)
-        //{
-        //    if (await _context.Users.AnyAsync(u => u.Username.ToLower() == username.ToLower()))
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-        //public async Task<bool> EmailExists(string email)
-        //{
-        //    if (await _context.Users.AnyAsync(u => u.Email.ToLower() == email.ToLower()))
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public async Task<bool> EmailExists(string email)
+        {
+            if (await _context.Users.AnyAsync(u => u.Email.ToLower() == email.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

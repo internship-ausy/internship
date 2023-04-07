@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ServiceManager.Application.Services
 {
@@ -23,11 +24,24 @@ namespace ServiceManager.Application.Services
             _mapper = mapper ;
            
         }
-        public ServiceResponse<IList<RegisterDto>> RegisterUsers(User user)
+        public async Task<ServiceResponse<RegisterDto>> RegisterUsers(RegisterDto newUser)
         {
-            var response = new ServiceResponse<IList<RegisterDto>>();
-            var users = _authRepo.Register().Result;
-            //response.Data - users.Select(u => _mapper.Map<RegisterDto>(u)).ToList();
+            var response = new ServiceResponse<RegisterDto>();
+
+            if (await _authRepo.EmailExists(newUser.Email))
+            {
+                throw new HttpRequestException("Email already exists.");
+            }
+            if (await _authRepo.UserExists(newUser.Username))
+            {
+                throw new HttpRequestException("User already exists.");
+            }
+
+            var user = _mapper.Map<User>(newUser);
+            await _authRepo.Register(user);
+
+            response.Data = newUser;
+            response.Success = true;    
 
             return response;
 
@@ -38,3 +52,16 @@ namespace ServiceManager.Application.Services
 
     }
 }
+//var response = new ServiceResponse<int>();
+//    if (await EmailExists(user.Email))
+//    {
+//        response.Success = false;
+//        response.Message = "Email already exists.";
+//        return response;
+//    }
+//    if (await UserExists(user.Username))
+//    {
+//        response.Success = false;
+//        response.Message = "User already exists.";
+//        return response;
+//    }

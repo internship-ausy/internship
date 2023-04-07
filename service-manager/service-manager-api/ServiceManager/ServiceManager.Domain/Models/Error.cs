@@ -9,7 +9,7 @@ namespace ServiceManager.Domain.Models
 {
     public class Error
     {
-        public string StatucCode { get; set; } = string.Empty;
+        public string StatusCode { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;
 
         public override string ToString()
