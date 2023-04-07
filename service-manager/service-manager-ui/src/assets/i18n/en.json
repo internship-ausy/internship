@@ -5,5 +5,17 @@
     "schedule": "Schedule",
     "upcoming": "Upcoming",
     "history": "History"
+  },
+  "login": {
+    "title": "Login",
+    "new": "New to Service Manager?",
+    "register": "Sign Up",
+    "username": "Username",
+    "password": "Password",
+    "placeholderUsername": "Your username",
+    "placeholderPassword": "Your password",
+    "button": "Log In",
+    "forgotPassword": "Forgot password?",
+    "error": "Field cannot be empty"
   }
 }

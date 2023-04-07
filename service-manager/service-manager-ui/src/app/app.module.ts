@@ -27,6 +27,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.component';
 import { HistoryComponent } from './dashboard-feature/logs/history/history.component';
 import { UpcomingComponent } from './dashboard-feature/logs/upcoming/upcoming.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UpcomingComponent } from './dashboard-feature/logs/upcoming/upcoming.co
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularMaterialModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

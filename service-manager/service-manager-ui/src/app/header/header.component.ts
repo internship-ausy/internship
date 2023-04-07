@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from './header.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public translate: TranslateService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.loggedIn = this.headerService.isLoggedIn;
-    this.headerService.onLogoutEvent.subscribe((e) => (this.loggedIn = e));
+    this.loggedIn = this.authService.isLoggedIn;
+    this.authService.onAuthEvent.subscribe((e) => (this.loggedIn = e));
   }
 
   onMenu() {
@@ -25,7 +27,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    this.headerService.onLogout();
+    this.authService.onLogout();
   }
 
   useLanguage(language: string): void {
