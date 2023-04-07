@@ -24,19 +24,11 @@ namespace ServiceManager.Dal.Repository
             
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() == newUser.Username.ToLower());
 
-            
-
-            if ( user == null)
-                {
-                _context.Users.Add(newUser);
-                await _context.SaveChangesAsync();
-                //return user;
-                }
-            throw new Exception ("User not found");
-
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+            return user!;
         }
       
-
         public async Task<bool> UserExists(string username)
         {
             if (await _context.Users.AnyAsync(u => u.Username.ToLower() == username.ToLower()))

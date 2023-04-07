@@ -29,10 +29,10 @@ namespace ServiceManager.Api.Middleware
                         error.StatusCode = ((int)HttpStatusCode.Conflict).ToString();
                         error.Message = ex.Message;
                         break;
-                    case AggregateException:
-                        error.StatusCode = ((int)HttpStatusCode.Conflict).ToString();
-                        error.Message = ex.InnerException!.Message;
-                        break;
+                    //case AggregateException:
+                    //    error.StatusCode = ((int)HttpStatusCode.Conflict).ToString();
+                    //    error.Message = ex.InnerException!.Message;
+                    //    break;
                     default:
 						error.StatusCode = ((int)HttpStatusCode.InternalServerError).ToString();
 						error.Message = ex.Message;
