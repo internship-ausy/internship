@@ -19,6 +19,7 @@ namespace ServiceManager.Dal.Repository
             _context = context;
         }
 
+<<<<<<< HEAD
         public async Task<User> Register(User newUser)
         {
             
@@ -45,6 +46,11 @@ namespace ServiceManager.Dal.Repository
                 return true;
             }
             return false;
+=======
+        public async Task<List<User>> Login()
+        {
+            return await _context.Users.ToListAsync();
+>>>>>>> main
         }
     }
 }

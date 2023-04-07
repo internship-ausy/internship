@@ -12,5 +12,6 @@ namespace ServiceManager.Application.Interfaces
     {
         Task<ServiceResponse<RegisterDto>> RegisterUsers(RegisterDto newUser);
 
+        public ServiceResponse<string> Login(string username, string password);
     }
 }

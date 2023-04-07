@@ -6,21 +6,30 @@ using ServiceManager.Domain.Models;
 
 namespace ServiceManager.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class AuthController : ControllerBase
-
-    {
-        private readonly IAuthService _service;
-        public AuthController(IAuthService service)
+        [ApiController]
+        [Route("[controller]")]
+        public class AuthController : ControllerBase
         {
-            _service = service;
-        }
+            private readonly IAuthService _authService;
+            public AuthController(IAuthService authService)
+            {
+            _authService = authService;
+            }
 
-        [HttpPost("Register")]
+            [HttpPost("login")]
+            public ActionResult<ServiceResponse<int>> Login(LoginDto request)
+            {
+                var response =  _authService.Login(request.Username, request.Password);
+                if (!response.Success)
+                {
+                    return BadRequest(response);
+                }
+                return Ok(response);
+            }
+            [HttpPost("Register")]
         public async Task<ActionResult<ServiceResponse<RegisterDto>>> Register(RegisterDto newUser)
         {
-            var response = await _service.RegisterUsers(newUser);
+            var response = await _authService.RegisterUsers(newUser);
 
             
             if(!response.Success)
@@ -29,5 +38,5 @@ namespace ServiceManager.Api.Controllers
             }
             return Ok(response);
         }
-    }
-}
+        }
+ }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
@@ -14,13 +14,13 @@ namespace ServiceManager.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IAuthRepository _authRepo;
+        private readonly IAuthRepository _authRepository;
         private readonly IMapper _mapper;
        
             
         public AuthService(IAuthRepository authRepo, IMapper mapper)
         {
-            _authRepo = authRepo ;
+            _authRepository = _authRepository ;
             _mapper = mapper ;
            
         }
@@ -28,17 +28,17 @@ namespace ServiceManager.Application.Services
         {
             var response = new ServiceResponse<RegisterDto>();
 
-            if (await _authRepo.EmailExists(newUser.Email))
+            if (await _authRepository.EmailExists(newUser.Email))
             {
                 throw new HttpRequestException("Email already exists.");
             }
-            if (await _authRepo.UserExists(newUser.Username))
+            if (await _authRepository.UserExists(newUser.Username))
             {
                 throw new HttpRequestException("User already exists.");
             }
 
             var user = _mapper.Map<User>(newUser);
-            await _authRepo.Register(user);
+            await _authRepository.Register(user);
 
             response.Data = newUser;
             response.Success = true;    
@@ -49,19 +49,23 @@ namespace ServiceManager.Application.Services
 
            
         }
+        public  ServiceResponse<string> Login(string username, string password)
+        {
+            var response = new ServiceResponse<string>();
+            var user = _authRepository.Login().Result
+            .FirstOrDefault(u => u.Username.ToLower().Equals(username.ToLower())
+             && u.Password.ToLower().Equals(password.ToLower()));
+            if (user == null)
+            {
+                throw new HttpRequestException("Incorrect username or password");
+            }
+            else
+            {
+                response.Data = user.Id.ToString();
+                response.Message = "Authentification Succeeded";
+            }
+            return response;
+        }
 
     }
 }
-//var response = new ServiceResponse<int>();
-//    if (await EmailExists(user.Email))
-//    {
-//        response.Success = false;
-//        response.Message = "Email already exists.";
-//        return response;
-//    }
-//    if (await UserExists(user.Username))
-//    {
-//        response.Success = false;
-//        response.Message = "User already exists.";
-//        return response;
-//    }
