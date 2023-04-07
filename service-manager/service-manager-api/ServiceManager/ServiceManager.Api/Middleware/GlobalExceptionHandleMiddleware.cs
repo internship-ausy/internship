@@ -37,6 +37,7 @@ namespace ServiceManager.Api.Middleware
 				}
 
 				context.Response.ContentType = "application/json";
+				context.Response.StatusCode = Int32.Parse(error.StatucCode);
 
 				await context.Response.WriteAsync(error.ToString());
 			}
