@@ -25,13 +25,19 @@ namespace ServiceManager.Api.Middleware
 						error.StatucCode = ((int)HttpStatusCode.Unauthorized).ToString();
 						error.Message = ex.Message;
 						break;
-					default:
+					case HttpRequestException:
+                        error.StatucCode = ((int)HttpStatusCode.NotFound).ToString();
+                        error.Message = ex.Message;
+                        break;
+
+                    default:
 						error.StatucCode = ((int)HttpStatusCode.InternalServerError).ToString();
 						error.Message = ex.Message;
 						break;
 				}
 
 				context.Response.ContentType = "application/json";
+				context.Response.StatusCode = Int32.Parse(error.StatucCode);
 
 				await context.Response.WriteAsync(error.ToString());
 			}
