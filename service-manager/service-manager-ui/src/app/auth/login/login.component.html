@@ -1,1 +1,39 @@
-<p>{{ 'login.text' | translate }}</p>
+<div class="container">
+  <h1 class="title">{{ "login.title" | translate }}</h1>
+  <p>
+    {{ "login.new" | translate }}
+    <a routerLink="/register">{{ "login.register" | translate }}</a>
+  </p>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "login.username" | translate }}</mat-label>
+      <input matInput type="text" formControlName="username" required />
+      <mat-error
+        *ngIf="this.loginForm.controls['username'].hasError('required')"
+        >{{ "login.error" | translate }}</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "login.password" | translate }}</mat-label>
+      <input matInput type="password" formControlName="password" required />
+      <mat-error
+        *ngIf="this.loginForm.controls['password'].hasError('required')"
+        >{{ "login.error" | translate }}</mat-error
+      >
+    </mat-form-field>
+    <div class="action">
+      <button
+        type="submit"
+        class="btn-primary"
+        [class.btn-secondary]="loading"
+        [disabled]="loading"
+      >
+        {{ "login.button" | translate }}
+        <div [class.spinner]="loading"></div>
+      </button>
+    </div>
+  </form>
+  <a routerLink="/password-recovery">{{
+    "login.forgotPassword" | translate
+  }}</a>
+</div>
