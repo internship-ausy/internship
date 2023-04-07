@@ -25,7 +25,12 @@ namespace ServiceManager.Api.Middleware
 						error.StatucCode = ((int)HttpStatusCode.Unauthorized).ToString();
 						error.Message = ex.Message;
 						break;
-					default:
+					case HttpRequestException:
+                        error.StatucCode = ((int)HttpStatusCode.NotFound).ToString();
+                        error.Message = ex.Message;
+                        break;
+
+                    default:
 						error.StatucCode = ((int)HttpStatusCode.InternalServerError).ToString();
 						error.Message = ex.Message;
 						break;
