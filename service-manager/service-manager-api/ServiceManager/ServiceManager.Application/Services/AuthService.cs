@@ -18,9 +18,9 @@ namespace ServiceManager.Application.Services
         private readonly IMapper _mapper;
        
             
-        public AuthService(IAuthRepository authRepo, IMapper mapper)
+        public AuthService(IAuthRepository authRepository, IMapper mapper)
         {
-            _authRepository = _authRepository ;
+            _authRepository = authRepository ;
             _mapper = mapper ;
            
         }
