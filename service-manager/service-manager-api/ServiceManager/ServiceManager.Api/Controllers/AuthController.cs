@@ -27,7 +27,7 @@ namespace ServiceManager.Api.Controllers
                 return Ok(response);
             }
             [HttpPost("Register")]
-        public async Task<ActionResult<ServiceResponse<RegisterDto>>> Register(RegisterDto newUser)
+        public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterDto newUser)
         {
             var response = await _authService.RegisterUsers(newUser);
 
