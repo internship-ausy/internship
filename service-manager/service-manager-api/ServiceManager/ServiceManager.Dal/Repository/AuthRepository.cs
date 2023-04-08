@@ -19,14 +19,14 @@ namespace ServiceManager.Dal.Repository
             _context = context;
         }
 
-        public async Task<User> Register(User newUser)
+        public async Task<int> Register(User newUser)
         {
             
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() == newUser.Username.ToLower());
 
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
-            return user!;
+            return newUser.Id;
         }
       
         public async Task<bool> UserExists(string username)

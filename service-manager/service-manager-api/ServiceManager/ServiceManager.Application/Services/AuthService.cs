@@ -24,9 +24,9 @@ namespace ServiceManager.Application.Services
             _mapper = mapper ;
            
         }
-        public async Task<ServiceResponse<RegisterDto>> RegisterUsers(RegisterDto newUser)
+        public async Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser)
         {
-            var response = new ServiceResponse<RegisterDto>();
+            var response = new ServiceResponse<int>();
 
             if (await _authRepository.EmailExists(newUser.Email))
             {
@@ -40,8 +40,9 @@ namespace ServiceManager.Application.Services
             var user = _mapper.Map<User>(newUser);
             await _authRepository.Register(user);
 
-            response.Data = newUser;
-            response.Success = true;    
+            response.Data = user.Id;
+            response.Success = true;  
+            response.Message = "Registration Successfully";
 
             return response;
 

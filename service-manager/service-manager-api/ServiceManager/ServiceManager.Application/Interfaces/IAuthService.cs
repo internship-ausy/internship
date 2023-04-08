@@ -10,8 +10,9 @@ namespace ServiceManager.Application.Interfaces
 {
     public interface IAuthService
     {
-        Task<ServiceResponse<RegisterDto>> RegisterUsers(RegisterDto newUser);
+        Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser);
 
         public ServiceResponse<string> Login(string username, string password);
+
     }
 }

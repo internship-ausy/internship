@@ -9,7 +9,7 @@ namespace ServiceManager.Domain.Interfaces.Repositories
 {
     public interface IAuthRepository
     {
-        Task<User> Register(User newUser);
+        Task<int> Register(User newUser);
         public Task<List<User>> Login();
 
         public Task<bool> UserExists(string username);
