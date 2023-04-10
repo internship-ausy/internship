@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderService {
   isExpanded = true;
-  isLoggedIn = true;
+  isLoggedIn = false;
   onMenuEvent = new EventEmitter<boolean>();
   onLogoutEvent = new EventEmitter<boolean>();
 

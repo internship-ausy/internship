@@ -1,3 +1,9 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 h1 {
     font-size: 36px;
     line-height: 44px;
@@ -10,29 +16,17 @@ h3 {
     font-weight: 500;
 }
 
-:host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-.register {
-    text-align: center;
-    padding-top: 5%;
+hr {
+    border: 1px solid #DFE3EB;
+    transform: rotate(0.29deg);
 }
 
-.register-btn {
-    width: 80px;
-    height: 23px;
-    background-color: #E3B200;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.btn-primary {
     margin-top: 10px;
     margin-bottom: 15px;
 }
 
-hr {
-    border: 1px solid #DFE3EB;
-    transform: rotate(0.29deg);
+.register {
+    text-align: center;
+    padding-top: 5%;
 }

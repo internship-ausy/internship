@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterUser } from '../shared/models/registerUser.model';
+import { Subject } from 'rxjs';
 
 export interface AuthResponseData {
   data: number;
@@ -12,8 +13,11 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn = new Subject<boolean>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.isLoggedIn.next(false);
+   }
 
   register(user: RegisterUser) {
     return this.http.post<AuthResponseData>(
