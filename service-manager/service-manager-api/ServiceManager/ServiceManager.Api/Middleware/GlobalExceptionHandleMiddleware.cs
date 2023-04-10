@@ -26,7 +26,7 @@ namespace ServiceManager.Api.Middleware
 						error.Message = ex.Message;
 						break;
 					case HttpRequestException:
-                        error.StatucCode = ((int)HttpStatusCode.NotFound).ToString();
+                        error.StatucCode = ((int)HttpStatusCode.Unauthorized).ToString();
                         error.Message = ex.Message;
                         break;
 

@@ -9,6 +9,6 @@ namespace ServiceManager.Application.Interfaces
 {
     public interface IAuthService
     {
-        public ServiceResponse<string> Login(string username, string password);
+        public Task<ServiceResponse<string>> Login(string username, string password);
     }
 }
