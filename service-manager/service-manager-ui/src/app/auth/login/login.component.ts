@@ -24,13 +24,19 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.loading = true;
-      this.authService
-        .login(this.loginForm.value.username, this.loginForm.value.password)
-        .subscribe((res) => {
-          console.log(res);
+      const authObservable = this.authService.login(
+        this.loginForm.value.username,
+        this.loginForm.value.password
+      );
+      authObservable.subscribe({
+        next: (res) => {
           this.authService.onLogin();
           this.loading = false;
-        });
+        },
+        error: (err) => {
+          this.loading = false;
+        },
+      });
     }
   }
 
