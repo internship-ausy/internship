@@ -17,9 +17,9 @@ namespace ServiceManager.Api.Controllers
             }
 
             [HttpPost("login")]
-            public ActionResult<ServiceResponse<int>> Login(LoginDto request)
+            public async Task<ActionResult<ServiceResponse<int>>> Login(LoginDto request)
             {
-                var response =  _authService.Login(request.Username, request.Password);
+                var response = await _authService.Login(request.Username, request.Password);
                 if (!response.Success)
                 {
                     return BadRequest(response);

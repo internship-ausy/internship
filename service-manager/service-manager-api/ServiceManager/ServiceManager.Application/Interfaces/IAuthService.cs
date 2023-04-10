@@ -12,7 +12,7 @@ namespace ServiceManager.Application.Interfaces
     {
         Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser);
 
-        public ServiceResponse<string> Login(string username, string password);
+        public Task<ServiceResponse<string>> Login(string username, string password);
 
     }
 }

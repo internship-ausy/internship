@@ -50,10 +50,10 @@ namespace ServiceManager.Application.Services
 
            
         }
-        public  ServiceResponse<string> Login(string username, string password)
+        public async Task<ServiceResponse<string>> Login(string username, string password)
         {
             var response = new ServiceResponse<string>();
-            var user = _authRepository.Login().Result
+            var user = (await _authRepository.Login())
             .FirstOrDefault(u => u.Username.ToLower().Equals(username.ToLower())
              && u.Password.ToLower().Equals(password.ToLower()));
             if (user == null)
@@ -62,7 +62,8 @@ namespace ServiceManager.Application.Services
             }
             else
             {
-                response.Data = user.Id.ToString();
+                //response.Data = user.Id.ToString();
+                response.Data = _authRepository.CreateToken(user);
                 response.Message = "Authentification Succeeded";
             }
             return response;

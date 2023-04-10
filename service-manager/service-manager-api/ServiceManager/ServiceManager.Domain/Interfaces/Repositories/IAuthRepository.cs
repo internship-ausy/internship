@@ -14,6 +14,9 @@ namespace ServiceManager.Domain.Interfaces.Repositories
 
         public Task<bool> UserExists(string username);
         public Task<bool> EmailExists(string email);
+
+        public string CreateToken(User user);
+
     }
 }
 
