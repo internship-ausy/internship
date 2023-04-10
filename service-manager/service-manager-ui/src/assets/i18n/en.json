@@ -16,6 +16,7 @@
     "placeholderPassword": "Your password",
     "button": "Log In",
     "forgotPassword": "Forgot password?",
-    "error": "Field cannot be empty"
+    "error": "Field cannot be empty",
+    "errorPopover": "Incorrect username or password"
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HeaderService } from 'src/app/header/header.service';
 import { AuthService } from '../auth.service';
+import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private errorPopoverService: ErrorPopoverService
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -20,10 +23,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.loading = true;
-      this.authService.onLogin();
-      this.loading = false;
+      this.authService
+        .login(this.loginForm.value.username, this.loginForm.value.password)
+        .subscribe((res) => {
+          console.log(res);
+          this.authService.onLogin();
+          this.loading = false;
+        });
     }
   }
 

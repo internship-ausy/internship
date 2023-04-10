@@ -16,6 +16,7 @@
     "placeholderPassword": "Introdu parola",
     "button": "Autentificare",
     "forgotPassword": "Ai uitat parola?",
-    "error": "Campul nu este completat"
+    "error": "Campul nu este completat",
+    "errorPopover": "Nume de utilizator sau parola incorecte"
   }
 }
