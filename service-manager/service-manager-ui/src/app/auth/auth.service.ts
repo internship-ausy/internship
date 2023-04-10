@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { RegisterUser } from '../shared/models/registerUser.model';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   data: number;
@@ -10,14 +10,35 @@ export interface AuthResponseData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn = new Subject<boolean>();
+  isLoggedIn = false;
+  onAuthEvent = new EventEmitter<boolean>();
 
-  constructor(private http: HttpClient) {
-    this.isLoggedIn.next(false);
-   }
+  constructor(private router: Router, private http: HttpClient) {}
+
+  onLogout() {
+    this.isLoggedIn = false;
+    this.onAuthEvent.emit(this.isLoggedIn);
+    this.router.navigate(['/login']);
+  }
+
+  onLogin() {
+    this.isLoggedIn = true;
+    this.onAuthEvent.emit(this.isLoggedIn);
+    this.router.navigate(['/dashboard']);
+  }
+
+  login(username: string, password: string) {
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/login',
+      {
+        username: username,
+        password: password,
+      }
+    );
+  }
 
   register(user: RegisterUser) {
     return this.http.post<AuthResponseData>(
@@ -26,8 +47,8 @@ export class AuthService {
         FullName: user.fullName,
         Username: user.username,
         Email: user.email,
-        Password: user.password
+        Password: user.password,
       }
-    )
+    );
   }
 }

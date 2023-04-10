@@ -12,25 +12,35 @@ import { LogsComponent } from '../dashboard-feature/logs/logs.component';
 import { ScheduleComponent } from '../dashboard-feature/schedule/schedule.component';
 import { UpcomingComponent } from '../dashboard-feature/logs/upcoming/upcoming.component';
 import { HistoryComponent } from '../dashboard-feature/logs/history/history.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'password-recovery', component: PasswordRecoveryComponent },
   { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'edit-service', component: EditServiceComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-service',
+    component: EditServiceComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'logs',
     component: LogsComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'upcoming', pathMatch: 'full' },
       { path: 'upcoming', component: UpcomingComponent },
       { path: 'history', component: HistoryComponent },
     ],
   },
-  { path: 'schedule', component: ScheduleComponent },
+  { path: 'schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

@@ -11,9 +11,7 @@ import { ErrorPopoverService } from '../services/error-popover.service';
 
 @Injectable()
 export class ErrorInterceptorService implements HttpInterceptor {
-  constructor(
-    private errorPopoverService: ErrorPopoverService
-  ) {}
+  constructor(private errorPopoverService: ErrorPopoverService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -28,16 +26,22 @@ export class ErrorInterceptorService implements HttpInterceptor {
           } else {
             switch (error.status) {
               case 401:
-                console.log(error.status);
-
-                this.errorPopoverService.openSnackBar(error.statusText, 'OK');
+                this.errorPopoverService.openSnackBar(
+                  error.error.Message,
+                  'Ok'
+                );
                 break;
               case 409:
-                this.errorPopoverService.openSnackBar(error.error.Message, 'Ok');
+                this.errorPopoverService.openSnackBar(
+                  error.error.Message,
+                  'Ok'
+                );
                 break;
               default:
-                this.errorPopoverService.openSnackBar('Internal server error', 'Ok');
-                
+                this.errorPopoverService.openSnackBar(
+                  'Internal server error',
+                  'Ok'
+                );
             }
           }
         } else {
