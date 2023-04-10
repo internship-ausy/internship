@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 * {
     --primary: #0062A1;
     --secondary: #E3B200;
@@ -13,6 +14,37 @@
     --transition: all .2s;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    border: none;
+    padding-block: 8px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+}
+
+.btn-secondary {
+    background-color: var(--neutral);
+}
 
 body {
     margin: 0;

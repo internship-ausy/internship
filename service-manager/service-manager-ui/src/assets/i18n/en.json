@@ -18,5 +18,20 @@
     "forgotPassword": "Forgot password?",
     "error": "Field cannot be empty",
     "errorPopover": "Incorrect username or password"
+  },
+  "register": {
+    "register": "Register",
+    "subHeading": "Join for a safe ride",
+    "fullName": "Full name",
+    "username": "Username",
+    "password": "Password",
+    "confirmPassword": "confirmPassword",
+    "placeholder": "Your input field",
+    "errorRequired": "You must enter a value",
+    "errorInvalidName": "Not a valid name",
+    "errorInvalidUsername": "Not a valid username",
+    "errorInvalidEmail": "Not a valid email",
+    "errorInvalidPassword": "Choose a stronger password",
+    "errorInvalidConfirmPassword": "The passwords must match"
   }
 }

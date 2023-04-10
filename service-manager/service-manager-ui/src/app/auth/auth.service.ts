@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
+import { RegisterUser } from '../shared/models/registerUser.model';
 import { Router } from '@angular/router';
 
 export interface AuthResponseData {
@@ -15,7 +16,7 @@ export class AuthService {
   isLoggedIn = false;
   onAuthEvent = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   onLogout() {
     this.isLoggedIn = false;
@@ -30,11 +31,23 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.httpClient.post<AuthResponseData>(
+    return this.http.post<AuthResponseData>(
       'https://localhost:7252/Auth/login',
       {
         username: username,
         password: password,
+      }
+    );
+  }
+
+  register(user: RegisterUser) {
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/Register',
+      {
+        FullName: user.fullName,
+        Username: user.username,
+        Email: user.email,
+        Password: user.password,
       }
     );
   }

@@ -17,14 +17,26 @@ namespace ServiceManager.Api.Controllers
             }
 
             [HttpPost("login")]
-            public ActionResult<ServiceResponse<int>> Login(LoginDto request)
+            public async Task<ActionResult<ServiceResponse<int>>> Login(LoginDto request)
             {
-                var response =  _authService.Login(request.Username, request.Password);
+                var response = await _authService.Login(request.Username, request.Password);
                 if (!response.Success)
                 {
                     return BadRequest(response);
                 }
                 return Ok(response);
             }
+            [HttpPost("Register")]
+        public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterDto newUser)
+        {
+            var response = await _authService.RegisterUsers(newUser);
+
+            
+            if(!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
         }
  }
