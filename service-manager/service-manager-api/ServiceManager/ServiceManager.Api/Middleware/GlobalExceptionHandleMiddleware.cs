@@ -18,22 +18,28 @@ namespace ServiceManager.Api.Middleware
 				switch (ex)
 				{
 					case KeyNotFoundException:
-						error.StatucCode = ((int)HttpStatusCode.NotFound).ToString();
+						error.StatusCode = ((int)HttpStatusCode.NotFound).ToString();
 						error.Message = ex.Message;
 						break;
 					case UnauthorizedAccessException:
-						error.StatucCode = ((int)HttpStatusCode.Unauthorized).ToString();
+						error.StatusCode = ((int)HttpStatusCode.Unauthorized).ToString();
 						error.Message = ex.Message;
 						break;
-					default:
-						error.StatucCode = ((int)HttpStatusCode.InternalServerError).ToString();
+					case HttpRequestException:
+                        error.StatusCode = ((int)HttpStatusCode.Unauthorized).ToString();
+                        error.Message = ex.Message;
+                        break;
+
+                    default:
+						error.StatusCode = ((int)HttpStatusCode.InternalServerError).ToString();
 						error.Message = ex.Message;
 						break;
 				}
 
 				context.Response.ContentType = "application/json";
+				context.Response.StatusCode = Int32.Parse(error.StatusCode);
 
-				await context.Response.WriteAsync(error.ToString());
+                await context.Response.WriteAsync(error.ToString());
 			}
         }
     }
