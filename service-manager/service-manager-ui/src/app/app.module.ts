@@ -31,6 +31,7 @@ import {
 import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.component';
 import { HistoryComponent } from './dashboard-feature/logs/history/history.component';
 import { UpcomingComponent } from './dashboard-feature/logs/upcoming/upcoming.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorInterceptorService } from './shared/core/Interceptors/error-interceptor.service';
 
 @NgModule({
@@ -61,6 +62,8 @@ import { ErrorInterceptorService } from './shared/core/Interceptors/error-interc
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
