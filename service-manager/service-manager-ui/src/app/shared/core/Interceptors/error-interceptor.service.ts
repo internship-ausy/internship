@@ -33,11 +33,10 @@ export class ErrorInterceptorService implements HttpInterceptor {
                 this.errorPopoverService.openSnackBar(error.statusText, 'OK');
                 break;
               case 409:
-                // console.log(error);
-                this.ShowErrorPopover(error.error.Message);
+                this.errorPopoverService.openSnackBar(error.error.Message, 'Ok');
                 break;
               default:
-                this.ShowErrorPopover('Internal server error');
+                this.errorPopoverService.openSnackBar('Internal server error', 'Ok');
                 
             }
           }
@@ -47,9 +46,5 @@ export class ErrorInterceptorService implements HttpInterceptor {
         return throwError(() => new Error(error.error.Message));
       })
     );
-  }
-
-  private ShowErrorPopover(errorMessage: string): void {
-    this.errorPopoverService.openSnackBar(errorMessage, 'Ok');
   }
 }
