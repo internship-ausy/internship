@@ -1,4 +1,5 @@
-﻿using ServiceManager.Domain.Models;
+﻿using ServiceManager.Application.Dtos.User;
+using ServiceManager.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace ServiceManager.Application.Interfaces
 {
     public interface IAuthService
     {
+        Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser);
+
         public Task<ServiceResponse<string>> Login(string username, string password);
+
     }
 }

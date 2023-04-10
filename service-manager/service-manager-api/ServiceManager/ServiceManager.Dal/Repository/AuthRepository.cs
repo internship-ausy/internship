@@ -26,6 +26,34 @@ namespace ServiceManager.Dal.Repository
             _configuration = configuration;
         }
 
+        public async Task<int> Register(User newUser)
+        {
+            
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() == newUser.Username.ToLower());
+
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+            return newUser.Id;
+        }
+      
+        public async Task<bool> UserExists(string username)
+        {
+            if (await _context.Users.AnyAsync(u => u.Username.ToLower() == username.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> EmailExists(string email)
+        {
+            if (await _context.Users.AnyAsync(u => u.Email.ToLower() == email.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<List<User>> Login()
         {
             return await _context.Users.ToListAsync();
