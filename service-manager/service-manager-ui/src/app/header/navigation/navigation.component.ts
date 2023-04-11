@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderService } from '../header.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,15 +13,23 @@ export class NavigationComponent implements OnInit {
   isExpanded: boolean;
   isLoggedIn: boolean;
 
-  constructor(private headerService: HeaderService) {}
+  constructor(
+    private headerService: HeaderService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.isExpanded = this.headerService.isExpanded;
-    this.isLoggedIn = this.headerService.isLoggedIn;
+    this.isLoggedIn = this.authService.isLoggedIn;
     this.headerService.onMenuEvent.subscribe((e) => (this.isExpanded = e));
-    this.headerService.onLogoutEvent.subscribe((e) => {
+    this.authService.onAuthEvent.subscribe((e) => {
       this.isLoggedIn = e;
-      this.navigation.close();
+
+      if (this.isLoggedIn) {
+        this.navigation.open();
+      } else {
+        this.navigation.close();
+      }
     });
   }
 }

@@ -5,5 +5,33 @@
     "schedule": "Programari",
     "upcoming": "Programari viitoare",
     "history": "Istoric programari"
+  },
+  "login": {
+    "title": "Autentificare",
+    "new": "Nu ai cont pe Service Manager?",
+    "register": "Inregistreaza-te",
+    "username": "Nume de utilizator",
+    "password": "Parola",
+    "placeholderUsername": "Introdu numele de utilizator",
+    "placeholderPassword": "Introdu parola",
+    "button": "Autentificare",
+    "forgotPassword": "Ai uitat parola?",
+    "error": "Campul nu este completat",
+    "errorPopover": "Nume de utilizator sau parola incorecte"
+  },
+  "register": {
+    "register": "Inregistrare",
+    "subHeading": "Alaturati-va pentru o calatorie in siguranta",
+    "fullName": "Numele complet",
+    "username": "Nume de utilizator",
+    "password": "Parola",
+    "confirmPassword": "Confirma parola",
+    "placeholder": "Introduceti datele",
+    "errorRequired": "Introdu o valoare",
+    "errorInvalidName": "Nume invalid",
+    "errorInvalidUsername": "Nume de utilizator invalid",
+    "errorInvalidEmail": "Email invalid",
+    "errorInvalidPassword": "Alege o parola mai puternica",
+    "errorInvalidConfirmPassword": "Parolele trebuie sa coincida"
   }
 }
