@@ -11,8 +11,8 @@ namespace ServiceManager.Application.Interfaces
     public interface IAuthService
     {
         Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser);
-
         public Task<ServiceResponse<string>> Login(string username, string password);
+        Task<ServiceResponse<string>> PasswordRecovery(string email);
 
     }
 }
