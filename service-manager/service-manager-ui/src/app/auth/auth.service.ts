@@ -51,4 +51,9 @@ export class AuthService {
       }
     );
   }
+  
+  password_recovery(email: string)
+  {
+    return "Yes this works"
+  }
 }
