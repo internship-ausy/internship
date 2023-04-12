@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { FormControl, FormGroup, FormGroupDirective, ValidationErrors, Validators } from '@angular/forms';
+import { AuthResponseData, AuthService } from '../auth.service';
 import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-password-recovery',
@@ -28,22 +29,27 @@ export class PasswordRecoveryComponent implements OnInit {
     this.initForm();
   }
 
-  onSubmit() {
-    if (this.recoveryForm.valid) {
+  onSubmit(form: FormGroupDirective) {
+    if (!form.valid)
+      return;
+    console.log()
+    let email: string = form.value.email;
+    let authObservable: Observable<AuthResponseData>;
+
+    authObservable = this.authService.passwordRecovery(email);
+
+    authObservable.subscribe({
+      next: resData => {
+        if (resData.success)
+          console.log(resData)
+      }
+    })
+    /*if (form.valid) {
       this.loading = true;
-      const authObservable = this.authService.password_recovery(
-        this.recoveryForm.value.email
+      const authObservable = this.authService.passwordRecovery(
+        form.value.email
       );
-      /* authObservable.subscribe({
-        next: (res) => {
-          this.authService.password_recovery();
-          this.loading = false;
-        },
-        error: (err) => {
-          this.loading = false;
-        },
-      });*/
-    }
+    }*/
   }
 
   initForm() {

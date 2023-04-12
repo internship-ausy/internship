@@ -52,8 +52,12 @@ export class AuthService {
     );
   }
   
-  password_recovery(email: string)
-  {
-    return "Yes this works"
+  passwordRecovery(email: string){ 
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/PasswordRecovery',
+      {
+        Email: email
+      }
+    );
   }
 }

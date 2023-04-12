@@ -37,6 +37,12 @@ export class ErrorInterceptorService implements HttpInterceptor {
                   'Ok'
                 );
                 break;
+                case 404:
+                this.errorPopoverService.openSnackBar(
+                  error.error.Message,
+                  'Ok'
+                );
+                break;
               default:
                 this.errorPopoverService.openSnackBar(
                   'Internal server error',
