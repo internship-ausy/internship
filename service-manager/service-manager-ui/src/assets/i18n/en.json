@@ -33,5 +33,14 @@
     "errorInvalidEmail": "Not a valid email",
     "errorInvalidPassword": "Choose a stronger password",
     "errorInvalidConfirmPassword": "The passwords must match"
+  },
+  "recovery": {
+    "email-label" : "Your email: ",
+    "title" : "Password Recovery",
+    "subtitle" : "Don't Worry, happens to the best of us",
+    "button" : "Email me recovery link",
+    "input-label" : "Your input field",
+    "errorRequired": "You must enter a value",
+    "errorInvalidEmail": "Not a valid email"
   }
 }

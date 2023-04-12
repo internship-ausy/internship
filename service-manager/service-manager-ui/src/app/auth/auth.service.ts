@@ -51,4 +51,13 @@ export class AuthService {
       }
     );
   }
+  
+  passwordRecovery(email: string){ 
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/PasswordRecovery',
+      {
+        Email: email
+      }
+    );
+  }
 }
