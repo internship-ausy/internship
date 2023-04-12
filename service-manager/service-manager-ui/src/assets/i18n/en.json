@@ -33,5 +33,11 @@
     "errorInvalidEmail": "Not a valid email",
     "errorInvalidPassword": "Choose a stronger password",
     "errorInvalidConfirmPassword": "The passwords must match"
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "button": "Reset Password"
   }
 }

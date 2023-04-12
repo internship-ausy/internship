@@ -33,5 +33,11 @@
     "errorInvalidEmail": "Email invalid",
     "errorInvalidPassword": "Alege o parola mai puternica",
     "errorInvalidConfirmPassword": "Parolele trebuie sa coincida"
+  },
+  "changePassword": {
+    "title": "Schimbaţi parola",
+    "password": "Parola",
+    "confirmPassword": "Confirmă Parola",
+    "button": "Resetează Parola"
   }
 }
