@@ -40,9 +40,9 @@ namespace ServiceManager.Api.Controllers
             }
 
             [HttpPost("PasswordRecovery")]
-            public async Task<ActionResult<ServiceResponse<string>>> PasswordRecovery(string email)
+            public async Task<ActionResult<ServiceResponse<string>>> PasswordRecovery(PasswordRecoveryDto email)
             {
-                var response = await _authService.PasswordRecovery(email);
+                var response = await _authService.PasswordRecovery(email.Email!);
 
                 if (!response.Success)
                 {
