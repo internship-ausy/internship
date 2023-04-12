@@ -21,7 +21,7 @@ export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   emailToReset!: string;
   emailToken!: string;
-  changePassword: ChangePassword;
+  // changePassword: ChangePassword;
 
   constructor(
     private router: Router,
@@ -47,23 +47,26 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit(form: FormGroupDirective) {
-    if (!form.valid) {
-      this.changePassword.email = this.emailToReset;
-      this.changePassword.newPassword = this.changePasswordForm.value.password;
-      this.changePassword.confirmPassword =
-        this.changePasswordForm.value.confirmPassword;
-      this.changePassword.emailToken = this.emailToken;
+    if (form.valid) {
+    let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password, form.value.confirmPassword);
 
-      this.authService.changePassword(this.changePassword).subscribe({
+      //this.changePassword.email = this.emailToReset;
+      // console.log(form.value);
+      // console.log(form.value.password);
+
+      // changePassword.newPassword = form.value.password;
+
+      // changePassword.confirmPassword = form.value.confirmPassword;
+      // changePassword.emailToken = this.emailToken;
+
+      this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
           this.router.navigate(['/login']);
         },
-        error: (resData) => {
-          
-        }
+        error: (resData) => {},
       });
     } else {
-      this.changePasswordForm.reset();
+      //this.changePasswordForm.reset();
     }
   }
 }
