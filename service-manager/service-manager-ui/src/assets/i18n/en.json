@@ -39,5 +39,14 @@
     "password": "Password",
     "confirmPassword": "Confirm Password",
     "button": "Reset Password"
+  },
+  "recovery": {
+    "email-label" : "Your email: ",
+    "title" : "Password Recovery",
+    "subtitle" : "Don't Worry, happens to the best of us",
+    "button" : "Email me recovery link",
+    "input-label" : "Your input field",
+    "errorRequired": "You must enter a value",
+    "errorInvalidEmail": "Not a valid email"
   }
 }

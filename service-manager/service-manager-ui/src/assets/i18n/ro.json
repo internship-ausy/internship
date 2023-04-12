@@ -39,5 +39,14 @@
     "password": "Parola",
     "confirmPassword": "Confirmă Parola",
     "button": "Resetează Parola"
+  },
+  "recovery": {
+    "email-label" : "Adresa ta de email: ",
+    "title" : "Recuperare Parolă",
+    "subtitle" : "Nu îți face grijă, ni se întamplă tuturor",
+    "button" : "Trimite link recuperare",
+    "input-label" : "Your input field",
+    "errorRequired": "Trebuie sa introduci o valoare",
+    "errorInvalidEmail": "Adresa de email invalida"
   }
 }

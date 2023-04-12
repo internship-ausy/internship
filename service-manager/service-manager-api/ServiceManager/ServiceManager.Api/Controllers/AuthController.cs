@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
-using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
 
 namespace ServiceManager.Api.Controllers
@@ -19,24 +18,37 @@ namespace ServiceManager.Api.Controllers
             [HttpPost("login")]
             public async Task<ActionResult<ServiceResponse<int>>> Login(LoginDto request)
             {
-                var response = await _authService.Login(request.Username, request.Password);
+                var response = await _authService.Login(request.Username!, request.Password!);
                 if (!response.Success)
                 {
                     return BadRequest(response);
                 }
                 return Ok(response);
             }
+
             [HttpPost("Register")]
-        public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterDto newUser)
-        {
-            var response = await _authService.RegisterUsers(newUser);
+            public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterDto newUser)
+            {
+                var response = await _authService.RegisterUsers(newUser);
 
             
-            if(!response.Success)
-            {
-                return BadRequest(response);
+                if(!response.Success)
+                {
+                    return BadRequest(response);
+                }
+                return Ok(response);
             }
-            return Ok(response);
+
+            [HttpPost("PasswordRecovery")]
+            public async Task<ActionResult<ServiceResponse<string>>> PasswordRecovery(PasswordRecoveryDto email)
+            {
+                var response = await _authService.PasswordRecovery(email.Email!);
+
+                if (!response.Success)
+                {
+                    return BadRequest(response);
+                }
+                return Ok(response);
         }
-        }
+    }
  }

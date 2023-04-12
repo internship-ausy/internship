@@ -83,6 +83,15 @@ export class AuthService {
     if (!control.value.match(regex)) return { passwordNotValid: true };
     return null;
   }
+
+  passwordRecovery(email: string){
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/PasswordRecovery',
+      {
+        Email: email
+      }
+    );
+  }
 }
 
 
