@@ -7,7 +7,7 @@ import { FormControl, ValidationErrors } from '@angular/forms';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   }),
 };
 export interface AuthResponseData {
@@ -61,7 +61,6 @@ export class AuthService {
     );
   }
 
-
   // changePassword(user: ChangePassword) {
   //   return this.http.post<AuthResponseData>(
   //     'https://localhost:7252/Auth/ChangePassword',
@@ -74,7 +73,9 @@ export class AuthService {
   // }
 
   changePassword(changePassword: ChangePassword) {
-    return this.http.post<ChangePassword>(`${this.baseUrl}/ChangePassword`, changePassword
+    return this.http.put<ChangePassword>(
+      `${this.baseUrl}/ChangePassword`,
+      changePassword
     );
   }
 
@@ -84,14 +85,12 @@ export class AuthService {
     return null;
   }
 
-  passwordRecovery(email: string){
+  passwordRecovery(email: string) {
     return this.http.post<AuthResponseData>(
       'https://localhost:7252/Auth/PasswordRecovery',
       {
-        Email: email
+        Email: email,
       }
     );
   }
 }
-
-
