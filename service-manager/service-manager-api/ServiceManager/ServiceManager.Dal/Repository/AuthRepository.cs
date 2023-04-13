@@ -35,7 +35,7 @@ namespace ServiceManager.Dal.Repository
             await _context.SaveChangesAsync();
             return newUser.Id;
         }
-      
+
         public async Task<bool> UserExists(string username)
         {
             if (await _context.Users.AnyAsync(u => u.Username.ToLower() == username.ToLower()))
@@ -80,5 +80,42 @@ namespace ServiceManager.Dal.Repository
             return tokenHandler.WriteToken(token);
         }
 
+        public async Task<User> ChangePassword(string token, string password)
+        {
+            var jwt = DecodeToken(token);
+            var exp = jwt.Claims.First(c => c.Type == "exp").Value;
+
+            if (Convert.ToDecimal(exp) <= 0)
+            {
+                return null;
+            }
+
+            var email = jwt.Claims.First(c => c.Type == "email").Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);
+
+            if (user == null) 
+            {
+                return null;
+            }
+
+            user.Password = password;
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+
+        public JwtSecurityToken DecodeToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            if (tokenHandler.CanReadToken(token))
+            {
+                var decodedToken = tokenHandler.ReadJwtToken(token);
+            
+                return decodedToken;
+            }
+
+            throw new Exception("Incorrect token");
+        }
     }
 }

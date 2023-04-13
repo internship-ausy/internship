@@ -91,6 +91,22 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
+        public async Task<ServiceResponse<string>> ChangePassword(string token, string password)
+        {
+            var response = new ServiceResponse<string>();
+            var user = await _authRepository.ChangePassword(token, password);
+
+            if (user == null)
+            {
+                throw new HttpRequestException("Email not found");
+            }
+
+            response.Data = token;
+            response.Message = "Password has been successfully changed";
+
+            return response;
+        }
+
         private string CreatePasswordResetToken(string email)
         {
             var claims = new List<Claim>
