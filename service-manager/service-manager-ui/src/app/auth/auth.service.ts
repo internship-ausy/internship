@@ -80,7 +80,8 @@ export class AuthService {
   }
 
   passwordNotValid(control: FormControl): ValidationErrors | null {
-    let regex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[^da-zA-Z]).{8,}$';
+    let regex =
+      '^(?=.*[!@#$%^&*.])(?=.*[a-z])(?=.*[A-Z])(?=.*[^da-zA-Z]).{8,}$';
     if (!control.value.match(regex)) return { passwordNotValid: true };
     return null;
   }
