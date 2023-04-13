@@ -11,12 +11,12 @@ namespace ServiceManager.Domain.Interfaces.Repositories
     {
         Task<int> Register(User newUser);
         public Task<List<User>> Login();
-        public Task<User> ChangePassword(string token, string password);
+        Task<User> ChangePassword(string email, byte[] passwordSalt, byte[] passwordHash);
 
         public Task<bool> UserExists(string username);
         public Task<bool> EmailExists(string email);
+        public Task<User> GetUserByEmail(string email);
 
-        public string CreateToken(User user);
     }
 }
 

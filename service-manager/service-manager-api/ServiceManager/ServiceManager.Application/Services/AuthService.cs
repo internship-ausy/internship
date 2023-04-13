@@ -96,12 +96,21 @@ namespace ServiceManager.Application.Services
         public async Task<ServiceResponse<string>> ChangePassword(string token, string password)
         {
             var response = new ServiceResponse<string>();
-            var user = await _authRepository.ChangePassword(token, password);
 
-            if (user == null)
-            {
-                throw new HttpRequestException("Email not found");
-            }
+            var decodedToken = DecodeToken(token);
+            var email = decodedToken.Claims.First(c => c.Type == "email").Value;
+
+            if (!await _authRepository.EmailExists(email))
+                throw new Exception();
+
+            var user = await _authRepository.GetUserByEmail(email);
+
+            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            var userchanged = await _authRepository.ChangePassword(email, passwordHash, passwordSalt);
+
+            if (VerifyPasswordHash(password, userchanged.PasswordHash, userchanged.PasswordSalt))
+                throw new Exception("Ok");
 
             response.Data = token;
             response.Message = "Password has been successfully changed";
@@ -194,6 +203,20 @@ namespace ServiceManager.Application.Services
                 var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computeHash.SequenceEqual(passwordHash);
             }
+        }
+
+        public JwtSecurityToken DecodeToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            if (tokenHandler.CanReadToken(token))
+            {
+                var decodedToken = tokenHandler.ReadJwtToken(token);
+
+                return decodedToken;
+            }
+
+            throw new Exception("Incorrect token");
         }
     }
 }

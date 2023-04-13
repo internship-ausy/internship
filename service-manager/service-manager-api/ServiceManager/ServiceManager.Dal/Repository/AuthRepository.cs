@@ -56,27 +56,26 @@ namespace ServiceManager.Dal.Repository
             return await _context.Users.ToListAsync();
         }
 
-     
-
-        public async Task<User> ChangePassword(string token, string password)
+        public async Task<User> GetUserByEmail(string email)
         {
-            var jwt = DecodeToken(token);
-            var exp = jwt.Claims.First(c => c.Type == "exp").Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+                throw new Exception("User not found");
+            return user;
+        }
 
-            if (Convert.ToDecimal(exp) <= 0)
-            {
-                return null;
-            }
+        public async Task<User> ChangePassword(string email, byte[] passwordSalt, byte[] passwordHash)
+        {
 
-            var email = jwt.Claims.First(c => c.Type == "email").Value;
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);
 
             if (user == null) 
             {
-                return null;
+                throw new Exception("user not found");
             }
 
-            user.Password = password;
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
             await _context.SaveChangesAsync();
 
             return user;
