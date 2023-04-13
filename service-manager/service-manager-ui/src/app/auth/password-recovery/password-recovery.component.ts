@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, ValidationErrors, Validators } from '@angular/forms';
 import { AuthResponseData, AuthService } from '../auth.service';
-import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
 import { Observable } from 'rxjs/internal/Observable';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-password-recovery',
@@ -22,9 +20,7 @@ export class PasswordRecoveryComponent implements OnInit {
   }
 
   constructor(
-    private authService: AuthService,
-    private errorPopoverService: ErrorPopoverService,
-    private snackBar: MatSnackBar
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -43,21 +39,9 @@ export class PasswordRecoveryComponent implements OnInit {
     authObservable.subscribe({
       next: resData => {
         if (resData.success)
-        {
-          console.log(resData)
-          this.snackBar.open('Password recovery link sent to ' + email, 'Dismiss', {
-            duration: 5000, 
-          });
-        }
-          
+          form.reset();
       }
     })
-    /*if (form.valid) {
-      this.loading = true;
-      const authObservable = this.authService.passwordRecovery(
-        form.value.email
-      );
-    }*/
   }
 
   initForm() {

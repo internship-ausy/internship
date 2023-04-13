@@ -51,3 +51,34 @@ button {
     background-color: var(--error);
     color: white;
 }
+
+.form-container {
+    text-align: center;
+    padding-top: 5%;
+    margin-bottom: 15%;
+}
+
+.form-container form {
+    min-width: 300px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.form-container hr {
+    border: 1px solid #DFE3EB;
+    transform: rotate(0.29deg);
+}
+
+.form-container .btn-primary {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.form-container mat-form-field {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.form-container mat-label {
+    font-size: 14px;
+}
