@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-action-popover',
   templateUrl: './action-popover.component.html',
-  styleUrls: ['./action-popover.component.css']
+  styleUrls: ['./action-popover.component.css'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class ActionPopoverComponent {
+
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {}
+
+  closeSnackBar() {
+    this.data.snackBar.dismiss();
+  }
 
 }

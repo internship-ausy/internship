@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
     ) {}
 
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       'fullName': new FormControl('', [Validators.required, this.fullNameNotValid]),
       'username': new FormControl('', [Validators.required, this.usernameNotValid]),
       'email': new FormControl('', [Validators.required, Validators.email]),
-      'password': new FormControl('', [Validators.required, this.passwordNotValid]),
+      'password': new FormControl('', [Validators.required, this.authService.passwordNotValid]),
       'confirmPassword': new FormControl('', [Validators.required])
     })
   }
@@ -59,11 +59,7 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-  passwordNotValid(control: FormControl): ValidationErrors | null {
-    let regex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[^\da-zA-Z]).{8,}$';
-    if (!(control.value).match(regex))
-      return {'passwordNotValid': true}
-    return null;
-  }
+
 
 }
+

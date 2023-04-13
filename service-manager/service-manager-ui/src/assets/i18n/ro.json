@@ -26,21 +26,26 @@
     "username": "Nume de utilizator",
     "password": "Parola",
     "confirmPassword": "Confirma parola",
-    "placeholder": "Introduceti datele",
-    "errorRequired": "Introdu o valoare",
+    "errorRequired": "Campul nu este completat",
     "errorInvalidName": "Nume invalid",
     "errorInvalidUsername": "Nume de utilizator invalid",
     "errorInvalidEmail": "Email invalid",
     "errorInvalidPassword": "Alege o parola mai puternica",
     "errorInvalidConfirmPassword": "Parolele trebuie sa coincida"
   },
+  "changePassword": {
+    "title": "Schimbaţi parola",
+    "password": "Parola",
+    "confirmPassword": "Confirmă Parola",
+    "button": "Resetează Parola"
+  },
   "recovery": {
     "email-label" : "Adresa ta de email: ",
     "title" : "Recuperare Parolă",
-    "subtitle" : "Nu îți face grijă, ni se întamplă tuturor",
+    "subtitle" : "Nu îți face griji, ni se întamplă tuturor",
     "button" : "Trimite link recuperare",
     "input-label" : "Your input field",
-    "errorRequired": "Trebuie sa introduci o valoare",
+    "errorRequired": "Campul nu este completat",
     "errorInvalidEmail": "Adresa de email invalida"
   }
 }

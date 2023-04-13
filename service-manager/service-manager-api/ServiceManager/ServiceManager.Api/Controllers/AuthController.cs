@@ -46,7 +46,14 @@ namespace ServiceManager.Api.Controllers
 
             if (!response.Success)
             {
-                return BadRequest(response);
+                var response = await _authService.RegisterUsers(newUser, newUser.Password);
+
+            
+                if(!response.Success)
+                {
+                    return BadRequest(response);
+                }
+                return Ok(response);
             }
             return Ok(response);
         }

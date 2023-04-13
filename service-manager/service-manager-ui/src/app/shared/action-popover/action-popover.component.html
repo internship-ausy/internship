@@ -1,1 +1,14 @@
-<p>action-popover works!</p>
+<div class="snackbar-action">
+  <div class="text">
+    <h1 class="action-title">{{ data?.title }}</h1>
+    <h3 class="action-message">{{ data?.message }}</h3>
+  </div>
+  <div class="action-buttons">
+    <button class="action-button cancel-action" mat-button (click)="closeSnackBar()">
+      {{ data?.cancel }}
+    </button>
+    <button class="action-button" mat-button (click)="closeSnackBar()">
+      {{ data?.action }}
+    </button>
+  </div>
+</div>
