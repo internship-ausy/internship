@@ -29,7 +29,7 @@ namespace ServiceManager.Api.Controllers
             [HttpPost("Register")]
             public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterDto newUser)
             {
-                var response = await _authService.RegisterUsers(newUser);
+                var response = await _authService.RegisterUsers(newUser, newUser.Password);
 
             
                 if(!response.Success)

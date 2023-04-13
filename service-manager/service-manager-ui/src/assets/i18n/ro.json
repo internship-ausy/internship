@@ -43,7 +43,7 @@
   "recovery": {
     "email-label" : "Adresa ta de email: ",
     "title" : "Recuperare Parolă",
-    "subtitle" : "Nu îți face grijă, ni se întamplă tuturor",
+    "subtitle" : "Nu îți face griji, ni se întamplă tuturor",
     "button" : "Trimite link recuperare",
     "input-label" : "Your input field",
     "errorRequired": "Trebuie sa introduci o valoare",
