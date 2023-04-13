@@ -1,4 +1,4 @@
-<div class="container">
+<div class="form-container">
   <h1 class="title">{{ "login.title" | translate }}</h1>
   <p>
     {{ "login.new" | translate }}
@@ -32,6 +32,7 @@
         <div [class.spinner]="loading"></div>
       </button>
     </div>
+    <hr>
   </form>
   <a routerLink="/password-recovery">{{
     "login.forgotPassword" | translate

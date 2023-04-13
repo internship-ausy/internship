@@ -1,5 +1,5 @@
 
-<div class="register">
+<div class="form-container">
     <h1>{{ "register.register" | translate }}</h1>
     <h3>{{ "register.subHeading" | translate }}</h3>
 
@@ -9,8 +9,7 @@
             <input
                 matInput
                 type="text"
-                formControlName="fullName"
-                [placeholder]="'register.placeholder' | translate">
+                formControlName="fullName">
             <mat-error
                 *ngIf="registerForm.controls['fullName'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
@@ -26,8 +25,7 @@
             <input
                 matInput
                 type="text"
-                formControlName="username"
-                [placeholder]="'register.placeholder' | translate">
+                formControlName="username">
             <mat-error
                 *ngIf="registerForm.controls['username'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
@@ -43,8 +41,7 @@
             <input
                 matInput
                 type="email"
-                formControlName="email"
-                [placeholder]="'register.placeholder' | translate">
+                formControlName="email">
             <mat-error
                 *ngIf="registerForm.controls['email'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
@@ -89,8 +86,8 @@
                 {{ "register.errorInvalidConfirmPassword" | translate }}
             </mat-error>
         </mat-form-field>
-    <br>
+        <br>
         <button mat-raised-button class="btn-primary">Submit</button>
-    <hr>
+        <hr>
     </form>
 </div>

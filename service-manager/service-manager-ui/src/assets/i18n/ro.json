@@ -26,8 +26,7 @@
     "username": "Nume de utilizator",
     "password": "Parola",
     "confirmPassword": "Confirma parola",
-    "placeholder": "Introduceti datele",
-    "errorRequired": "Introdu o valoare",
+    "errorRequired": "Campul nu este completat",
     "errorInvalidName": "Nume invalid",
     "errorInvalidUsername": "Nume de utilizator invalid",
     "errorInvalidEmail": "Email invalid",
@@ -46,7 +45,7 @@
     "subtitle" : "Nu îți face grijă, ni se întamplă tuturor",
     "button" : "Trimite link recuperare",
     "input-label" : "Your input field",
-    "errorRequired": "Trebuie sa introduci o valoare",
+    "errorRequired": "Campul nu este completat",
     "errorInvalidEmail": "Adresa de email invalida"
   }
 }
