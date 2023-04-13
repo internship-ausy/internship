@@ -2,20 +2,20 @@
 <div class="register">
     <h1>{{ "register.register" | translate }}</h1>
     <h3>{{ "register.subHeading" | translate }}</h3>
-    
+
     <form [formGroup]="registerForm" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
         <mat-form-field class="row" appearance="fill">
             <mat-label>{{ "register.fullName" | translate }}</mat-label>
-            <input 
-                matInput 
-                type="text" 
+            <input
+                matInput
+                type="text"
                 formControlName="fullName"
                 [placeholder]="'register.placeholder' | translate">
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['fullName'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
             </mat-error>
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['fullName'].hasError('fullNameNotValid')">
                 {{ "register.errorInvalidName" | translate }}
             </mat-error>
@@ -23,16 +23,16 @@
     <br>
         <mat-form-field class="row" appearance="fill">
             <mat-label>{{ "register.username" | translate }}</mat-label>
-            <input 
-                matInput 
+            <input
+                matInput
                 type="text"
                 formControlName="username"
                 [placeholder]="'register.placeholder' | translate">
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['username'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
             </mat-error>
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['username'].hasError('usernameNotValid')">
                 {{ "register.errorInvalidUsername" | translate }}
             </mat-error>
@@ -40,16 +40,16 @@
     <br>
         <mat-form-field class="row" appearance="fill">
             <mat-label>Email:</mat-label>
-            <input 
-                matInput 
-                type="email" 
+            <input
+                matInput
+                type="email"
                 formControlName="email"
                 [placeholder]="'register.placeholder' | translate">
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['email'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
             </mat-error>
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['email'].hasError('email')">
                 {{ "register.errorInvalidEmail" | translate }}
             </mat-error>
@@ -57,17 +57,17 @@
     <br>
         <mat-form-field class="row" appearance="fill">
             <mat-label>{{ "register.password" | translate }}</mat-label>
-            <input 
-                matInput 
-                type="password" 
+            <input
+                matInput
+                type="password"
                 #password
                 formControlName="password">
             <!-- <mat-error *ngIf="password">Password not valid</mat-error> -->
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['password'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
             </mat-error>
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['password'].hasError('passwordNotValid')">
                 {{ "register.errorInvalidPassword" | translate }}
             </mat-error>
@@ -75,16 +75,16 @@
     <br>
         <mat-form-field class="row" appearance="fill">
             <mat-label>{{ "register.confirmPassword" | translate }}</mat-label>
-            <input 
-                matInput 
-                type="password" 
+            <input
+                matInput
+                type="password"
                 formControlName="confirmPassword"
                 pattern="{{ password.value }}">
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
                 {{ "register.errorRequired" | translate }}
             </mat-error>
-            <mat-error 
+            <mat-error
                 *ngIf="registerForm.controls['confirmPassword'].hasError('pattern')">
                 {{ "register.errorInvalidConfirmPassword" | translate }}
             </mat-error>

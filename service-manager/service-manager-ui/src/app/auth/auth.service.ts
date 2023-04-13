@@ -1,8 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { RegisterUser } from '../shared/models/registerUser.model';
 import { Router } from '@angular/router';
+import { ChangePassword } from '../shared/models/changePassword.model';
+import { FormControl, ValidationErrors } from '@angular/forms';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 export interface AuthResponseData {
   data: number;
   success: boolean;
@@ -13,6 +20,8 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
+  private baseUrl: string = 'https://localhost:7252/Auth';
+
   isLoggedIn = false;
   onAuthEvent = new EventEmitter<boolean>();
 
@@ -51,12 +60,36 @@ export class AuthService {
       }
     );
   }
-  
-  passwordRecovery(email: string){ 
+
+  // changePassword(user: ChangePassword) {
+  //   return this.http.post<AuthResponseData>(
+  //     'https://localhost:7252/Auth/ChangePassword',
+  //     {
+  //       token:'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGVudGluYWxpbjk0QGdtYWlsLmNvbSIsIm5iZiI6MTY4MTIwMDA0MywiZXhwIjoxNjgxMjAwNjQzLCJpYXQiOjE2ODEyMDAwNDN9.IloZmJpcEmaxrz5s17PZGmwscPwf4Xpi1zFttgFILKih_OsJ8q52JKVvS7XGRVls1y-5nLkF17Ub6HRmhkW90A',
+  //       Password: user.newPassword,
+  //       httpOptions
+  //     }
+  //   );
+  // }
+
+  changePassword(changePassword: ChangePassword) {
+    return this.http.put<ChangePassword>(
+      `${this.baseUrl}/ChangePassword`,
+      changePassword
+    );
+  }
+
+  passwordNotValid(control: FormControl): ValidationErrors | null {
+    let regex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[^da-zA-Z]).{8,}$';
+    if (!control.value.match(regex)) return { passwordNotValid: true };
+    return null;
+  }
+
+  passwordRecovery(email: string) {
     return this.http.post<AuthResponseData>(
       'https://localhost:7252/Auth/PasswordRecovery',
       {
-        Email: email
+        Email: email,
       }
     );
   }
