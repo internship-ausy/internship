@@ -6,6 +6,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { ActionPopoverComponent } from '../../action-popover/action-popover.component';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import {
 export class ErrorPopoverService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  
+
 
 
   constructor(private snackBar: MatSnackBar) {}
@@ -27,9 +28,24 @@ export class ErrorPopoverService {
         message: message,
         action: action,
         snackBar: this.snackBar,
-        duration: 1000,
       },
-      panelClass: 'snackbar-injected-class',  // wiull inject a class in snacbar component
+      duration: 3000,
+    });
+  }
+
+  openSnackBarAction(title: string, message: string, cancel: string, action: string) {
+    this.snackBar.openFromComponent(ActionPopoverComponent, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+
+      data: {
+        title: title,
+        message: message,
+        action: action,
+        cancel: cancel,
+        snackBar: this.snackBar,
+      },
+      duration: 100000,
     });
   }
 }

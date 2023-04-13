@@ -11,6 +11,7 @@ import { ChangePassword } from 'src/app/shared/models/changePassword.model';
 import { AuthResponseData, AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { __values } from 'tslib';
+import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
 
 @Component({
   selector: 'app-change-password',
@@ -26,7 +27,8 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private errorPopoverService: ErrorPopoverService
   ) {}
 
   ngOnInit(): void {
@@ -50,14 +52,8 @@ export class ChangePasswordComponent implements OnInit {
     if (form.valid) {
     let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password, form.value.confirmPassword);
 
-      //this.changePassword.email = this.emailToReset;
-      // console.log(form.value);
-      // console.log(form.value.password);
-
-      // changePassword.newPassword = form.value.password;
-
-      // changePassword.confirmPassword = form.value.confirmPassword;
-      // changePassword.emailToken = this.emailToken;
+    alert('ghjjkkk');
+    // this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
 
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
@@ -68,5 +64,9 @@ export class ChangePasswordComponent implements OnInit {
     } else {
       //this.changePasswordForm.reset();
     }
+  }
+  actionPopover() {
+    this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
+
   }
 }
