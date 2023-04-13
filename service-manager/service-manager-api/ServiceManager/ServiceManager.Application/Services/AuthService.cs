@@ -29,7 +29,7 @@ namespace ServiceManager.Application.Services
             _mapper = mapper ;
             _configuration = configuration;
         }
-        public async Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser)
+        public async Task<ServiceResponse<int>> RegisterUsers(RegisterDto newUser, string password)
         {
             var response = new ServiceResponse<int>();
 
@@ -43,15 +43,15 @@ namespace ServiceManager.Application.Services
             }
 
             var user = _mapper.Map<User>(newUser);
+            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
             await _authRepository.Register(user);
-
             response.Data = user.Id;
             response.Success = true;  
             response.Message = "Registration Successfully";
 
             return response;
-
-          
 
            
         }
@@ -59,16 +59,18 @@ namespace ServiceManager.Application.Services
         {
             var response = new ServiceResponse<string>();
             var user = (await _authRepository.Login())
-            .FirstOrDefault(u => u.Username.ToLower().Equals(username.ToLower())
-             && u.Password.ToLower().Equals(password.ToLower()));
+            .FirstOrDefault(u => u.Username.ToLower().Equals(username.ToLower()));
             if (user == null)
+            {
+                throw new HttpRequestException("Incorrect username or password");
+            }
+            else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 throw new HttpRequestException("Incorrect username or password");
             }
             else
             {
-                //response.Data = user.Id.ToString();
-                response.Data = _authRepository.CreateToken(user);
+                response.Data = CreateAuthToken(user);
                 response.Message = "Authentification Succeeded";
             }
             return response;
@@ -89,6 +91,26 @@ namespace ServiceManager.Application.Services
             response.Message = "Email sent.";
 
             return response;
+        }
+
+        private string CreateAuthToken(User user)
+        {
+            List<Claim> claims = new List<Claim> {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username),
+            };
+            SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+            .GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         private string CreatePasswordResetToken(string email)
@@ -139,6 +161,22 @@ namespace ServiceManager.Application.Services
             catch (Exception)
             {
                 throw new SmtpException("Email service error");
+            }
+        }
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computeHash.SequenceEqual(passwordHash);
             }
         }
     }
