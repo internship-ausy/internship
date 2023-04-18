@@ -76,9 +76,9 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
-        public async Task<ServiceResponse<string>> PasswordRecovery(string email)
+        public async Task<ServiceResponse<object>> PasswordRecovery(string email)
         {
-            var response = new ServiceResponse<string>();
+            var response = new ServiceResponse<object>();
             if (!await _authRepository.EmailExists(email))
                 throw new KeyNotFoundException("Email not found");
 
@@ -87,15 +87,36 @@ namespace ServiceManager.Application.Services
 
             SendEmail(email, passwordResetLink);
             
-            response.Data = token;
             response.Message = "Email sent.";
 
             return response;
         }
 
+        public async Task<ServiceResponse<object>> ChangePassword(string token, string password)
+        {
+            var response = new ServiceResponse<object>();
+
+            var decodedToken = DecodeToken(token);
+            var email = decodedToken.Claims.First(c => c.Type == "email").Value;
+            var expirationString = decodedToken.Claims.First(c => c.Type == "exp").Value;
+            var expirationLong = long.Parse(expirationString);
+            var expirationTime = DateTimeOffset.FromUnixTimeSeconds(expirationLong).DateTime.ToLocalTime();
+
+            if (expirationTime < DateTime.Now)
+                throw new UnauthorizedAccessException("Token expired");
+
+            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            await _authRepository.ChangePassword(email, passwordHash, passwordSalt);
+
+            response.Message = "Password has been successfully changed";
+
+            return response;
+        }
+        
         private string CreateAuthToken(User user)
         {
-            List<Claim> claims = new List<Claim> {
+            List<Claim> claims = new List<Claim> 
+            {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
             };
@@ -178,6 +199,20 @@ namespace ServiceManager.Application.Services
                 var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computeHash.SequenceEqual(passwordHash);
             }
+        }
+
+        public JwtSecurityToken DecodeToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            if (tokenHandler.CanReadToken(token))
+            {
+                var decodedToken = tokenHandler.ReadJwtToken(token);
+
+                return decodedToken;
+            }
+
+            throw new Exception("Incorrect token");
         }
     }
 }
