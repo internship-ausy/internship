@@ -75,7 +75,10 @@ export class AuthService {
   changePassword(changePassword: ChangePassword) {
     return this.http.put<ChangePassword>(
       `${this.baseUrl}/ChangePassword`,
-      changePassword
+      {
+        token: changePassword.emailToken,
+        password: changePassword.newPassword
+      }
     );
   }
 

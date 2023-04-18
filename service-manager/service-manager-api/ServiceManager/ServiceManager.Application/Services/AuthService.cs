@@ -103,7 +103,7 @@ namespace ServiceManager.Application.Services
             var expirationTime = DateTimeOffset.FromUnixTimeSeconds(expirationLong).DateTime.ToLocalTime();
 
             if (expirationTime < DateTime.Now)
-                throw new Exception("Token expired " + expirationTime + " " + DateTime.Now);
+                throw new UnauthorizedAccessException("Token expired");
 
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             await _authRepository.ChangePassword(email, passwordHash, passwordSalt);

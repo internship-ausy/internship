@@ -50,7 +50,7 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit(form: FormGroupDirective) {
     if (form.valid) {
-    let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password, form.value.confirmPassword);
+    let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password);
 
     alert('ghjjkkk');
     // this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
