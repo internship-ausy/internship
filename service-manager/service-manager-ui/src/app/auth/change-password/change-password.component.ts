@@ -22,6 +22,7 @@ export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   emailToReset!: string;
   emailToken!: string;
+  loading = false;
   // changePassword: ChangePassword;
 
   constructor(
@@ -57,9 +58,12 @@ export class ChangePasswordComponent implements OnInit {
 
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
+          this.loading = false;
           this.router.navigate(['/login']);
         },
-        error: (resData) => {},
+        error: (resData) => {
+          this.loading = false;
+        },
       });
     } else {
       //this.changePasswordForm.reset();
