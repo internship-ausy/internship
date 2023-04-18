@@ -87,7 +87,12 @@
             </mat-error>
         </mat-form-field>
         <br>
-        <button mat-raised-button class="btn-primary">Submit</button>
+        <button mat-raised-button class="btn-primary"
+        [class.btn-secondary]="loading"
+        [disabled]="loading">
+        Submit
+        <div [class.spinner]="loading"></div>
+        </button>
         <hr>
     </form>
 </div>

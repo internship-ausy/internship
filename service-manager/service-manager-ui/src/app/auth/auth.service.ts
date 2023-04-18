@@ -93,6 +93,15 @@ export class AuthService {
       changePassword
     );
   }
+  
+  passwordRecovery(email: string) {
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/PasswordRecovery',
+      {
+        Email: email,
+      }
+      );
+    }
 
   passwordNotValid(control: FormControl): ValidationErrors | null {
     let regex =
@@ -101,12 +110,11 @@ export class AuthService {
     return null;
   }
 
-  passwordRecovery(email: string) {
-    return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/PasswordRecovery',
-      {
-        Email: email,
-      }
-    );
+  emailNotValid(control: FormControl): ValidationErrors | null {
+    let regex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+    if (!(control.value).match(regex))
+      return {'emailNotValid': true}
+    return null;
   }
 }
+  
