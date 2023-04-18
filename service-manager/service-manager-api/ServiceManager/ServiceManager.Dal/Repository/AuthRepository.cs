@@ -81,18 +81,5 @@ namespace ServiceManager.Dal.Repository
             return user;
         }
 
-        public JwtSecurityToken DecodeToken(string token)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            if (tokenHandler.CanReadToken(token))
-            {
-                var decodedToken = tokenHandler.ReadJwtToken(token);
-            
-                return decodedToken;
-            }
-
-            throw new Exception("Incorrect token");
-        }
     }
 }
