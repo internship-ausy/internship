@@ -64,7 +64,7 @@ namespace ServiceManager.Dal.Repository
             return user;
         }
 
-        public async Task<User> ChangePassword(string email, byte[] passwordSalt, byte[] passwordHash)
+        public async Task<User> ChangePassword(string email, byte[] passwordHash, byte[] passwordSalt)
         {
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);

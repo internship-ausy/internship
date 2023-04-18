@@ -76,9 +76,9 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
-        public async Task<ServiceResponse<string>> PasswordRecovery(string email)
+        public async Task<ServiceResponse<object>> PasswordRecovery(string email)
         {
-            var response = new ServiceResponse<string>();
+            var response = new ServiceResponse<object>();
             if (!await _authRepository.EmailExists(email))
                 throw new KeyNotFoundException("Email not found");
 
@@ -87,32 +87,27 @@ namespace ServiceManager.Application.Services
 
             SendEmail(email, passwordResetLink);
             
-            response.Data = token;
             response.Message = "Email sent.";
 
             return response;
         }
 
-        public async Task<ServiceResponse<string>> ChangePassword(string token, string password)
+        public async Task<ServiceResponse<object>> ChangePassword(string token, string password)
         {
-            var response = new ServiceResponse<string>();
+            var response = new ServiceResponse<object>();
 
             var decodedToken = DecodeToken(token);
             var email = decodedToken.Claims.First(c => c.Type == "email").Value;
+            var expirationString = decodedToken.Claims.First(c => c.Type == "exp").Value;
+            var expirationLong = long.Parse(expirationString);
+            var expirationTime = DateTimeOffset.FromUnixTimeSeconds(expirationLong).DateTime.ToLocalTime();
 
-            if (!await _authRepository.EmailExists(email))
-                throw new Exception();
-
-            var user = await _authRepository.GetUserByEmail(email);
+            if (expirationTime < DateTime.Now)
+                throw new Exception("Token expired " + expirationTime + " " + DateTime.Now);
 
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            await _authRepository.ChangePassword(email, passwordHash, passwordSalt);
 
-            var userchanged = await _authRepository.ChangePassword(email, passwordHash, passwordSalt);
-
-            if (VerifyPasswordHash(password, userchanged.PasswordHash, userchanged.PasswordSalt))
-                throw new Exception("Ok");
-
-            response.Data = token;
             response.Message = "Password has been successfully changed";
 
             return response;
@@ -120,7 +115,8 @@ namespace ServiceManager.Application.Services
         
         private string CreateAuthToken(User user)
         {
-            List<Claim> claims = new List<Claim> {
+            List<Claim> claims = new List<Claim> 
+            {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
             };
