@@ -61,17 +61,6 @@ export class AuthService {
     );
   }
 
-  // changePassword(user: ChangePassword) {
-  //   return this.http.post<AuthResponseData>(
-  //     'https://localhost:7252/Auth/ChangePassword',
-  //     {
-  //       token:'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGVudGluYWxpbjk0QGdtYWlsLmNvbSIsIm5iZiI6MTY4MTIwMDA0MywiZXhwIjoxNjgxMjAwNjQzLCJpYXQiOjE2ODEyMDAwNDN9.IloZmJpcEmaxrz5s17PZGmwscPwf4Xpi1zFttgFILKih_OsJ8q52JKVvS7XGRVls1y-5nLkF17Ub6HRmhkW90A',
-  //       Password: user.newPassword,
-  //       httpOptions
-  //     }
-  //   );
-  // }
-
   changePassword(changePassword: ChangePassword) {
     return this.http.put<ChangePassword>(
       `${this.baseUrl}/ChangePassword`,

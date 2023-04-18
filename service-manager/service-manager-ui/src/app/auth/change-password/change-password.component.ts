@@ -22,13 +22,11 @@ export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   emailToReset!: string;
   emailToken!: string;
-  // changePassword: ChangePassword;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private errorPopoverService: ErrorPopoverService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -52,21 +50,13 @@ export class ChangePasswordComponent implements OnInit {
     if (form.valid) {
     let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password);
 
-    alert('ghjjkkk');
-    // this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
-
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
           this.router.navigate(['/login']);
         },
         error: (resData) => {},
       });
-    } else {
-      //this.changePasswordForm.reset();
-    }
+    } 
   }
-  actionPopover() {
-    this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
 
-  }
 }
