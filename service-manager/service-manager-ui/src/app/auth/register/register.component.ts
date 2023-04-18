@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  loading = false;
 
   constructor(
     private authService: AuthService,
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       'fullName': new FormControl('', [Validators.required, this.fullNameNotValid]),
       'username': new FormControl('', [Validators.required, this.usernameNotValid]),
-      'email': new FormControl('', [Validators.required, Validators.email]),
+      'email': new FormControl('', [Validators.required, this.authService.emailNotValid]),
       'password': new FormControl('', [Validators.required, this.authService.passwordNotValid]),
       'confirmPassword': new FormControl('', [Validators.required])
     })
@@ -32,6 +33,7 @@ export class RegisterComponent implements OnInit {
     if (!form.valid)
       return;
 
+    this.loading = true;
     let user: RegisterUser = form.value;
     let authObservable: Observable<AuthResponseData>;
 
@@ -40,7 +42,11 @@ export class RegisterComponent implements OnInit {
     authObservable.subscribe({
       next: resData => {
         if (resData.success)
+        {
+          this.loading = false;
           this.router.navigate(['/login']);
+        }
+        else this.loading = false;
       }
     })
   }

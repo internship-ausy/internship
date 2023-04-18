@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { RegisterUser } from '../shared/models/registerUser.model';
 import { Router } from '@angular/router';
 import { ChangePassword } from '../shared/models/changePassword.model';
 import { FormControl, ValidationErrors } from '@angular/forms';
+import { tap } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,10 +28,21 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
+  autLogin() {
+    const userData: { username: string; password: string } = JSON.parse(
+      localStorage.getItem('userData')!
+    );
+
+    if (!userData) {
+      return;
+    }
+  }
+
   onLogout() {
     this.isLoggedIn = false;
     this.onAuthEvent.emit(this.isLoggedIn);
     this.router.navigate(['/login']);
+    localStorage.clear();
   }
 
   onLogin() {
@@ -40,13 +52,16 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/login',
-      {
+    return this.http
+      .post<AuthResponseData>('https://localhost:7252/Auth/login', {
         username: username,
         password: password,
-      }
-    );
+      })
+      .pipe(
+        tap((res) => {
+          localStorage.setItem('userData', 'logged in');
+        })
+      );
   }
 
   register(user: RegisterUser) {
@@ -70,6 +85,15 @@ export class AuthService {
       }
     );
   }
+  
+  passwordRecovery(email: string) {
+    return this.http.post<AuthResponseData>(
+      'https://localhost:7252/Auth/PasswordRecovery',
+      {
+        Email: email,
+      }
+      );
+    }
 
   passwordNotValid(control: FormControl): ValidationErrors | null {
     let regex =
@@ -78,12 +102,11 @@ export class AuthService {
     return null;
   }
 
-  passwordRecovery(email: string) {
-    return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/PasswordRecovery',
-      {
-        Email: email,
-      }
-    );
+  emailNotValid(control: FormControl): ValidationErrors | null {
+    let regex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+    if (!(control.value).match(regex))
+      return {'emailNotValid': true}
+    return null;
   }
 }
+  

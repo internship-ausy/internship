@@ -82,3 +82,27 @@ button {
 .form-container mat-label {
     font-size: 14px;
 }
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    transition: var(--transition);
+}
+
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-top: -15px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    border-top-color: transparent;
+    animation: spinner .8s linear infinite;
+}
