@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, ValidationErrors, Validators } from '@angular/forms';
 import { AuthResponseData, AuthService } from '../auth.service';
 import { Observable } from 'rxjs/internal/Observable';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SuccessPopoverService } from 'src/app/shared/core/services/success-popover.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-password-recovery',
@@ -13,7 +16,10 @@ export class PasswordRecoveryComponent implements OnInit {
   loading = false;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private successPopoverService: SuccessPopoverService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -30,7 +36,10 @@ export class PasswordRecoveryComponent implements OnInit {
     authObservable.subscribe({
       next: resData => {
         this.loading = false;
-        this.recoveryForm.reset();
+        this.successPopoverService.openSnackBar(
+          this.translate.instant('recovery.successPopover') + email ,
+          'Ok'
+        );
       },
       error: (err) => {
         this.loading = false;

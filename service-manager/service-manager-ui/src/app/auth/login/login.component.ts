@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
 
+
   constructor(
     private authService: AuthService,
+    private popoverService: PopoverService,
+    private translate: TranslateService
+
   ) {}
 
   ngOnInit() {
@@ -30,6 +37,10 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.authService.onLogin();
           this.loading = false;
+          this.popoverService.openSnackBar(
+            this.translate.instant('login.successPopover') + this.loginForm.value.username,
+            'Ok'
+          );
         },
         error: (err) => {
           this.loading = false;

@@ -17,7 +17,8 @@
     "button": "Autentificare",
     "forgotPassword": "Ai uitat parola?",
     "error": "Campul nu este completat",
-    "errorPopover": "Nume de utilizator sau parola incorecte"
+    "errorPopover": "Nume de utilizator sau parola incorecte",
+    "successPopover": "Te-ai logat cu succes ca "
   },
   "register": {
     "register": "Inregistrare",
@@ -31,13 +32,15 @@
     "errorInvalidUsername": "Nume de utilizator invalid",
     "errorInvalidEmail": "Email invalid",
     "errorInvalidPassword": "Alege o parola mai puternica",
-    "errorInvalidConfirmPassword": "Parolele trebuie sa coincida"
+    "errorInvalidConfirmPassword": "Parolele trebuie sa coincida",
+    "successPopover": "Te-ai înregistrat cu succes"
   },
   "changePassword": {
     "title": "Schimbaţi parola",
     "password": "Parola",
     "confirmPassword": "Confirmă Parola",
-    "button": "Resetează Parola"
+    "button": "Resetează Parola",
+    "successPopover": "Parolă schimbată cu succes"
   },
   "recovery": {
     "email-label" : "Adresa ta de email: ",
@@ -46,6 +49,7 @@
     "button" : "Trimite link recuperare",
     "input-label" : "Your input field",
     "errorRequired": "Campul nu este completat",
-    "errorInvalidEmail": "Adresa de email invalida"
+    "errorInvalidEmail": "Adresa de email invalida",
+    "successPopover": "Un mail a fost trimis la adresa "
   }
 }

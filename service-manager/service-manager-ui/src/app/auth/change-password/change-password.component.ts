@@ -9,6 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChangePassword } from 'src/app/shared/models/changePassword.model';
 import { AuthService } from '../auth.service';
 import { __values } from 'tslib';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-change-password',
@@ -24,7 +27,9 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private popoverService: PopoverService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -47,10 +52,13 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit(form: FormGroupDirective) {
     if (form.valid) {
     let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password);
-
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
           this.loading = false;
+          this.popoverService.openSnackBar(
+            this.translate.instant('changePassword.successPopover'),
+            'Ok'
+          );
           this.router.navigate(['/login']);
         },
         error: (resData) => {
@@ -59,5 +67,4 @@ export class ChangePasswordComponent implements OnInit {
       });
     }
   }
-
 }

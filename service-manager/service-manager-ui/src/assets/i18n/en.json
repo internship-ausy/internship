@@ -17,7 +17,8 @@
     "button": "Log In",
     "forgotPassword": "Forgot password?",
     "error": "Field cannot be empty",
-    "errorPopover": "Incorrect username or password"
+    "errorPopover": "Incorrect username or password",
+    "successPopover": "Succesfully logged in as "
   },
   "register": {
     "register": "Register",
@@ -31,13 +32,15 @@
     "errorInvalidUsername": "Not a valid username",
     "errorInvalidEmail": "Not a valid email",
     "errorInvalidPassword": "Choose a stronger password",
-    "errorInvalidConfirmPassword": "The passwords must match"
+    "errorInvalidConfirmPassword": "The passwords must match",
+    "successPopover": "Succesfully registered "
   },
   "changePassword": {
     "title": "Change Password",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-    "button": "Reset Password"
+    "button": "Reset Password",
+    "successPopover": "Password succesfully changed"
   },
   "recovery": {
     "email-label" : "Your email: ",
@@ -46,6 +49,7 @@
     "button" : "Email me recovery link",
     "input-label" : "Your input field",
     "errorRequired": "Field cannot be empty",
-    "errorInvalidEmail": "Not a valid email"
+    "errorInvalidEmail": "Not a valid email",
+    "successPopover": "Recovery mail sent to "
   }
 }

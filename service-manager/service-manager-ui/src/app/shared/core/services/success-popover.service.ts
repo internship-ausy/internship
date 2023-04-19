@@ -1,0 +1,51 @@
+import { Injectable } from '@angular/core';
+import {
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { ActionPopoverComponent } from '../../action-popover/action-popover.component';
+import { SuccessPopoverComponent } from '../../success-popover/success-popover.component';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SuccessPopoverService {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+
+
+  constructor(private snackBar: MatSnackBar) {}
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.openFromComponent(SuccessPopoverComponent, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+
+      data: {
+        message: message,
+        action: action,
+        snackBar: this.snackBar,
+      },
+      duration: 3000,
+    });
+  }
+
+  openSnackBarAction(title: string, message: string, cancel: string, action: string) {
+    this.snackBar.openFromComponent(ActionPopoverComponent, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+
+      data: {
+        title: title,
+        message: message,
+        action: action,
+        cancel: cancel,
+        snackBar: this.snackBar,
+      },
+      duration: 100000,
+    });
+  }
+}
