@@ -4,6 +4,8 @@ import { RegisterUser } from 'src/app/shared/models/registerUser.model';
 import { AuthResponseData, AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { SuccessPopoverService } from 'src/app/shared/core/services/success-popover.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private successPopoverService: SuccessPopoverService,
+    private translate: TranslateService
     ) {}
 
   ngOnInit(): void {
@@ -44,6 +48,10 @@ export class RegisterComponent implements OnInit {
         if (resData.success)
         {
           this.loading = false;
+          this.successPopoverService.openSnackBar(
+            this.translate.instant('register.successPopover'),
+            'Ok'
+          );
           this.router.navigate(['/login']);
         }
         else this.loading = false;

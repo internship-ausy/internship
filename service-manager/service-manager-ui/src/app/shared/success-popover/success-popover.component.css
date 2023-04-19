@@ -1,0 +1,46 @@
+/* Warning !!!*/
+/* will modify the styles from all the application*/
+
+.snackbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 512px;
+    height: 30px;
+    background-color: #33cc33;
+    filter: var(--drop-shadow);
+  }
+  
+  .success-message {
+    color: white;
+    margin-left: 1rem;
+  }
+  
+  .success-message-button {
+    background-color: #E3B200;
+    color: white;
+    border-color: var(--error);
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    width: 80px;
+    height: 21.95px;
+    margin-right: 1rem;
+    padding: 0;
+  }
+  
+  .mdc-snackbar__label {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .mdc-snackbar__surface {
+    padding-right: 0;
+  }
+  
+  .mat-typography p
+   {
+    margin: 0 0 0 1rem;
+   }
+  
