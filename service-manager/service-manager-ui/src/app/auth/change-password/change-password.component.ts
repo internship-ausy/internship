@@ -25,7 +25,6 @@ export class ChangePasswordComponent implements OnInit {
   emailToReset!: string;
   emailToken!: string;
   loading = false;
-  // changePassword: ChangePassword;
 
   constructor(
     private router: Router,
@@ -55,10 +54,7 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit(form: FormGroupDirective) {
     if (form.valid) {
-    let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password, form.value.confirmPassword);
-
-    alert('ghjjkkk');
-    // this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
+    let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password);
 
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
@@ -73,12 +69,7 @@ export class ChangePasswordComponent implements OnInit {
           this.loading = false;
         },
       });
-    } else {
-      //this.changePasswordForm.reset();
-    }
+    } 
   }
-  actionPopover() {
-    this.errorPopoverService.openSnackBarAction('Schimbare Parolă', 'Parola va fi schimbată', 'Anulare', 'Ok');
 
-  }
 }
