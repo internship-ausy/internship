@@ -4,7 +4,7 @@ import { RegisterUser } from 'src/app/shared/models/registerUser.model';
 import { AuthResponseData, AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { SuccessPopoverService } from 'src/app/shared/core/services/success-popover.service';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private successPopoverService: SuccessPopoverService,
+    private popoverService: PopoverService,
     private translate: TranslateService
     ) {}
 
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         if (resData.success)
         {
           this.loading = false;
-          this.successPopoverService.openSnackBar(
+          this.popoverService.openSnackBarSuccess(
             this.translate.instant('register.successPopover'),
             'Ok'
           );
