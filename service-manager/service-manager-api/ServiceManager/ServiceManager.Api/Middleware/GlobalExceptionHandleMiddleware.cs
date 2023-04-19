@@ -32,7 +32,7 @@ namespace ServiceManager.Api.Middleware
 
                     default:
 						error.StatusCode = ((int)HttpStatusCode.InternalServerError).ToString();
-						error.Message = ex.Message;
+						error.Message = ex.InnerException!.Message;
 						break;
 				}
 
