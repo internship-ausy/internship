@@ -55,7 +55,7 @@ export class ChangePasswordComponent implements OnInit {
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
           this.loading = false;
-          this.popoverService.openSnackBar(
+          this.popoverService.openSnackBarSuccess(
             this.translate.instant('changePassword.successPopover'),
             'Ok'
           );

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.authService.onLogin();
           this.loading = false;
-          this.popoverService.openSnackBar(
+          this.popoverService.openSnackBarSuccess(
             this.translate.instant('login.successPopover') + this.loginForm.value.username,
             'Ok'
           );

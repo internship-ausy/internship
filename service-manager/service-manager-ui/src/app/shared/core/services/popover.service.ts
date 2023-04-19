@@ -7,6 +7,7 @@ import {
 } from '@angular/material/snack-bar';
 import { ActionPopoverComponent } from '../../action-popover/action-popover.component';
 import { Subject } from 'rxjs';
+import { SuccessPopoverComponent } from '../../success-popover/success-popover.component';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,19 @@ export class PopoverService {
       duration: 3000,
     });
   }
+  openSnackBarSuccess(message: string, action: string) {
+    this.snackBar.openFromComponent(SuccessPopoverComponent, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
 
+      data: {
+        message: message,
+        action: action,
+        snackBar: this.snackBar,
+      },
+      duration: 3000,
+    });
+  }
   openSnackBarAction(title: string, message: string, cancel: string, action: string) {
     this.snackBar.openFromComponent(ActionPopoverComponent, {
       horizontalPosition: this.horizontalPosition,
