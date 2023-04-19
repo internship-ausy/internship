@@ -55,7 +55,6 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit(form: FormGroupDirective) {
     if (form.valid) {
     let changePassword: ChangePassword = new ChangePassword(this.emailToken, form.value.password);
-
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
           this.loading = false;
@@ -71,5 +70,4 @@ export class ChangePasswordComponent implements OnInit {
       });
     } 
   }
-
 }
