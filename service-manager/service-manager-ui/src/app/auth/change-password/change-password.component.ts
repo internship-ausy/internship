@@ -12,6 +12,8 @@ import { AuthResponseData, AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { __values } from 'tslib';
 import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
+import { SuccessPopoverService } from 'src/app/shared/core/services/success-popover.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-change-password',
@@ -29,7 +31,9 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private errorPopoverService: ErrorPopoverService
+    private errorPopoverService: ErrorPopoverService,
+    private successPopoverService: SuccessPopoverService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +63,10 @@ export class ChangePasswordComponent implements OnInit {
       this.authService.changePassword(changePassword).subscribe({
         next: (resData) => {
           this.loading = false;
+          this.successPopoverService.openSnackBar(
+            this.translate.instant('changePassword.successPopover'),
+            'Ok'
+          );
           this.router.navigate(['/login']);
         },
         error: (resData) => {
