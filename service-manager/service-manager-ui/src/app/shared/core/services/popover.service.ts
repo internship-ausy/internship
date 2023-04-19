@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { ErrorPopoverComponent } from '../../error-popover/error-popover.component';
 import {
   MatSnackBar,
-  MatSnackBarConfig,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { ActionPopoverComponent } from '../../action-popover/action-popover.component';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ErrorPopoverService {
+
+export class PopoverService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-
-
+  actionPopoverEmitter = new Subject<boolean>();
 
   constructor(private snackBar: MatSnackBar) {}
 

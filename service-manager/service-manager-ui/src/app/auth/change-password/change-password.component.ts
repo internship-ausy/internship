@@ -3,15 +3,12 @@ import {
   FormControl,
   FormGroup,
   FormGroupDirective,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangePassword } from 'src/app/shared/models/changePassword.model';
-import { AuthResponseData, AuthService } from '../auth.service';
-import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { __values } from 'tslib';
-import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
 
 @Component({
   selector: 'app-change-password',
@@ -60,7 +57,7 @@ export class ChangePasswordComponent implements OnInit {
           this.loading = false;
         },
       });
-    } 
+    }
   }
 
 }

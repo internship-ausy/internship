@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { ErrorPopoverService } from 'src/app/shared/core/services/error-popover.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private errorPopoverService: ErrorPopoverService
   ) {}
 
   ngOnInit() {

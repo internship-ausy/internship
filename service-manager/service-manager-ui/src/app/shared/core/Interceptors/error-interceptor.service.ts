@@ -7,11 +7,11 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { ErrorPopoverService } from '../services/error-popover.service';
+import { PopoverService } from '../services/popover.service';
 
 @Injectable()
 export class ErrorInterceptorService implements HttpInterceptor {
-  constructor(private errorPopoverService: ErrorPopoverService) {}
+  constructor(private popoverService: PopoverService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -26,25 +26,25 @@ export class ErrorInterceptorService implements HttpInterceptor {
           } else {
             switch (error.status) {
               case 401:
-                this.errorPopoverService.openSnackBar(
+                this.popoverService.openSnackBar(
                   error.error.Message,
                   'Ok'
                 );
                 break;
               case 409:
-                this.errorPopoverService.openSnackBar(
+                this.popoverService.openSnackBar(
                   error.error.Message,
                   'Ok'
                 );
                 break;
-                case 404:
-                this.errorPopoverService.openSnackBar(
+              case 404:
+                this.popoverService.openSnackBar(
                   error.error.Message,
                   'Ok'
                 );
                 break;
               default:
-                this.errorPopoverService.openSnackBar(
+                this.popoverService.openSnackBar(
                   'Internal server error',
                   'Ok'
                 );

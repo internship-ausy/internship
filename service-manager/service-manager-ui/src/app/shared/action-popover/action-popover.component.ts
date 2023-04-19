@@ -1,5 +1,6 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { PopoverService } from '../core/services/popover.service';
 
 @Component({
   selector: 'app-action-popover',
@@ -10,10 +11,13 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 })
 export class ActionPopoverComponent {
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {}
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private popoverService: PopoverService) {}
 
   closeSnackBar() {
     this.data.snackBar.dismiss();
+  }
+  onClick() {
+    this.popoverService.actionPopoverEmitter.next(true);
   }
 
 }
