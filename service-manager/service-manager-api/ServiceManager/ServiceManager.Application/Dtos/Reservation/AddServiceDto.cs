@@ -12,8 +12,7 @@ namespace ServiceManager.Application.Dtos.Reservation
         public string PlateNumber { get; set; } = String.Empty;
         public string CarMake { get; set; } = String.Empty;
         public string CarModel { get; set; } = String.Empty;
-        public DateOnly Date { get; set; }
-        public TimeOnly Hours { get; set; }
+        public DateTime Date { get; set; }
         public int WorkStation { get; set; }
         public int Estimate { get; set; }
         public string Description { get; set; } = String.Empty;

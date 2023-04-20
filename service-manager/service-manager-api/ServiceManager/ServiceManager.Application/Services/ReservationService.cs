@@ -21,9 +21,14 @@ namespace ServiceManager.Application.Services
         {
             var response = new ServiceResponse<int>();
 
-            
+            if (!await ValidateReservation(
+                newReservation.WorkStation,
+                newReservation.Estimate,
+                newReservation.Date
+                )) 
+                    throw new Exception("Reservation not valid");
 
-            newReservation.UserId = 36;
+            newReservation.UserId = 24;
             var reservation = _mapper.Map<Reservation>(newReservation);
             await _reservationRepository.AddReservation(reservation);
 
@@ -34,23 +39,34 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
-        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date, DateTime hours)
+        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date)
         {
+            var businessStartingHours = new TimeOnly(8, 0);
+            var businessEndingHours = new TimeOnly(17, 0);
+
             var isReservationValid = true;
             var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation);
-            var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date < date).ToList();
+            var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date <= date).ToList();
             var reservationsAfterDate = reservationsByWorkStation.Where(r => r.Date > date).ToList();
             
             reservationsBeforeDate.ForEach(res =>
             {
                 if (res.Date.AddHours(res.Estimate) > date)
+                {
                     isReservationValid = false;
+                    throw new Exception("A car is alredy on WS" + businessStartingHours + businessEndingHours);
+
+                }
             });
             
             reservationsAfterDate.ForEach(res =>
             {
                 if (date.AddHours(estimate) > res.Date)
+                {
                     isReservationValid = false;
+                    throw new Exception("Reservation error after");
+
+                }
             });
             
             return isReservationValid;
