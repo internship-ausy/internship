@@ -10,6 +10,7 @@ namespace ServiceManager.Domain.Interfaces.Repositories
     public interface IReservationRepository
     {
         Task<int> AddReservation(Reservation newReservation);
+        Task<List<Reservation>> GetReservationsByWorkStation(int workStation);
 
     }
 }

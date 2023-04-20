@@ -34,9 +34,26 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
-        private async bool ValidateReservation(int workStation, int estimate, DateTime date, DateTime hours)
+        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date, DateTime hours)
         {
+            var isReservationValid = true;
+            var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation);
+            var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date < date).ToList();
+            var reservationsAfterDate = reservationsByWorkStation.Where(r => r.Date > date).ToList();
             
+            reservationsBeforeDate.ForEach(res =>
+            {
+                if (res.Date.AddHours(res.Estimate) > date)
+                    isReservationValid = false;
+            });
+            
+            reservationsAfterDate.ForEach(res =>
+            {
+                if (date.AddHours(estimate) > res.Date)
+                    isReservationValid = false;
+            });
+            
+            return isReservationValid;
         }
     }
 }

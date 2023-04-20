@@ -29,7 +29,7 @@ namespace ServiceManager.Dal.Repository
 
         public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
         {
-            return await _context.Reservations.Include(r => r.WorkStation == workStation).ToListAsync();
+            return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
         }
     }
 }
