@@ -51,17 +51,17 @@ namespace ServiceManager.Application.Services
             
             reservationsBeforeDate.ForEach(res =>
             {
-                if (res.Date.AddHours(res.Estimate) > date)
+                if (CalculateEndDate(res.Date, res.Estimate) > date)
                 {
                     isReservationValid = false;
-                    throw new Exception("A car is alredy on WS" + businessStartingHours + businessEndingHours);
+                    throw new Exception("A car is alredy on WS");
 
                 }
             });
             
             reservationsAfterDate.ForEach(res =>
             {
-                if (date.AddHours(estimate) > res.Date)
+                if (CalculateEndDate(date, estimate) > res.Date)
                 {
                     isReservationValid = false;
                     throw new Exception("Reservation error after");
@@ -70,6 +70,30 @@ namespace ServiceManager.Application.Services
             });
             
             return isReservationValid;
+        }
+
+        public static DateTime CalculateEndDate(DateTime startFullDate, int estimate)
+        {
+            var startHours = new TimeOnly(8, 0);
+            var endHours = new TimeOnly(17, 0);
+            DateTime endDate;
+            var todayStartHours = new DateTime(startFullDate.Year, startFullDate.Month, startFullDate.Day, startHours.Hour, 0, 0);
+            var todayEndHours = new DateTime(startFullDate.Year, startFullDate.Month, startFullDate.Day, endHours.Hour, 0, 0);
+
+            if (startFullDate.AddHours(estimate) > todayEndHours)
+            {
+                var remainingTime = startFullDate.AddHours(estimate) - todayEndHours;
+                var nextDay = todayStartHours.AddDays(1);
+                endDate = nextDay.AddHours(remainingTime.Hours);
+                if (endDate > nextDay.AddHours(9))
+                    endDate = CalculateEndDate(nextDay, remainingTime.Hours);
+            }
+            else
+            {
+                endDate = startFullDate.AddHours(estimate);
+            }
+
+            return endDate;
         }
     }
 }
