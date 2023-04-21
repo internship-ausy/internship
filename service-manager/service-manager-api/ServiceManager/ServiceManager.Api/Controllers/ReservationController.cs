@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServiceManager.Application.Dtos.Reservation;
-using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Models;
 
 namespace ServiceManager.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ReservationController : ControllerBase

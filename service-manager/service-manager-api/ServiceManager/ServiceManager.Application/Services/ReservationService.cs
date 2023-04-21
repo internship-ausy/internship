@@ -3,7 +3,7 @@ using ServiceManager.Application.Dtos.Reservation;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
-using System.Security.Cryptography.X509Certificates;
+
 
 namespace ServiceManager.Application.Services
 {
@@ -41,9 +41,6 @@ namespace ServiceManager.Application.Services
 
         private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date)
         {
-            var businessStartingHours = new TimeOnly(8, 0);
-            var businessEndingHours = new TimeOnly(17, 0);
-
             var isReservationValid = true;
             var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation);
             var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date <= date).ToList();
@@ -82,7 +79,7 @@ namespace ServiceManager.Application.Services
 
             DateTime reservationEndDate = startFullDate.AddHours(estimate);
 
-            if (reservationEndDate.TimeOfDay > lunchBreakStart)
+            if (reservationEndDate.TimeOfDay > lunchBreakStart && startFullDate.TimeOfDay < lunchBreakStart)
             {
                 reservationEndDate = reservationEndDate.Add(lunchDuration);
             }
@@ -93,7 +90,12 @@ namespace ServiceManager.Application.Services
 
                 DateTime nextDayStart = startFullDate.Date.AddDays(1).Add(workDayStart);
 
-                if (reservationEndDate.Date == nextDayStart.Date && reservationEndDate.TimeOfDay > lunchBreakStart)
+                if 
+                (
+                    reservationEndDate.Date == nextDayStart.Date && 
+                    reservationEndDate.TimeOfDay > lunchBreakStart && 
+                    startFullDate.TimeOfDay < lunchBreakStart
+                )
                 {
                     reservationEndDate = nextDayStart.Add(reservationEndDate.TimeOfDay + (lunchDuration));
                 }
