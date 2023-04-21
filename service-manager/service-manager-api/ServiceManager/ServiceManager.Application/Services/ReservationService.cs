@@ -72,28 +72,43 @@ namespace ServiceManager.Application.Services
             return isReservationValid;
         }
 
-        public static DateTime CalculateEndDate(DateTime startFullDate, int estimate)
+        private static DateTime CalculateEndDate(DateTime startFullDate, int estimate)
         {
-            var startHours = new TimeOnly(8, 0);
-            var endHours = new TimeOnly(17, 0);
-            DateTime endDate;
-            var todayStartHours = new DateTime(startFullDate.Year, startFullDate.Month, startFullDate.Day, startHours.Hour, 0, 0);
-            var todayEndHours = new DateTime(startFullDate.Year, startFullDate.Month, startFullDate.Day, endHours.Hour, 0, 0);
+            TimeSpan workDayStart = new(8, 0, 0);
+            TimeSpan workDayEnd = new(17, 0, 0);
+            TimeSpan lunchBreakStart = new(12, 0, 0);
+            TimeSpan lunchBreakEnd = new(13, 0, 0);
+            TimeSpan lunchDuration = (lunchBreakEnd - lunchBreakStart);
 
-            if (startFullDate.AddHours(estimate) > todayEndHours)
+            DateTime reservationEndDate = startFullDate.AddHours(estimate);
+
+            if (reservationEndDate.TimeOfDay > lunchBreakStart)
             {
-                var remainingTime = startFullDate.AddHours(estimate) - todayEndHours;
-                var nextDay = todayStartHours.AddDays(1);
-                endDate = nextDay.AddHours(remainingTime.Hours);
-                if (endDate > nextDay.AddHours(9))
-                    endDate = CalculateEndDate(nextDay, remainingTime.Hours);
-            }
-            else
-            {
-                endDate = startFullDate.AddHours(estimate);
+                reservationEndDate = reservationEndDate.Add(lunchDuration);
             }
 
-            return endDate;
+            if (reservationEndDate.TimeOfDay > workDayEnd)
+            {
+                TimeSpan remainingTime = reservationEndDate.TimeOfDay - workDayEnd;
+
+                DateTime nextDayStart = startFullDate.Date.AddDays(1).Add(workDayStart);
+
+                if (reservationEndDate.Date == nextDayStart.Date && reservationEndDate.TimeOfDay > lunchBreakStart)
+                {
+                    reservationEndDate = nextDayStart.Add(reservationEndDate.TimeOfDay + (lunchDuration));
+                }
+                else
+                {
+                    reservationEndDate = nextDayStart.Add(remainingTime);
+
+                    if (reservationEndDate.TimeOfDay > workDayEnd)
+                    {
+                        reservationEndDate = CalculateEndDate(nextDayStart, (int)remainingTime.TotalHours);
+                    }
+                }
+            }
+
+            return reservationEndDate;
         }
     }
 }
