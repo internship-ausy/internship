@@ -16,9 +16,7 @@ namespace ServiceManager.Application.AutoMapper
                 .ForMember(r => r.FirstName,
                     opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[0]))
                 .ForMember(r => r.LastName,
-                    opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[1]))
-                .ForMember(r => r.Date,
-                    opts => opts.MapFrom(src => src.Date.ToLocalTime()));
+                    opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[1]));
 
         }
     }
