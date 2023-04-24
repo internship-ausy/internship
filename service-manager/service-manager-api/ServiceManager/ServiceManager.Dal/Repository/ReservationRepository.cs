@@ -18,6 +18,13 @@ namespace ServiceManager.Dal.Repository
         {
             _context = context;
         }
+
+        public async Task<List<Reservation>> GetDashboardCards()
+        {
+            return await _context.Reservations.ToListAsync();
+        }
+
+
         public async Task<int> AddReservation(Reservation newReservation)
         {
             _context.Reservations.Add(newReservation);
