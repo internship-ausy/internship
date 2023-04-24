@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using ServiceManager.Application.Dtos.Reservation;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
-
+using System.Security.Claims;
 
 namespace ServiceManager.Application.Services
 {
@@ -11,11 +12,18 @@ namespace ServiceManager.Application.Services
     {
         private readonly IReservationRepository _reservationRepository;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ReservationService(IReservationRepository reservationRepository, IMapper mapper)
+        public ReservationService
+            (
+                IReservationRepository reservationRepository, 
+                IMapper mapper,
+                IHttpContextAccessor httpContextAccessor
+            )
         {
             _reservationRepository = reservationRepository;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<ServiceResponse<int>> AddReservation(AddServiceDto newReservation)
         {
@@ -26,15 +34,15 @@ namespace ServiceManager.Application.Services
                 newReservation.Estimate,
                 newReservation.Date
                 )) 
-                    throw new Exception("Reservation not valid");
+                    throw new HttpRequestException("Reservation not valid");
 
-            newReservation.UserId = 24;
+            newReservation.UserId = GetUserId();
             var reservation = _mapper.Map<Reservation>(newReservation);
             await _reservationRepository.AddReservation(reservation);
 
             response.Data = reservation.Id;
             response.Success = true;
-            response.Message = "Reservation Successfully";
+            response.Message = "Reservation Added";
 
             return response;
         }
@@ -51,8 +59,6 @@ namespace ServiceManager.Application.Services
                 if (CalculateEndDate(res.Date, res.Estimate) > date)
                 {
                     isReservationValid = false;
-                    throw new Exception("A car is alredy on WS");
-
                 }
             });
             
@@ -61,8 +67,6 @@ namespace ServiceManager.Application.Services
                 if (CalculateEndDate(date, estimate) > res.Date)
                 {
                     isReservationValid = false;
-                    throw new Exception("Reservation error after");
-
                 }
             });
             
@@ -112,5 +116,8 @@ namespace ServiceManager.Application.Services
 
             return reservationEndDate;
         }
+
+        private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
+            .FindFirstValue(ClaimTypes.NameIdentifier)!);
     }
 }
