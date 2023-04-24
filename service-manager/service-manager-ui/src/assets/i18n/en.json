@@ -43,13 +43,38 @@
     "successPopover": "Password succesfully changed"
   },
   "recovery": {
-    "email-label" : "Your email: ",
-    "title" : "Password Recovery",
-    "subtitle" : "Don't Worry, happens to the best of us",
-    "button" : "Email me recovery link",
-    "input-label" : "Your input field",
+    "email-label": "Your email: ",
+    "title": "Password Recovery",
+    "subtitle": "Don't Worry, happens to the best of us",
+    "button": "Email me recovery link",
+    "input-label": "Your input field",
     "errorRequired": "Field cannot be empty",
     "errorInvalidEmail": "Not a valid email",
     "successPopover": "Recovery mail sent to "
+  },
+  "editService": {
+    "title": "Add / Edit service",
+    "fullName": "Full name (last name + first name)",
+    "plateNumber": "Plate number (ex: AA 123 ABC)",
+    "carMake": "Car make",
+    "carModel": "Car model",
+    "description": "Description",
+    "date": "Date (ex: dd.mm.yyyy)",
+    "hour": "Hour",
+    "WS": "WS (1-3)",
+    "workloadEstimate": "Workload estimate in hours",
+    "notes": "Notes",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
+    "errorRequired": "Field cannot be empty",
+    "errorInvalidName": "Not a valid name",
+    "errorInvalidPlateNumber": "Not a valid plate number",
+    "errorInvalidCarMake": "Not a valid car make",
+    "errorInvalidCarModel": "Not a valid car model",
+    "errorInvalidDate": "Not a valid date",
+    "errorInvalidHour": "Not a valid hour",
+    "errorInvalidWS": "Not a valid WS",
+    "errorInvalidWorkloadEstimate": "Not a valid workload estimate",
+    "successPopover": "Your changes have been successfully saved"
   }
 }
