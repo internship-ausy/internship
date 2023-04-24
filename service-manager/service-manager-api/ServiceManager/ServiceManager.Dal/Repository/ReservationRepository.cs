@@ -25,5 +25,18 @@ namespace ServiceManager.Dal.Repository
         }
 
 
+        public async Task<int> AddReservation(Reservation newReservation)
+        {
+            _context.Reservations.Add(newReservation);
+            await _context.SaveChangesAsync();
+            return newReservation.Id;
+            
+
+        }
+
+        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
+        {
+            return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
+        }
     }
 }
