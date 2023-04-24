@@ -22,6 +22,8 @@ namespace ServiceManager.Api.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetDashboardCardDto>>>> GetDashboardCards()
         {
             return Ok(await _reservationService.GetDashboardCards());
+        }
+
         [HttpPost("AddReservation")]
         public async Task<ActionResult<ServiceResponse<int>>> AddReservation(AddServiceDto newReservation)
         {
