@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ServiceManager.Application.Dtos.Reservation;
+using ServiceManager.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace ServiceManager.Application.Interfaces
 {
     public interface IReservationService
     {
+        Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards();
     }
 }
