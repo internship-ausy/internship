@@ -10,11 +10,16 @@ namespace ServiceManager.Application.AutoMapper
         public AutoMapperProfile()
         {
             CreateMap<User, GetUserDto>().ReverseMap();
+
             CreateMap<User, RegisterDto>().ReverseMap();
+
             CreateMap<Reservation, GetDashboardCardDto>()
                 .ForMember(dto => dto.FullName,
                     opts => opts.MapFrom(src => src.FirstName + ' ' + src.LastName));
-           
+
+            CreateMap<Reservation, GetReservationDto>()
+                .ForMember(dto => dto.FullName,
+                    opts => opts.MapFrom(src => src.FirstName + ' ' + src.LastName));
 
             CreateMap<AddServiceDto, Reservation>()
                 .ForMember(r => r.FirstName,

@@ -127,5 +127,13 @@ namespace ServiceManager.Application.Services
             serviceResponse.Data = dashboardCards.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<List<GetReservationDto>>> DeleteReservation(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetReservationDto>>();
+            var reservations = await _reservationRepository.DeleteReservation(id);
+            serviceResponse.Data = reservations.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
+            return serviceResponse;
+        }
     }
 }
