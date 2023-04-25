@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Service } from "../shared/models/service.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "src/environments/environment.development";
 
 export interface ServiceResponseData {
   data: number;
@@ -12,6 +13,7 @@ export interface ServiceResponseData {
   providedIn: "root",
 })
 export class DashboardService {
+  private baseUrl: string = `${environment.apiUrl}/Reservation`;
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
@@ -20,7 +22,7 @@ export class DashboardService {
 
   addService(service: Service) {
     return this.http.post<ServiceResponseData>(
-      "https://localhost:7252/Reservation/AddReservation", 
+      `${this.baseUrl}/AddReservation`,
       service,
       { headers: this.headers }
       );
