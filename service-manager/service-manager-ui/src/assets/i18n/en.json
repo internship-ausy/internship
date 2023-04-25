@@ -51,5 +51,11 @@
     "errorRequired": "Field cannot be empty",
     "errorInvalidEmail": "Not a valid email",
     "successPopover": "Recovery mail sent to "
+  },
+  "dashboardCard": {
+    "plateNumber": "Plate number : ",
+    "fullName": "Full Name : ",
+    "ws": "WS : ",
+    "estimate": "Estimate : "
   }
 }

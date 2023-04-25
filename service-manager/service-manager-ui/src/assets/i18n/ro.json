@@ -51,5 +51,11 @@
     "errorRequired": "Campul nu este completat",
     "errorInvalidEmail": "Adresa de email invalida",
     "successPopover": "Un mail a fost trimis la adresa "
+  },
+  "dashboardCard": {
+    "plateNumber": "Numar inmatriculare : ",
+    "fullName": "Nume : ",
+    "ws": "Statia : ",
+    "estimate": "Durata estimata : "
   }
 }

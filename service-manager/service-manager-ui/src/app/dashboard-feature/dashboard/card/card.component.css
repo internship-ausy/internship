@@ -1,5 +1,7 @@
 .card-icon {
     color: var(--primary);
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 .card-header {
@@ -18,8 +20,17 @@
     justify-content: flex-end;
 }
 
-.card-buttons:last-child {
-    padding-left: 20px;
+.card-field {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.dashboard-card {
+    width: 265px;
+    height: 195px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--box-border);
 }
 
 .mat-mdc-card-content {
@@ -28,19 +39,4 @@
 
 .mat-mdc-card-content:last-child {
     padding-bottom: 0;
-}
-
-.dashboard-card {
-    width: 265px;
-    height: 195px;
-    border-radius: 5px;
-}
-
-.card-field {
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
-.card-icon-right {
-    padding-left: 20px;
 }
