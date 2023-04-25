@@ -1,7 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Primitives;
 using ServiceManager.Dal.DataContext;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
@@ -21,6 +18,32 @@ namespace ServiceManager.Dal.Repository
 {
     public class ReservationRepository : IReservationRepository
     {
+        private readonly DatabaseContext _context;
+
+        public ReservationRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<List<Reservation>> GetDashboardCards()
+        {
+            return await _context.Reservations.ToListAsync();
+        }
+
+
+        public async Task<int> AddReservation(Reservation newReservation)
+        {
+            _context.Reservations.Add(newReservation);
+            await _context.SaveChangesAsync();
+            return newReservation.Id;
+            
+
+        }
+
+        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
+        {
+            return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
+        }
         private readonly DatabaseContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 

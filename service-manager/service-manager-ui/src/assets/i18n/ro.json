@@ -43,13 +43,38 @@
     "successPopover": "Parolă schimbată cu succes"
   },
   "recovery": {
-    "email-label" : "Adresa ta de email: ",
-    "title" : "Recuperare Parolă",
-    "subtitle" : "Nu îți face griji, ni se întamplă tuturor",
-    "button" : "Trimite link recuperare",
-    "input-label" : "Your input field",
+    "email-label": "Adresa ta de email: ",
+    "title": "Recuperare Parolă",
+    "subtitle": "Nu îți face griji, ni se întamplă tuturor",
+    "button": "Trimite link recuperare",
+    "input-label": "Your input field",
     "errorRequired": "Campul nu este completat",
     "errorInvalidEmail": "Adresa de email invalida",
     "successPopover": "Un mail a fost trimis la adresa "
+  },
+  "editService": {
+    "title": "Adauga / Editeaza o programare",
+    "fullName": "Nume complet (nume + prenume)",
+    "plateNumber": "Numar de inmatriculare (ex: AA 123 ABC)",
+    "carMake": "Marca auto",
+    "carModel": "Model auto",
+    "description": "Descriere",
+    "date": "Data (ex: zz.ll.aaaa)",
+    "hour": "Ora",
+    "WS": "Statie de lucru (1-3)",
+    "workloadEstimate": "Durata estimata in ore",
+    "notes": "Mentiuni",
+    "saveButton": "Salveaza",
+    "cancelButton": "Anuleaza",
+    "errorRequired": "Campul nu este completat",
+    "errorInvalidName": "Nume invalid",
+    "errorInvalidPlateNumber": "Numar de inmatriculare incorect",
+    "errorInvalidCarMake": "Marca auto incorecta",
+    "errorInvalidCarModel": "Model auto incorect",
+    "errorInvalidDate": "Data incorecta",
+    "errorInvalidHour": "Ora incorecta",
+    "errorInvalidWS": "Statia de lucru nu exista",
+    "errorInvalidWorkloadEstimate": "Durata estimata incorecta",
+    "successPopover": "Modificarile au fost salvate cu success"
   }
 }

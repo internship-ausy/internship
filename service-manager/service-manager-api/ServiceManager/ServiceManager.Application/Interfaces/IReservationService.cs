@@ -1,4 +1,5 @@
 ﻿using ServiceManager.Application.Dtos.Reservation;
+using ServiceManager.Application.Dtos.User;
 using ServiceManager.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace ServiceManager.Application.Interfaces
 {
     public interface IReservationService
     {
-        public Task<ServiceResponse<EditServiceDto>> EditService(EditServiceDto editedService);
+        Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards();
+        Task<ServiceResponse<int>> AddReservation(AddServiceDto newReservation);
+        Task<ServiceResponse<EditServiceDto>> EditService(EditServiceDto editedService);
     }
 }

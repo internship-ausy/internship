@@ -10,9 +10,11 @@ namespace ServiceManager.Domain.Interfaces.Repositories
 {
     public interface IReservationRepository
     {
+        Task<List<Reservation>> GetDashboardCards();
+        Task<int> AddReservation(Reservation newReservation);
+        Task<List<Reservation>> GetReservationsByWorkStation(int workStation);
         public Task<Reservation> EditReservations(Reservation editedReservation);
         public Task<bool> ReservationExists(int id);
         public int GetUserId(ClaimsPrincipal user);
-        public Task<List<Reservation>> GetReservationsByWorkStation(int workStation);
     }
 }
