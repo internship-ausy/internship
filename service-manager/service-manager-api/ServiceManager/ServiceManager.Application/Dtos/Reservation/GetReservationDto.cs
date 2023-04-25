@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceManager.Application.Dtos.Reservation
 {
-    public class AddServiceDto
+    public class GetReservationDto
     {
+        public int Id { get; set; }
         public string FullName { get; set; } = String.Empty;
         public string PlateNumber { get; set; } = String.Empty;
         public string CarMake { get; set; } = String.Empty;
@@ -17,7 +18,5 @@ namespace ServiceManager.Application.Dtos.Reservation
         public int Estimate { get; set; }
         public string Description { get; set; } = String.Empty;
         public string? Notes { get; set; }
-        public int UserId { get; set; }
-
     }
 }
