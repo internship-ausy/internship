@@ -12,7 +12,7 @@ const httpOptions = {
   }),
 };
 export interface AuthResponseData {
-  data: number;
+  data: any;
   success: boolean;
   message: string;
 }
@@ -59,7 +59,7 @@ export class AuthService {
       })
       .pipe(
         tap((res) => {
-          localStorage.setItem('userData', 'logged in');
+          localStorage.setItem('userData', res.data);
         })
       );
   }

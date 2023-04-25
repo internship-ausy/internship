@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Service } from "../shared/models/service.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 export interface ServiceResponseData {
   data: number;
@@ -12,9 +12,17 @@ export interface ServiceResponseData {
   providedIn: "root",
 })
 export class DashboardService {
-  constructor(private http: HttpClient) {}
+  private headers: HttpHeaders;
+
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem('userData')!})
+  }
 
   addService(service: Service) {
-    return this.http.post<ServiceResponseData>("https://localhost:7252/Reservation/AddReservation", service);
+    return this.http.post<ServiceResponseData>(
+      "https://localhost:7252/Reservation/AddReservation", 
+      service,
+      { headers: this.headers }
+      );
   }
 }
