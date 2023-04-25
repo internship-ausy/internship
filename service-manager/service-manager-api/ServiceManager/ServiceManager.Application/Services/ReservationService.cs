@@ -119,5 +119,21 @@ namespace ServiceManager.Application.Services
 
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
             .FindFirstValue(ClaimTypes.NameIdentifier)!);
+            
+        public async Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards()
+        {
+            var serviceResponse = new ServiceResponse<List<GetDashboardCardDto>>();
+            var dashboardCards = await _reservationRepository.GetDashboardCards();
+            serviceResponse.Data = dashboardCards.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetReservationDto>>> DeleteReservation(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetReservationDto>>();
+            var reservations = await _reservationRepository.DeleteReservation(id);
+            serviceResponse.Data = reservations.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
+            return serviceResponse;
+        }
     }
 }

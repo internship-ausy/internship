@@ -18,6 +18,12 @@ namespace ServiceManager.Api.Controllers
             _reservationService = reservationService;
         }
 
+        [HttpGet("GetDashboardCard")]
+        public async Task<ActionResult<ServiceResponse<List<GetDashboardCardDto>>>> GetDashboardCards()
+        {
+            return Ok(await _reservationService.GetDashboardCards());
+        }
+
         [HttpPost("AddReservation")]
         public async Task<ActionResult<ServiceResponse<int>>> AddReservation(AddServiceDto newReservation)
         {
@@ -29,6 +35,18 @@ namespace ServiceManager.Api.Controllers
                 return BadRequest(response);
             }
             return Ok(response);
+        }
+
+        [HttpDelete("DeleteReservation")]
+        public async Task<ActionResult<ServiceResponse<GetReservationDto>>> DeleteReservation(int id)
+        {
+            var response = await _reservationService.DeleteReservation(id);
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+
         }
     }
 }
