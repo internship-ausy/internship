@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ChangePassword } from '../shared/models/changePassword.model';
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +22,7 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl: string = 'https://localhost:7252/Auth';
+  private baseUrl: string = `${environment.apiUrl}/Auth`;
 
   isLoggedIn = false;
   onAuthEvent = new EventEmitter<boolean>();
@@ -53,7 +54,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http
-      .post<AuthResponseData>('https://localhost:7252/Auth/login', {
+      .post<AuthResponseData>(`${this.baseUrl}/login`, {
         username: username,
         password: password,
       })
@@ -66,7 +67,7 @@ export class AuthService {
 
   register(user: RegisterUser) {
     return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/Register',
+      `${this.baseUrl}/Register`,
       {
         FullName: user.fullName,
         Username: user.username,
@@ -85,10 +86,10 @@ export class AuthService {
       }
     );
   }
-  
+
   passwordRecovery(email: string) {
     return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/PasswordRecovery',
+      `${this.baseUrl}/PasswordRecovery`,
       {
         Email: email,
       }
@@ -109,4 +110,3 @@ export class AuthService {
     return null;
   }
 }
-  
