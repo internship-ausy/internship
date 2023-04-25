@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ChangePassword } from '../shared/models/changePassword.model';
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { tap } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -66,25 +66,19 @@ export class AuthService {
   }
 
   register(user: RegisterUser) {
-    return this.http.post<AuthResponseData>(
-      `${this.baseUrl}/Register`,
-      {
-        FullName: user.fullName,
-        Username: user.username,
-        Email: user.email,
-        Password: user.password,
-      }
-    );
+    return this.http.post<AuthResponseData>(`${this.baseUrl}/Register`, {
+      FullName: user.fullName,
+      Username: user.username,
+      Email: user.email,
+      Password: user.password,
+    });
   }
 
   changePassword(changePassword: ChangePassword) {
-    return this.http.put<ChangePassword>(
-      `${this.baseUrl}/ChangePassword`,
-      {
-        token: changePassword.emailToken,
-        password: changePassword.newPassword
-      }
-    );
+    return this.http.put<ChangePassword>(`${this.baseUrl}/ChangePassword`, {
+      token: changePassword.emailToken,
+      password: changePassword.newPassword,
+    });
   }
 
   passwordRecovery(email: string) {
@@ -93,8 +87,8 @@ export class AuthService {
       {
         Email: email,
       }
-      );
-    }
+    );
+  }
 
   passwordNotValid(control: FormControl): ValidationErrors | null {
     let regex =
@@ -104,9 +98,8 @@ export class AuthService {
   }
 
   emailNotValid(control: FormControl): ValidationErrors | null {
-    let regex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-    if (!(control.value).match(regex))
-      return {'emailNotValid': true}
+    let regex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$';
+    if (!control.value.match(regex)) return { emailNotValid: true };
     return null;
   }
 }
