@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ServiceManager.Application.Dtos.Reservation;
 using ServiceManager.Application.Dtos.User;
 using ServiceManager.Domain.Models;
 using System;
@@ -15,6 +16,11 @@ namespace ServiceManager.Application.AutoMapper
         {
             CreateMap<User, GetUserDto>().ReverseMap();
             CreateMap<User, RegisterDto>().ReverseMap();
+            CreateMap<EditServiceDto, Reservation>()
+                .ForMember(r => r.FirstName,
+                    opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[0]))
+                .ForMember(r => r.LastName,
+                    opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[1]));
         }
     }
 }
