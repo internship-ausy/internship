@@ -27,4 +27,13 @@ export class DashboardService {
       { headers: this.headers }
       );
   }
+
+  deleteService(id: number)
+  {
+    const url = `${this.baseUrl}/DeleteReservation/${id}`;
+    return this.http.delete<ServiceResponseData>(
+      url,
+      { headers: this.headers }
+    );
+  }
 }
