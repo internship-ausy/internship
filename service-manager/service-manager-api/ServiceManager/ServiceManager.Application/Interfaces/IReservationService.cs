@@ -13,6 +13,6 @@ namespace ServiceManager.Application.Interfaces
     {
         Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards();
         Task<ServiceResponse<int>> AddReservation(AddServiceDto newReservation);
-        Task<ServiceResponse<EditServiceDto>> EditService(EditServiceDto editedService);
+        Task<ServiceResponse<List<GetReservationDto>>> EditService(EditServiceDto editedReservation);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using ServiceManager.Application.Dtos.Reservation;
-using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
@@ -12,30 +12,38 @@ namespace ServiceManager.Application.Services
     {
         private readonly IReservationRepository _reservationRepository;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ReservationService(IReservationRepository reservationRepository, IMapper mapper)
+        public ReservationService
+            (
+                IReservationRepository reservationRepository, 
+                IMapper mapper,
+                IHttpContextAccessor httpContextAccessor
+            )
         {
             _reservationRepository = reservationRepository;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<ServiceResponse<EditServiceDto>> EditService(EditServiceDto editedReservation)
+        public async Task<ServiceResponse<int>> AddReservation(AddServiceDto newReservation)
         {
+            var response = new ServiceResponse<int>();
+
             if (!await ValidateReservation(
-                editedReservation.WorkStation,
-                editedReservation.Estimate,
-                editedReservation.Date
-                ))
-                throw new HttpRequestException("Reservation not valid");
-            var response = new ServiceResponse<EditServiceDto>();
-            var reservation = _mapper.Map<Reservation>(editedReservation);
-            var edit = await _reservationRepository.EditReservations(reservation);
-            if (edit == null)
-            {
-                response.Success = false;
-                response.Message = "Reservation not found";
-                return response;
-            }
+                newReservation.WorkStation,
+                newReservation.Estimate,
+                newReservation.Date
+                )) 
+                    throw new HttpRequestException("Reservation not valid");
+
+            newReservation.UserId = GetUserId();
+            var reservation = _mapper.Map<Reservation>(newReservation);
+            await _reservationRepository.AddReservation(reservation);
+
+            response.Data = reservation.Id;
             response.Success = true;
+            response.Message = "Reservation Added";
+
             return response;
         }
 
@@ -45,7 +53,7 @@ namespace ServiceManager.Application.Services
             var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation);
             var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date <= date).ToList();
             var reservationsAfterDate = reservationsByWorkStation.Where(r => r.Date > date).ToList();
-
+            
             reservationsBeforeDate.ForEach(res =>
             {
                 if (CalculateEndDate(res.Date, res.Estimate) > date)
@@ -53,7 +61,7 @@ namespace ServiceManager.Application.Services
                     isReservationValid = false;
                 }
             });
-
+            
             reservationsAfterDate.ForEach(res =>
             {
                 if (CalculateEndDate(date, estimate) > res.Date)
@@ -61,7 +69,7 @@ namespace ServiceManager.Application.Services
                     isReservationValid = false;
                 }
             });
-
+            
             return isReservationValid;
         }
 
@@ -86,10 +94,10 @@ namespace ServiceManager.Application.Services
 
                 DateTime nextDayStart = startFullDate.Date.AddDays(1).Add(workDayStart);
 
-                if
+                if 
                 (
-                    reservationEndDate.Date == nextDayStart.Date &&
-                    reservationEndDate.TimeOfDay > lunchBreakStart &&
+                    reservationEndDate.Date == nextDayStart.Date && 
+                    reservationEndDate.TimeOfDay > lunchBreakStart && 
                     startFullDate.TimeOfDay < lunchBreakStart
                 )
                 {
@@ -109,5 +117,35 @@ namespace ServiceManager.Application.Services
             return reservationEndDate;
         }
 
+        private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
+            .FindFirstValue(ClaimTypes.NameIdentifier)!);
+            
+        public async Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards()
+        {
+            var serviceResponse = new ServiceResponse<List<GetDashboardCardDto>>();
+            var dashboardCards = await _reservationRepository.GetDashboardCards();
+            serviceResponse.Data = dashboardCards.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetReservationDto>>> EditService(EditServiceDto editedReservation)
+        {
+            if (!await ValidateReservation(
+                editedReservation.WorkStation,
+                editedReservation.Estimate,
+                editedReservation.Date
+                ))
+                throw new HttpRequestException("Reservation not valid");
+            var response = new ServiceResponse<List<GetReservationDto>>();
+            var reservation = _mapper.Map<Reservation>(editedReservation);
+            var edit = await _reservationRepository.EditReservations(reservation);
+            if (edit == null)
+            {
+                throw new KeyNotFoundException("Reservation not found");
+            }
+            response.Data = edit.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
+            response.Success = true;
+            return response;
+        }
     }
 }

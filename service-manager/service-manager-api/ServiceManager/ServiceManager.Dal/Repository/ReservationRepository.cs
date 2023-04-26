@@ -44,14 +44,7 @@ namespace ServiceManager.Dal.Repository
         {
             return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
         }
-        private readonly DatabaseContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ReservationRepository(DatabaseContext context, IHttpContextAccessor httpContextAccessor)
-        {
-            _context = context;
-            _httpContextAccessor = httpContextAccessor;
-        }
         public int GetUserId(ClaimsPrincipal user) => int.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
         public async Task<List<Reservation>> GetReservationsByUser(int userID)
         {
@@ -60,12 +53,12 @@ namespace ServiceManager.Dal.Repository
         }
 
 
-        public async Task<Reservation> EditReservations(Reservation editedReservation)
+        public async Task<List<Reservation>> EditReservations(Reservation editedReservation)
         {
             var reservation = await _context.Reservations.FirstOrDefaultAsync(r => r.Id == editedReservation.Id);
             if (reservation == null)
             {
-                throw new Exception("Reservation not found");
+                throw new KeyNotFoundException("Reservation not found");
             }
             reservation.FirstName = editedReservation.FirstName;
             reservation.LastName = editedReservation.LastName;
@@ -77,7 +70,7 @@ namespace ServiceManager.Dal.Repository
             reservation.Estimate = editedReservation.Estimate;
             reservation.Description = editedReservation.Description;
             await _context.SaveChangesAsync();
-            return reservation;
+            return await _context.Reservations.ToListAsync();
         }
 
         public async Task<bool> ReservationExists(int id)
@@ -87,11 +80,6 @@ namespace ServiceManager.Dal.Repository
                 return true;
             }
             return false;
-        }
-
-        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
-        {
-            return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
         }
     }
 }
