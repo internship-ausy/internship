@@ -8,6 +8,7 @@ namespace ServiceManager.Application.Dtos.Reservation
 {
     public class GetDashboardCardDto
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public string PlateNumber { get; set; } = String.Empty;
         public string FullName { get; set; } = String.Empty;

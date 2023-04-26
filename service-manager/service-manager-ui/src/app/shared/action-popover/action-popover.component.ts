@@ -14,10 +14,12 @@ export class ActionPopoverComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, private popoverService: PopoverService) {}
 
   closeSnackBar() {
+    this.popoverService.actionPopoverEmitter.next(false);
     this.data.snackBar.dismiss();
   }
   onClick() {
     this.popoverService.actionPopoverEmitter.next(true);
+    this.data.snackBar.dismiss();
   }
 
 }

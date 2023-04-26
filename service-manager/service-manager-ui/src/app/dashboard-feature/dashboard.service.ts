@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Service } from '../shared/models/service.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Reservation } from '../shared/models/reservation.model';
+import { Subject } from 'rxjs';
 
 export interface ServiceResponseData {
-  data: number;
+  data: any;
   success: boolean;
   message: string;
 }
@@ -26,6 +28,22 @@ export class DashboardService {
     return this.http.post<ServiceResponseData>(
       `${this.baseUrl}/AddReservation`,
       service,
+      { headers: this.headers }
+    );
+  }
+
+  getDashboardCards() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetDashboardCard`,
+      { headers: this.headers }
+    )
+  }
+
+  deleteService(id: number)
+  {
+    const url = `${this.baseUrl}/DeleteReservation?id=${id}`;
+    return this.http.delete<ServiceResponseData>(
+      url,
       { headers: this.headers }
     );
   }
