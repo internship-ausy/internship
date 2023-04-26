@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Service } from '../shared/models/service.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { DashboardCard } from '../shared/models/dashboardCard.model';
 
 export interface ServiceResponseData {
   data: any;
@@ -16,7 +15,6 @@ export interface ServiceResponseData {
 export class DashboardService {
   private baseUrl: string = `${environment.apiUrl}/Reservation`;
   private headers: HttpHeaders;
-  reservations: DashboardCard[];
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
@@ -32,13 +30,11 @@ export class DashboardService {
     );
   }
 
-  deleteService(id: number)
-  {
+  deleteService(id: number) {
     const url = `${this.baseUrl}/DeleteReservation?id=${id}`;
-    return this.http.delete<ServiceResponseData>(
-      url,
-      { headers: this.headers }
-    );
+    return this.http.delete<ServiceResponseData>(url, {
+      headers: this.headers,
+    });
   }
 
   getService() {

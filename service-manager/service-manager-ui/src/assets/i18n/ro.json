@@ -82,5 +82,10 @@
     "fullName": "Nume : ",
     "ws": "Statia : ",
     "estimate": "Durata estimata : "
+  },
+  "dashboard": {
+    "deleteActionTitle": "Ștergere rezervare!",
+    "deleteActionDescription": "Sunteți pe cale să ștergeți o rezervare!",
+    "deleteCancelButton": "Anulează"
   }
 }

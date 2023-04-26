@@ -1,4 +1,4 @@
-export class DashboardCard {
+export class Reservation {
         public id: number;
         public date: string;
         public plateNumber: string;

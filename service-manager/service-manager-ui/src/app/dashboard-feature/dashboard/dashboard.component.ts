@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DashboardCard } from 'src/app/shared/models/dashboardCard.model';
-import { DashboardService } from '../dashboard.service';
+import { Component, OnInit } from '@angular/core';
+import { StateDashboardService } from '../state-dashboard.service';
+import { Reservation } from 'src/app/shared/models/reservation.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,15 +8,15 @@ import { DashboardService } from '../dashboard.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  reservations: DashboardCard[];
+  reservations: Reservation[];
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private stateDashboardService: StateDashboardService) {}
 
   ngOnInit(): void {
-    this.getReservations();
+    this.displayAddReservations();
   }
 
-  getReservations() {
-    this.dashboardService.getService().subscribe(res => this.reservations = res.data);
+  displayAddReservations() {
+    this.stateDashboardService.reservations$.subscribe(reservations => this.reservations = reservations);
   }
 }

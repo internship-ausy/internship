@@ -82,5 +82,10 @@
     "fullName": "Full Name : ",
     "ws": "WS : ",
     "estimate": "Estimate : "
+  },
+  "dashboard": {
+    "deleteActionTitle": "Delete Reservation!",
+    "deleteActionDescription": "You are about to delete a reservation!",
+    "deleteCancelButton": "Cancel"
   }
 }
