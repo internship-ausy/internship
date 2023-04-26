@@ -28,7 +28,7 @@ export class CardComponent implements OnInit {
   }
 
   onEdit() {
-    this.router.navigate([`edit-service/${this.cardContent.reservationId}`]);
+    this.router.navigate([`edit-service/${this.reservation.id}`]);
 
   }
 
