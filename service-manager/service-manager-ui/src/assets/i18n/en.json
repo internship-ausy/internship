@@ -76,5 +76,11 @@
     "errorInvalidWS": "Not a valid WS",
     "errorInvalidWorkloadEstimate": "Not a valid workload estimate",
     "successPopover": "Your changes have been successfully saved"
+  },
+  "dashboardCard": {
+    "plateNumber": "Plate number : ",
+    "fullName": "Full Name : ",
+    "ws": "WS : ",
+    "estimate": "Estimate : "
   }
 }

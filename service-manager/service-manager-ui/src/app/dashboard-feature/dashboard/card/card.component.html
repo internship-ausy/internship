@@ -1,1 +1,26 @@
-<p>card works!</p>
+<mat-card class="dashboard-card">
+    <mat-card-header class="card-header">
+      <mat-card-content>{{ cardContent.date }}</mat-card-content>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+        <mat-card-content class="card-field">{{ "dashboardCard.plateNumber" | translate }}{{ cardContent.plateNumber }}</mat-card-content>
+        <mat-card-content class="card-field">{{ "dashboardCard.fullName" | translate }}{{ cardContent.fullname }}</mat-card-content>
+        <mat-card-content class="card-field">{{ "dashboardCard.ws" | translate }}{{ cardContent.ws }}</mat-card-content>
+        <mat-card-content class="card-field" class="card-content">{{ "dashboardCard.estimate" | translate }}{{ cardContent.estimate }}</mat-card-content>
+    </mat-card-content>
+
+    <mat-card-actions class="card-buttons">
+        <mat-icon
+            class="menu-icon card-icon"
+            aria-hidden="false"
+            (click)="onEdit()"
+            >edit
+        </mat-icon>
+        <mat-icon
+            class="menu-icon card-icon card-icon-right"
+            aria-hidden="false"
+            (click)="onDelete()"
+            >delete_outline
+        </mat-icon>
+    </mat-card-actions>
+</mat-card>

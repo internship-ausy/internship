@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
-import { Service } from "../shared/models/service.model";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { Service } from '../shared/models/service.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 export interface ServiceResponseData {
   data: number;
@@ -9,12 +10,23 @@ export interface ServiceResponseData {
 }
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DashboardService {
-  constructor(private http: HttpClient) {}
+  private baseUrl: string = `${environment.apiUrl}/Reservation`;
+  private headers: HttpHeaders;
+
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('userData')!,
+    });
+  }
 
   addService(service: Service) {
-    return this.http.post<ServiceResponseData>("https://localhost:7252/Reservation/AddReservation", service);
+    return this.http.post<ServiceResponseData>(
+      `${this.baseUrl}/AddReservation`,
+      service,
+      { headers: this.headers }
+    );
   }
 }

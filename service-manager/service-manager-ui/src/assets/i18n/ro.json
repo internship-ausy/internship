@@ -76,5 +76,11 @@
     "errorInvalidWS": "Statia de lucru nu exista",
     "errorInvalidWorkloadEstimate": "Durata estimata incorecta",
     "successPopover": "Modificarile au fost salvate cu success"
+  },
+  "dashboardCard": {
+    "plateNumber": "Numar inmatriculare : ",
+    "fullName": "Nume : ",
+    "ws": "Statia : ",
+    "estimate": "Durata estimata : "
   }
 }

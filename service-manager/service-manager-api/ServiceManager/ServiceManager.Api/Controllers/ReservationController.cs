@@ -36,6 +36,18 @@ namespace ServiceManager.Api.Controllers
             }
             return Ok(response);
         }
+
+        [HttpDelete("DeleteReservation")]
+        public async Task<ActionResult<ServiceResponse<GetReservationDto>>> DeleteReservation(int id)
+        {
+            var response = await _reservationService.DeleteReservation(id);
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+
+        }
         
         [HttpPut("EditReservation")]
         public async Task<ActionResult<ServiceResponse<int>>> EditService(EditServiceDto editedService)
@@ -49,4 +61,5 @@ namespace ServiceManager.Api.Controllers
         }
     }
     
+
 }

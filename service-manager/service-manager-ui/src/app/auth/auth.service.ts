@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ChangePassword } from '../shared/models/changePassword.model';
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,7 +13,7 @@ const httpOptions = {
   }),
 };
 export interface AuthResponseData {
-  data: number;
+  data: any;
   success: boolean;
   message: string;
 }
@@ -21,7 +22,7 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl: string = 'https://localhost:7252/Auth';
+  private baseUrl: string = `${environment.apiUrl}/Auth`;
 
   isLoggedIn = false;
   onAuthEvent = new EventEmitter<boolean>();
@@ -53,47 +54,41 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http
-      .post<AuthResponseData>('https://localhost:7252/Auth/login', {
+      .post<AuthResponseData>(`${this.baseUrl}/login`, {
         username: username,
         password: password,
       })
       .pipe(
         tap((res) => {
-          localStorage.setItem('userData', 'logged in');
+          localStorage.setItem('userData', res.data);
         })
       );
   }
 
   register(user: RegisterUser) {
-    return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/Register',
-      {
-        FullName: user.fullName,
-        Username: user.username,
-        Email: user.email,
-        Password: user.password,
-      }
-    );
+    return this.http.post<AuthResponseData>(`${this.baseUrl}/Register`, {
+      FullName: user.fullName,
+      Username: user.username,
+      Email: user.email,
+      Password: user.password,
+    });
   }
 
   changePassword(changePassword: ChangePassword) {
-    return this.http.put<ChangePassword>(
-      `${this.baseUrl}/ChangePassword`,
-      {
-        token: changePassword.emailToken,
-        password: changePassword.newPassword
-      }
-    );
+    return this.http.put<ChangePassword>(`${this.baseUrl}/ChangePassword`, {
+      token: changePassword.emailToken,
+      password: changePassword.newPassword,
+    });
   }
-  
+
   passwordRecovery(email: string) {
     return this.http.post<AuthResponseData>(
-      'https://localhost:7252/Auth/PasswordRecovery',
+      `${this.baseUrl}/PasswordRecovery`,
       {
         Email: email,
       }
-      );
-    }
+    );
+  }
 
   passwordNotValid(control: FormControl): ValidationErrors | null {
     let regex =
@@ -103,10 +98,8 @@ export class AuthService {
   }
 
   emailNotValid(control: FormControl): ValidationErrors | null {
-    let regex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-    if (!(control.value).match(regex))
-      return {'emailNotValid': true}
+    let regex = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$';
+    if (!control.value.match(regex)) return { emailNotValid: true };
     return null;
   }
 }
-  

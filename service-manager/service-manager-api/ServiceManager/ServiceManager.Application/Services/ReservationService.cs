@@ -147,5 +147,12 @@ namespace ServiceManager.Application.Services
             response.Success = true;
             return response;
         }
+        public async Task<ServiceResponse<List<GetReservationDto>>> DeleteReservation(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetReservationDto>>();
+            var reservations = await _reservationRepository.DeleteReservation(id);
+            serviceResponse.Data = reservations.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
+            return serviceResponse;
+        }
     }
 }

@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ServiceManager.Dal.DataContext;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
@@ -36,8 +36,6 @@ namespace ServiceManager.Dal.Repository
             _context.Reservations.Add(newReservation);
             await _context.SaveChangesAsync();
             return newReservation.Id;
-            
-
         }
 
         public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
@@ -45,7 +43,18 @@ namespace ServiceManager.Dal.Repository
             return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
         }
 
+        public async Task<List<Reservation>> DeleteReservation(int id)
+        {
+            var reservation = await _context.Reservations
+                .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Reservation with Id '{id}' not found");
+            _context.Reservations.Remove(reservation);
+            await _context.SaveChangesAsync();
+
+            return await _context.Reservations.ToListAsync();
+        }
+
         public int GetUserId(ClaimsPrincipal user) => int.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
+        
         public async Task<List<Reservation>> GetReservationsByUser(int userID)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userID);
