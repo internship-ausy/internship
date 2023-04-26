@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { PopoverService } from 'src/app/shared/core/services/popover.service';
-import { DashboardService } from '../../dashboard.service';
+import { DashboardCard } from 'src/app/shared/models/dashboardCard.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,12 +8,20 @@ import { Router } from '@angular/router';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent {
-
+export class CardComponent implements OnInit {
+  @Input() cardContent: DashboardCard = new DashboardCard();
+  
   constructor(private router: Router) {}
   
+  ngOnInit(): void {
+
+  }
+
   onEdit() {
     this.router.navigate([`edit-service/${7}`]);
   }
 
+  onDelete() {
+    
+  }
 }
