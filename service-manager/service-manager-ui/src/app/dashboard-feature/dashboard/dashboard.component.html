@@ -1,2 +1,6 @@
-<p>{{ "dashboard.text" | translate}}</p>
-
+<div class="container">
+  <app-card
+    *ngFor="let reservation of reservations"
+    [reservation]="reservation"
+  ></app-card>
+</div>

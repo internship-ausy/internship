@@ -1,9 +1,8 @@
 export class DashboardCard {
-        public reservationId: number;
+        public id: number;
         public date: string;
         public plateNumber: string;
-        public fullname: string;
-        public ws: number;
+        public fullName: string;
+        public workStation: number;
         public estimate: number;
   }
-  

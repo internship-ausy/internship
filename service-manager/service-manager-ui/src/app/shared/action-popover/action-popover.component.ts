@@ -18,6 +18,6 @@ export class ActionPopoverComponent {
   }
   onClick() {
     this.popoverService.actionPopoverEmitter.next(true);
+    this.data.snackBar.dismiss(true);
   }
-
 }

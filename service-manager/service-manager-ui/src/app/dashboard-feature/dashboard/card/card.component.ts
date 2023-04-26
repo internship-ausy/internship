@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DashboardCard } from 'src/app/shared/models/dashboardCard.model';
 import { DashboardService } from '../../dashboard.service';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -8,9 +10,11 @@ import { DashboardService } from '../../dashboard.service';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
-  @Input() cardContent: DashboardCard = new DashboardCard();
 
-  constructor(private dashboardService: DashboardService) {}
+
+  @Input() reservation: DashboardCard;
+
+  constructor(private dashboardService: DashboardService, private popoverService: PopoverService) {}
 
 
   ngOnInit(): void {
@@ -21,7 +25,12 @@ export class CardComponent implements OnInit {
 
   }
 
-  onDelete(id: number) {
-    this.dashboardService.deleteService(id).subscribe();
+  onDelete() {
+    // this.popoverService.openSnackBarAction('text', 'text', 'Cancel', 'Ok')
+    this.dashboardService.deleteService(this.reservation.id).subscribe(res => {
+      res.data;
+    });
   }
+
+
 }
