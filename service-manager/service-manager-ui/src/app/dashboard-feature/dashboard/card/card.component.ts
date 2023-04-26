@@ -5,6 +5,7 @@ import { StateDashboardService } from '../../state-dashboard.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
 import { take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -18,12 +19,18 @@ export class CardComponent implements OnInit {
     private dashboardService: DashboardService,
     private popoverService: PopoverService,
     private stateDashboardService: StateDashboardService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  onEdit() {}
+  }
+
+  onEdit() {
+    this.router.navigate([`edit-service/${this.cardContent.reservationId}`]);
+
+  }
 
   onDelete() {
     this.popoverService.openSnackBarAction(this.translate.instant('dashboard.deleteActionTitle'), this.translate.instant('dashboard.deleteActionDescription'), this.translate.instant('dashboard.deleteCancelButton'), "Ok");
