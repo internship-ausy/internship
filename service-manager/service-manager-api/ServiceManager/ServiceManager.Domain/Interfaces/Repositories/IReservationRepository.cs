@@ -17,5 +17,6 @@ namespace ServiceManager.Domain.Interfaces.Repositories
         public Task<List<Reservation>> EditReservations(Reservation editedReservation);
         public Task<bool> ReservationExists(int id);
         public int GetUserId(ClaimsPrincipal user);
+        public Task<Reservation> GetReservationsByID(int reservationID);
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceManager.Application.Dtos.Reservation;
+using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Models;
 
@@ -54,6 +55,16 @@ namespace ServiceManager.Api.Controllers
         {
             var response = await _reservationService.EditService(editedService);
             if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+        [HttpGet("GetReservationByID")]
+        public async Task<ActionResult<ServiceResponse<GetReservationDto>>> GetReservationByID(int reservationID)
+        {
+            var response = await _reservationService.getReservationByID(reservationID);
+            if (response.Success == false)
             {
                 return BadRequest(response);
             }

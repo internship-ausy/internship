@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using ServiceManager.Application.Dtos.Reservation;
+using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
@@ -153,6 +154,14 @@ namespace ServiceManager.Application.Services
             var reservations = await _reservationRepository.DeleteReservation(id);
             serviceResponse.Data = reservations.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
             return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetReservationDto>> getReservationByID(int reservationID)
+        {
+            var response = new ServiceResponse<GetReservationDto>();
+            var reservation = await _reservationRepository.GetReservationsByID(reservationID);
+            response.Data = _mapper.Map<GetReservationDto>(reservation);
+            return response;
         }
     }
 }

@@ -90,5 +90,9 @@ namespace ServiceManager.Dal.Repository
             }
             return false;
         }
+        public async Task<Reservation> GetReservationsByID(int reservationID)
+        {
+            return await _context.Reservations.SingleOrDefaultAsync(r => r.Id == reservationID);
+        }
     }
 }

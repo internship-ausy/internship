@@ -6,6 +6,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { PopoverService } from './shared/core/services/popover.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

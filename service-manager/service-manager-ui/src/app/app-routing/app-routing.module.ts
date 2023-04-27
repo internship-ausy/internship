@@ -13,6 +13,7 @@ import { ScheduleComponent } from '../dashboard-feature/schedule/schedule.compon
 import { UpcomingComponent } from '../dashboard-feature/logs/upcoming/upcoming.component';
 import { HistoryComponent } from '../dashboard-feature/logs/history/history.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { AddServiceComponent } from '../dashboard-feature/add-service/add-service.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,9 +27,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'edit-service',
+    path: 'add-service',
+    component: AddServiceComponent,
+    canActivate: [AuthGuard],
+
+  },
+  {
+    path: 'edit-service/:id',
     component: EditServiceComponent,
     canActivate: [AuthGuard],
+
   },
   {
     path: 'logs',
