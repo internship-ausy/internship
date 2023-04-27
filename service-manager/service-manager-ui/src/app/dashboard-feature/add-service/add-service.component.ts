@@ -9,9 +9,6 @@ import * as moment from "moment";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 // import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter";
-import { ActivatedRoute, Params } from "@angular/router";
-import { EditService } from "src/app/shared/models/editService.model";
-import { take } from "rxjs";
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -26,9 +23,9 @@ export const MY_DATE_FORMATS = {
 };
 
 @Component({
-  selector: "app-edit-service",
-  templateUrl: "./edit-service.component.html",
-  styleUrls: ["./edit-service.component.css"],
+  selector: "app-add-service",
+  templateUrl: "./add-service.component.html",
+  styleUrls: ["./add-service.component.css"],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: "ro-RO" },
     {
@@ -39,100 +36,55 @@ export const MY_DATE_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 })
-export class EditServiceComponent implements OnInit {
-  editServiceForm: FormGroup;
+export class AddServiceComponent implements OnInit {
+  addServiceForm: FormGroup;
   loading = false;
   hours = ["8 AM", "9 AM", "10 AM", "11 AM", "1 PM", "2 PM", "3 PM", "4 PM"];
-  id : number;
-  
 
   constructor(
     private location: Location,
     private dashboardService: DashboardService,
     private popoverService: PopoverService,
-    private translate: TranslateService,
-    private activatedRoute: ActivatedRoute,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.activatedRoute.params.subscribe((params : Params)=> {
-      this.id = +params['id'];
-    });
-    console.log(this.id);
-    let test = this.dashboardService.getReservation(this.id);
-    this.dashboardService.getReservation(2).subscribe(data => {
-      console.log(data);
-    });
-    /*this.dashboardService.getReservation(this.id).subscribe(response => {
-      const reservation = response.data;
-      const editServiceObj = new EditService(
-        //reservation.id,
-        reservation.fullName,
-        reservation.plateNumber,
-        reservation.carMake,
-        reservation.carModel,
-        reservation.description,
-        new Date(reservation.date),
-        reservation.workStation,
-        reservation.estimate,
-        reservation.notes
-      );
-      this.editServiceForm.setValue(editServiceObj);
-    });*/
   }
 
   onSubmit() {
-    if (this.editServiceForm.valid) {
+    if (this.addServiceForm.valid) {
       this.loading = true;
-      const { fullName, plateNumber, carMake, carModel, description, date, hour, WS, workloadEstimate, notes } = this.editServiceForm.value;
+      const { fullName, plateNumber, carMake, carModel, description, date, hour, WS, workloadEstimate, notes } = this.addServiceForm.value;
       const dateTimeStr = `${moment(date).format("DD/MM/YYYY")} ${hour}`;
       const dateTime = moment(dateTimeStr, "DD/MM/YYYY hh A").add(3, "h").toISOString();
-      const editedService = new EditService(this.id,fullName, plateNumber, carMake, carModel, description, dateTime, WS, workloadEstimate, notes);
-      this.popoverService.openSnackBarAction(
-       this.translate.instant("editService.saveTitle"),this.translate.instant("editService.saveMessage"),this.translate.instant("editService.cancel"),"Ok"
-      );
-      this.popoverService.actionPopoverEmitter.pipe(take(1)).subscribe(okButtonPressed => {
-        if(okButtonPressed)
-        {
-          const serviceObservable = this.dashboardService.editService(editedService);
+      const service = new Service(fullName, plateNumber, carMake, carModel, description, dateTime, WS, workloadEstimate, notes);
+      const serviceObservable = this.dashboardService.addService(service);
 
       serviceObservable.subscribe({
         next: (res) => {
           this.loading = false;
-          this.popoverService.openSnackBarSuccess(this.translate.instant("editService.successPopover"), "OK");
-          this.editServiceForm.reset();
+          this.popoverService.openSnackBarSuccess(this.translate.instant("addService.successPopover"), "OK");
+          this.addServiceForm.reset();
 
-          for (let control in this.editServiceForm.controls) {
-            this.editServiceForm.controls[control].setErrors(null);
+          for (let control in this.addServiceForm.controls) {
+            this.addServiceForm.controls[control].setErrors(null);
           }
         },
         error: (res) => {
           this.loading = false;
         },
       });
-        }
-      })
     }
   }
 
   onCancel() {
-    this.popoverService.openSnackBarAction(
-      this.translate.instant("editService.cancelTitle"),
-          this.translate.instant("editService.cancelMessage"),this.translate.instant("editService.cancel"),"Ok");
-     this.popoverService.actionPopoverEmitter.pipe(take(1)).subscribe(okButtonPressed => {
-      if(okButtonPressed)
-      {
-        this.editServiceForm.reset();
+    this.addServiceForm.reset();
     this.location.back();
-      }
-    })
   }
 
-  
-
   initForm() {
-    this.editServiceForm = new FormGroup({
+    this.addServiceForm = new FormGroup({
       fullName: new FormControl("", [Validators.required, this.fullNameNotValid]),
       plateNumber: new FormControl("", [Validators.required, this.plateNumberNotValid]),
       carMake: new FormControl("", Validators.required),
