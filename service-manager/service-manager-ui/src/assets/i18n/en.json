@@ -112,5 +112,11 @@
     "fullName": "Full Name : ",
     "ws": "WS : ",
     "estimate": "Estimate : "
+  },
+  "actionPopover": {
+    "deleteTitle": "This reservation will be permanently deleted",
+    "deleteMessage": "Are you sure you want to delete this reservation?",
+    "deleteCancel": "Cancel",
+    "deleteAction": "OK"
   }
 }

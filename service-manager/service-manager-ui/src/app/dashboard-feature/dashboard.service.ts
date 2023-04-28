@@ -31,11 +31,27 @@ export class DashboardService {
     );
   }
 
+  getDashboardCards() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetDashboardCard`,
+      { headers: this.headers }
+    )
+  }
+
+  deleteService(id: number)
+  {
+    const url = `${this.baseUrl}/DeleteReservation?id=${id}`;
+    return this.http.delete<ServiceResponseData>(
+      url,
+      { headers: this.headers }
+    );
+  }
+
   editService(service: Service) {
     return this.http.put<ServiceResponseData>(
       `${this.baseUrl}/EditReservation`,
       service,
-      
+
     );
   }
 
