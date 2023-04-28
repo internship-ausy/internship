@@ -12,7 +12,6 @@ import { SuccessPopoverComponent } from '../../success-popover/success-popover.c
 @Injectable({
   providedIn: 'root',
 })
-
 export class PopoverService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -46,7 +45,12 @@ export class PopoverService {
       duration: 3000,
     });
   }
-  openSnackBarAction(title: string, message: string, cancel: string, action: string) {
+  openSnackBarAction(
+    title: string,
+    message: string,
+    cancel: string,
+    action: string
+  ) {
     this.snackBar.openFromComponent(ActionPopoverComponent, {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,

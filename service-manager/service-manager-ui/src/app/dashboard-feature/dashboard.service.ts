@@ -30,16 +30,18 @@ export class DashboardService {
     );
   }
 
-  deleteService(id: number) {
-    const url = `${this.baseUrl}/DeleteReservation?id=${id}`;
-    return this.http.delete<ServiceResponseData>(url, {
-      headers: this.headers,
-    });
-  }
-
-  getService() {
+  getDashboardCards() {
     return this.http.get<ServiceResponseData>(
       `${this.baseUrl}/GetDashboardCard`,
+      { headers: this.headers }
+    )
+  }
+
+  deleteService(id: number)
+  {
+    const url = `${this.baseUrl}/DeleteReservation?id=${id}`;
+    return this.http.delete<ServiceResponseData>(
+      url,
       { headers: this.headers }
     );
   }

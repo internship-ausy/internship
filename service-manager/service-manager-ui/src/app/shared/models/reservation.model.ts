@@ -6,3 +6,4 @@ export class Reservation {
         public workStation: number;
         public estimate: number;
   }
+
