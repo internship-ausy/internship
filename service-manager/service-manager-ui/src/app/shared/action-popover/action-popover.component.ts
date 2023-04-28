@@ -21,5 +21,4 @@ export class ActionPopoverComponent {
     this.popoverService.actionPopoverEmitter.next(true);
     this.data.snackBar.dismiss();
   }
-
 }

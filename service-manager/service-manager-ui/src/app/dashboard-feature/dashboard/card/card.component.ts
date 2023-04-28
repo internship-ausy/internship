@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
   @Input() reservation: Reservation;
@@ -22,7 +22,7 @@ export class CardComponent implements OnInit {
     private router: Router,
     private translate: TranslateService
   ) {}
-  
+
   ngOnInit(): void {
 
   }
