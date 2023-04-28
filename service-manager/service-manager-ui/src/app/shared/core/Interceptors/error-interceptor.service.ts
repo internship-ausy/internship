@@ -25,6 +25,12 @@ export class ErrorInterceptorService implements HttpInterceptor {
             console.log('Error Event');
           } else {
             switch (error.status) {
+              case 400:
+                this.popoverService.openSnackBar(
+                  error.error.Message,
+                  'Ok'
+                );
+                break;
               case 401:
                 this.popoverService.openSnackBar(
                   error.error.Message,

@@ -1,0 +1,43 @@
+.dashboard-container {
+    min-height: calc(100vh - 164px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+}
+
+.dashboard-card {
+    margin: auto 40px;
+}
+
+.see-more {
+    margin-right: 6%;
+    color: var(--primary);
+    text-align: end;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.icon {
+    vertical-align: middle;
+    padding-right: 3px;
+    cursor: pointer;
+}
+
+.see-more-text {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1250px) {
+    .dashboard-container {
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+}
+
+@media screen and (max-width: 910px) {
+    .dashboard-container {
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+}
