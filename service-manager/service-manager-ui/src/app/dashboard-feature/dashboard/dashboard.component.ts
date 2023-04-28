@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Reservation } from 'src/app/shared/models/reservation.model';
-import { DashboardService } from '../dashboard.service';
 import { StateDashboardService } from '../state-dashboard.service';
 
 @Component({
