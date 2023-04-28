@@ -7,8 +7,8 @@ export class EditService {
       public carModel: string,
       public description: string,
       public date: string,
-      public workstation: string,
-      public estimate: string,
+      public workStation: number,
+      public estimate: number,
       public notes: string
     ) {}
   }

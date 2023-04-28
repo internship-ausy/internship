@@ -44,6 +44,7 @@ export class EditServiceComponent implements OnInit {
   loading = false;
   hours = ["8 AM", "9 AM", "10 AM", "11 AM", "1 PM", "2 PM", "3 PM", "4 PM"];
   id : number;
+  currentReservation: EditService;
   
 
   constructor(
@@ -59,11 +60,38 @@ export class EditServiceComponent implements OnInit {
     this.activatedRoute.params.subscribe((params : Params)=> {
       this.id = +params['id'];
     });
-    console.log(this.id);
-    let test = this.dashboardService.getReservation(this.id);
-    this.dashboardService.getReservation(2).subscribe(data => {
-      console.log(data);
+    this.dashboardService.getReservation(this.id).subscribe(res => {
+      let currentReservation: Service = res.data;
+      let date = currentReservation.date.slice(0, 10);
+      let hour = new Date(currentReservation.date).getHours();
+      console.log(date);
+      console.log(hour);
+      
+      console.log(res.data);
+      this.editServiceForm.controls['fullName'].setValue(currentReservation.fullName);
+      this.editServiceForm.controls['plateNumber'].setValue(currentReservation.plateNumber);
+      this.editServiceForm.controls['carMake'].setValue(currentReservation.carMake);
+      this.editServiceForm.controls['carModel'].setValue(currentReservation.carModel);
+      this.editServiceForm.controls['description'].setValue(currentReservation.description);
+      this.editServiceForm.controls['date'].setValue(date);
+      this.editServiceForm.controls['hour'].setValue(hour);
+      this.editServiceForm.controls['WS'].setValue(currentReservation.workStation);
+      this.editServiceForm.controls['workloadEstimate'].setValue(currentReservation.estimate);
+
+      // this.editServiceForm = new FormGroup({
+      //   fullName: new FormControl("", [Validators.required, this.fullNameNotValid]),
+      //   plateNumber: new FormControl("", [Validators.required, this.plateNumberNotValid]),
+      //   carMake: new FormControl("", Validators.required),
+      //   carModel: new FormControl("", Validators.required),
+      //   description: new FormControl("", Validators.required),
+      //   date: new FormControl("", Validators.required),
+      //   hour: new FormControl("", Validators.required),
+      //   WS: new FormControl("", [Validators.required, this.WSNotValid]),
+      //   workloadEstimate: new FormControl("", [Validators.required, this.workloadEstimateNotValid]),
+      //   notes: new FormControl(""),
+      // });
     });
+    
     /*this.dashboardService.getReservation(this.id).subscribe(response => {
       const reservation = response.data;
       const editServiceObj = new EditService(
@@ -170,14 +198,14 @@ export class EditServiceComponent implements OnInit {
   }
 
   WSNotValid(control: FormControl): ValidationErrors | null {
-    let regex = "^[1-3]$";
-    if (!control.value?.match(regex)) return { WSNotValid: true };
+
+    if (control.value > 3 || control.value < 1) return { WSNotValid: true };
     return null;
   }
 
   workloadEstimateNotValid(control: FormControl): ValidationErrors | null {
-    let regex = "^([0-9]{1,})$";
-    if (!control.value?.match(regex)) return { workloadEstimateNotValid: true };
+
+    if (control.value < 1) return { workloadEstimateNotValid: true };
     return null;
   }
 }

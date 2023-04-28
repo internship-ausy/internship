@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { EditService } from "src/app/shared/models/editService.model";
 
 export interface ServiceResponseData {
-  data: number;
+  data: any;
   success: boolean;
   message: string;
 }
