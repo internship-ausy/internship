@@ -4,6 +4,7 @@ import { DashboardService } from '../../dashboard.service';
 import { StateDashboardService } from '../../state-dashboard.service';
 import { PopoverService } from 'src/app/shared/core/services/popover.service';
 import { take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -16,7 +17,8 @@ export class CardComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private stateDashboardService: StateDashboardService,
-    private popoverService: PopoverService
+    private popoverService: PopoverService,
+    private router: Router
   ) {}
   
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class CardComponent implements OnInit {
   }
 
   onEdit() {
-    
+    this.router.navigate([`edit-service/${this.reservation.id}`]);
   }
 
   onDelete() {
