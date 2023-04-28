@@ -63,11 +63,11 @@ export class EditServiceComponent implements OnInit {
     this.dashboardService.getReservation(this.id).subscribe(res => {
       let currentReservation: Service = res.data;
       let date = currentReservation.date.slice(0, 10);
-      let hour = new Date(currentReservation.date).getHours();
-      console.log(date);
-      console.log(hour);
+      let hour = new Date(currentReservation.date)
+        .toLocaleTimeString()
+        .replace(/([\d])(:[\d]{2})(.*)/, "$1") + 
+        ((new Date(res.data.date).getHours()) > 12 ? ' PM' : ' AM');
       
-      console.log(res.data);
       this.editServiceForm.controls['fullName'].setValue(currentReservation.fullName);
       this.editServiceForm.controls['plateNumber'].setValue(currentReservation.plateNumber);
       this.editServiceForm.controls['carMake'].setValue(currentReservation.carMake);
@@ -78,67 +78,41 @@ export class EditServiceComponent implements OnInit {
       this.editServiceForm.controls['WS'].setValue(currentReservation.workStation);
       this.editServiceForm.controls['workloadEstimate'].setValue(currentReservation.estimate);
 
-      // this.editServiceForm = new FormGroup({
-      //   fullName: new FormControl("", [Validators.required, this.fullNameNotValid]),
-      //   plateNumber: new FormControl("", [Validators.required, this.plateNumberNotValid]),
-      //   carMake: new FormControl("", Validators.required),
-      //   carModel: new FormControl("", Validators.required),
-      //   description: new FormControl("", Validators.required),
-      //   date: new FormControl("", Validators.required),
-      //   hour: new FormControl("", Validators.required),
-      //   WS: new FormControl("", [Validators.required, this.WSNotValid]),
-      //   workloadEstimate: new FormControl("", [Validators.required, this.workloadEstimateNotValid]),
-      //   notes: new FormControl(""),
-      // });
     });
-    
-    /*this.dashboardService.getReservation(this.id).subscribe(response => {
-      const reservation = response.data;
-      const editServiceObj = new EditService(
-        //reservation.id,
-        reservation.fullName,
-        reservation.plateNumber,
-        reservation.carMake,
-        reservation.carModel,
-        reservation.description,
-        new Date(reservation.date),
-        reservation.workStation,
-        reservation.estimate,
-        reservation.notes
-      );
-      this.editServiceForm.setValue(editServiceObj);
-    });*/
   }
 
   onSubmit() {
     if (this.editServiceForm.valid) {
-      this.loading = true;
       const { fullName, plateNumber, carMake, carModel, description, date, hour, WS, workloadEstimate, notes } = this.editServiceForm.value;
       const dateTimeStr = `${moment(date).format("DD/MM/YYYY")} ${hour}`;
       const dateTime = moment(dateTimeStr, "DD/MM/YYYY hh A").add(3, "h").toISOString();
       const editedService = new EditService(this.id,fullName, plateNumber, carMake, carModel, description, dateTime, WS, workloadEstimate, notes);
       this.popoverService.openSnackBarAction(
-       this.translate.instant("editService.saveTitle"),this.translate.instant("editService.saveMessage"),this.translate.instant("editService.cancel"),"Ok"
-      );
-      this.popoverService.actionPopoverEmitter.pipe(take(1)).subscribe(okButtonPressed => {
+        this.translate.instant("editService.saveTitle"),
+        this.translate.instant("editService.saveMessage"),
+        this.translate.instant("editService.cancel"),
+        "Ok"
+        );
+        this.popoverService.actionPopoverEmitter.pipe(take(1)).subscribe(okButtonPressed => {
         if(okButtonPressed)
         {
+          this.loading = true;
           const serviceObservable = this.dashboardService.editService(editedService);
 
-      serviceObservable.subscribe({
-        next: (res) => {
-          this.loading = false;
-          this.popoverService.openSnackBarSuccess(this.translate.instant("editService.successPopover"), "OK");
-          this.editServiceForm.reset();
+          serviceObservable.subscribe({
+            next: () => {
+              this.loading = false;
+              this.popoverService.openSnackBarSuccess(this.translate.instant("editService.successPopover"), "OK");
+              this.editServiceForm.reset();
 
-          for (let control in this.editServiceForm.controls) {
-            this.editServiceForm.controls[control].setErrors(null);
-          }
-        },
-        error: (res) => {
-          this.loading = false;
-        },
-      });
+              for (let control in this.editServiceForm.controls) {
+                this.editServiceForm.controls[control].setErrors(null);
+              }
+            },
+            error: () => {
+              this.loading = false;
+            },
+          });
         }
       })
     }
@@ -147,12 +121,15 @@ export class EditServiceComponent implements OnInit {
   onCancel() {
     this.popoverService.openSnackBarAction(
       this.translate.instant("editService.cancelTitle"),
-          this.translate.instant("editService.cancelMessage"),this.translate.instant("editService.cancel"),"Ok");
-     this.popoverService.actionPopoverEmitter.pipe(take(1)).subscribe(okButtonPressed => {
+      this.translate.instant("editService.cancelMessage"),
+      this.translate.instant("editService.cancel"),
+      "Ok"
+    );
+    this.popoverService.actionPopoverEmitter.pipe(take(1)).subscribe(okButtonPressed => {
       if(okButtonPressed)
       {
         this.editServiceForm.reset();
-    this.location.back();
+        this.location.back();
       }
     })
   }
