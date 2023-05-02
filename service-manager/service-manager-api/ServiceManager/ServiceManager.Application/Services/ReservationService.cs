@@ -48,10 +48,10 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
-        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date)
+        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date, int id = 0)
         {
             var isReservationValid = true;
-            var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation);
+            var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation, id);
             var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date <= date).ToList();
             var reservationsAfterDate = reservationsByWorkStation.Where(r => r.Date > date).ToList();
             
@@ -129,22 +129,23 @@ namespace ServiceManager.Application.Services
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetReservationDto>>> EditService(EditServiceDto editedReservation)
+        public async Task<ServiceResponse<GetReservationDto>> EditService(EditServiceDto editedReservation)
         {
             if (!await ValidateReservation(
                 editedReservation.WorkStation,
                 editedReservation.Estimate,
-                editedReservation.Date
+                editedReservation.Date,
+                editedReservation.Id
                 ))
                 throw new HttpRequestException("Reservation not valid");
-            var response = new ServiceResponse<List<GetReservationDto>>();
+            var response = new ServiceResponse<GetReservationDto>();
             var reservation = _mapper.Map<Reservation>(editedReservation);
             var edit = await _reservationRepository.EditReservations(reservation);
             if (edit == null)
             {
                 throw new KeyNotFoundException("Reservation not found");
             }
-            response.Data = edit.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
+            response.Data = _mapper.Map<GetReservationDto>(edit);
             response.Success = true;
             return response;
         }

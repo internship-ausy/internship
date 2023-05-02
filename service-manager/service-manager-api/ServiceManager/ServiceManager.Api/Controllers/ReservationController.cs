@@ -51,7 +51,7 @@ namespace ServiceManager.Api.Controllers
         }
         
         [HttpPut("EditReservation")]
-        public async Task<ActionResult<ServiceResponse<int>>> EditService(EditServiceDto editedService)
+        public async Task<ActionResult<ServiceResponse<GetReservationDto>>> EditService(EditServiceDto editedService)
         {
             var response = await _reservationService.EditService(editedService);
             if (!response.Success)

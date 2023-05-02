@@ -38,9 +38,10 @@ namespace ServiceManager.Dal.Repository
             return newReservation.Id;
         }
 
-        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
+        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation, int id = 0)
         {
-            return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
+            return await _context.Reservations
+                .Where(r => r.WorkStation == workStation && r.Id != id).ToListAsync();
         }
 
         public async Task<List<Reservation>> DeleteReservation(int id)
@@ -62,7 +63,7 @@ namespace ServiceManager.Dal.Repository
         }
 
 
-        public async Task<List<Reservation>> EditReservations(Reservation editedReservation)
+        public async Task<Reservation> EditReservations(Reservation editedReservation)
         {
             var reservation = await _context.Reservations.FirstOrDefaultAsync(r => r.Id == editedReservation.Id);
             if (reservation == null)
@@ -78,8 +79,9 @@ namespace ServiceManager.Dal.Repository
             reservation.WorkStation = editedReservation.WorkStation;
             reservation.Estimate = editedReservation.Estimate;
             reservation.Description = editedReservation.Description;
+            reservation.PlateNumber = editedReservation.PlateNumber;
             await _context.SaveChangesAsync();
-            return await _context.Reservations.ToListAsync();
+            return reservation;
         }
 
         public async Task<bool> ReservationExists(int id)

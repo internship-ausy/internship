@@ -22,7 +22,7 @@ import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EditService } from 'src/app/shared/models/editService.model';
 import { take } from 'rxjs';
 import { StateDashboardService } from '../state-dashboard.service';
@@ -66,7 +66,8 @@ export class EditServiceComponent implements OnInit {
     private popoverService: PopoverService,
     private translate: TranslateService,
     private activatedRoute: ActivatedRoute,
-    private stateDashboardService: StateDashboardService
+    private stateDashboardService: StateDashboardService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -163,25 +164,10 @@ export class EditServiceComponent implements OnInit {
 
                 this.stateDashboardService.updateReservation(editedService);
 
-
-                // this.popoverService.actionPopoverEmitter.pipe(take(1))
-                // .subscribe(okButtonPressed => {
-                //   if (okButtonPressed) {
-                //     this.dashboardService.deleteService(this.reservation.id).subscribe(() => {
-                //       this.stateDashboardService.deleteReservation(this.reservation.id);
-                //     });
-                //   }
-                // })
-
-
-
-
                 this.editServiceForm.reset();
-                this.location.back();
+                this.router.navigate(['/dashboard']);
 
-                for (let control in this.editServiceForm.controls) {
-                  this.editServiceForm.controls[control].setErrors(null);
-                }
+
               },
               error: () => {
                 this.loading = false;
