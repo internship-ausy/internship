@@ -53,7 +53,7 @@ export class AddServiceComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.addServiceForm.valid) {
+    if (this.addServiceForm.valid && this.validateForm()) {
       this.loading = true;
       const { fullName, plateNumber, carMake, carModel, description, date, hour, WS, workloadEstimate, notes } = this.addServiceForm.value;
       const dateTimeStr = `${moment(date).format("DD/MM/YYYY")} ${hour}`;
@@ -96,6 +96,15 @@ export class AddServiceComponent implements OnInit {
       workloadEstimate: new FormControl("", [Validators.required, this.workloadEstimateNotValid]),
       notes: new FormControl(""),
     });
+  }
+  
+  validateForm() {
+    let isValid = true;
+    Object.keys(this.addServiceForm.controls).forEach( key => {
+      if (!this.addServiceForm.controls[key].dirty && key != 'notes')
+        isValid = false;
+    })
+    return isValid;
   }
 
   noWeekendsFilter = (m: moment.Moment | null): boolean => {
