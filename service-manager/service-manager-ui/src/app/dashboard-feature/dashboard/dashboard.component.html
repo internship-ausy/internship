@@ -1,1 +1,9 @@
-<p>{{ "dashboard.text" | translate}}</p>
+<div class="dashboard-container">
+    <div class="dashboard-card" *ngFor="let reservation of reservationsDisplayed">
+        <app-card [reservation]="reservation"></app-card>
+    </div>
+</div>
+<div class="see-more">
+    <mat-icon (click)="onSeeMore()" class="icon">add</mat-icon>
+    <span (click)="onSeeMore()" class="see-more-text">See more</span>
+</div>

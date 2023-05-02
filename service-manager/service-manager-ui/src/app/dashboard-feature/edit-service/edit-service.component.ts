@@ -1,36 +1,50 @@
-import { Location } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
-import { DashboardService } from "../dashboard.service";
-import { PopoverService } from "src/app/shared/core/services/popover.service";
-import { TranslateService } from "@ngx-translate/core";
-import { Service } from "src/app/shared/models/service.model";
-import * as moment from "moment";
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import { DashboardService } from '../dashboard.service';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Service } from 'src/app/shared/models/service.model';
+import * as moment from 'moment';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 // import { MomentDateAdapter } from "@angular/material-moment-adapter";
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter";
+import { 
+  MAT_MOMENT_DATE_FORMATS, 
+  MomentDateAdapter, 
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS 
+} from "@angular/material-moment-adapter";
 import { ActivatedRoute, Params } from "@angular/router";
 import { EditService } from "src/app/shared/models/editService.model";
 import { take } from "rxjs";
+import { Router } from '@angular/router';
 
 export const MY_DATE_FORMATS = {
   parse: {
-    dateInput: "DD/MM/YYYY",
+    dateInput: 'DD/MM/YYYY',
   },
   display: {
-    dateInput: "DD/MM/YYYY",
-    monthYearLabel: "MMMM YYYY",
-    dateA11yLabel: "LL",
-    monthYearA11yLabel: "MMMM YYYY",
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
   },
 };
 
 @Component({
-  selector: "app-edit-service",
-  templateUrl: "./edit-service.component.html",
-  styleUrls: ["./edit-service.component.css"],
+  selector: 'app-edit-service',
+  templateUrl: './edit-service.component.html',
+  styleUrls: ['./edit-service.component.css'],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: "ro-RO" },
+    { provide: MAT_DATE_LOCALE, useValue: 'ro-RO' },
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
@@ -52,7 +66,8 @@ export class EditServiceComponent implements OnInit {
     private dashboardService: DashboardService,
     private popoverService: PopoverService,
     private translate: TranslateService,
-    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -138,16 +153,25 @@ export class EditServiceComponent implements OnInit {
 
   initForm() {
     this.editServiceForm = new FormGroup({
-      fullName: new FormControl("", [Validators.required, this.fullNameNotValid]),
-      plateNumber: new FormControl("", [Validators.required, this.plateNumberNotValid]),
-      carMake: new FormControl("", Validators.required),
-      carModel: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      date: new FormControl("", Validators.required),
-      hour: new FormControl("", Validators.required),
-      WS: new FormControl("", [Validators.required, this.WSNotValid]),
-      workloadEstimate: new FormControl("", [Validators.required, this.workloadEstimateNotValid]),
-      notes: new FormControl(""),
+      fullName: new FormControl('', [
+        Validators.required,
+        this.fullNameNotValid,
+      ]),
+      plateNumber: new FormControl('', [
+        Validators.required,
+        this.plateNumberNotValid,
+      ]),
+      carMake: new FormControl('', Validators.required),
+      carModel: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required),
+      hour: new FormControl('', Validators.required),
+      WS: new FormControl('', [Validators.required, this.WSNotValid]),
+      workloadEstimate: new FormControl('', [
+        Validators.required,
+        this.workloadEstimateNotValid,
+      ]),
+      notes: new FormControl(''),
     });
   }
 
@@ -157,19 +181,19 @@ export class EditServiceComponent implements OnInit {
   };
 
   fullNameNotValid(control: FormControl): ValidationErrors | null {
-    let regex = "^[a-zA-Z.]{3,} [a-zA-Z]{3,}$";
+    let regex = '^[a-zA-Z.]{3,} [a-zA-Z]{3,}$';
     if (!control.value?.match(regex)) return { fullNameNotValid: true };
     return null;
   }
 
   plateNumberNotValid(control: FormControl): ValidationErrors | null {
-    let regex = "^[A-Z]{1,2} [0-9]{2,3} [A-Z]{3}$";
+    let regex = '^[A-Z]{1,2} [0-9]{2,3} [A-Z]{3}$';
     if (!control.value?.match(regex)) return { plateNumberNotValid: true };
     return null;
   }
 
   dateNotValid(control: FormControl): ValidationErrors | null {
-    let regex = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";
+    let regex = '^[0-9]{2}/[0-9]{2}/[0-9]{4}$';
     if (!control.value?.match(regex)) return { dateNotValid: true };
     return null;
   }
