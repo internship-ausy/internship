@@ -51,7 +51,7 @@ export class DashboardService {
     return this.http.put<ServiceResponseData>(
       `${this.baseUrl}/EditReservation`,
       service,
-      
+
     );
   }
 

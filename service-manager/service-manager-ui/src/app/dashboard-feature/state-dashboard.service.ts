@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { Reservation } from "../shared/models/reservation.model";
 import { DashboardService } from "./dashboard.service";
+import { Service } from "../shared/models/service.model";
 
 @Injectable({ providedIn: 'root' })
 export class StateDashboardService {
@@ -41,10 +42,10 @@ export class StateDashboardService {
         return this.shouldUpdateReservation$;
     }
 
-    // updateReservation(payload: Partial<Reservation>, id: number) {
-    //     this.dashboardService.editReservation(payload, id)
-    //         .subscribe(updatedReservation => {
-    //             this.updateReservation$.next(updatedReservation);
-    //         })
-    // }
+    updateReservation(payload: Service) {
+        this.dashboardService.editService(payload)
+            .subscribe(response => {
+                this.updateReservation$.next(response.data);
+            })
+    }
 }
