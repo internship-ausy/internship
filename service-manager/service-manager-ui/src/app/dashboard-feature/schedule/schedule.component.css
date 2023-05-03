@@ -76,6 +76,8 @@
   justify-content: center;
   align-items: center;
   border: 1px solid black;
+  border-right: none;
+  border-left: none;
   position: relative;
   top: -0.7em;
 }
@@ -88,12 +90,9 @@
   top: auto;
 }
 
-
 .mbsc-eventcalendar {
-  border: 2px solid black;
-  padding-bottom: 1rem;
+  padding: 3rem;
   box-shadow: var(--box-shadow);
-
 }
 .mbsc-schedule-item {
   border-top: 0px solid;
@@ -124,18 +123,45 @@
 }
 .mbsc-schedule-resource {
   border: 1px solid black;
+  border-top: 3px solid black;
 }
 .mbsc-schedule-time-col.mbsc-ltr {
   border-right: 1px solid black;
+  border-left: 3px solid black;
   border-bottom: 1px solid black;
 }
 .header-template-container {
   padding: 10px;
-  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 2px solid black;
 }
 .mbsc-schedule-resource-title {
   font-size: 0.875em;
   font-weight: 600;
   padding: 0.5em;
   text-align: center;
+}
+.mbsc-schedule-resource-group {
+  box-sizing: border-box;
+  flex-basis: 16em;
+}
+mbsc-calendar-today {
+  display: none;
+}
+.mbsc-flex {
+  transform: translateX(0px) !important;
+}
+
+.mbsc-schedule-fake-scroll-y {
+  max-height: 0px;
+  overflow-y: hidden;
+}
+.mbsc-calendar-controls {
+  border: 3px solid black;
+  border-bottom: none;
+}
+.mbsc-schedule-wrapper {
+  overflow: auto;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
 }
