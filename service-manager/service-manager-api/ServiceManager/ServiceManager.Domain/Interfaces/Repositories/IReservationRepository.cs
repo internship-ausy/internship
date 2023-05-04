@@ -13,6 +13,6 @@ namespace ServiceManager.Domain.Interfaces.Repositories
         Task<int> AddReservation(Reservation newReservation);
         Task<List<Reservation>> GetReservationsByWorkStation(int workStation);
         Task<List<Reservation>> DeleteReservation(int id);
-
+        Task<List<Reservation>> GetSchedule();
     }
 }

@@ -46,5 +46,10 @@ namespace ServiceManager.Dal.Repository
 
             return await _context.Reservations.ToListAsync();
         }
+
+        public async Task<List<Reservation>> GetSchedule()
+        {
+            return await _context.Reservations.ToListAsync();
+        }
     }
 }

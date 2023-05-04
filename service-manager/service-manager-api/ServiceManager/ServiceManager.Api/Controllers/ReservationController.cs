@@ -48,5 +48,11 @@ namespace ServiceManager.Api.Controllers
             return Ok(response);
 
         }
+
+        [HttpGet("GetSchedule")]
+        public async Task<ActionResult<ServiceResponse<List<GetScheduleDto>>>> GetSchedule()
+        {
+            return Ok(await _reservationService.GetSchedule());
+        }
     }
 }
