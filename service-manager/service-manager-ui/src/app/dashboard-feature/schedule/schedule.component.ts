@@ -9,12 +9,12 @@ import {
 import { HttpClient } from '@angular/common/http';
 
 setOptions({
-  theme: 'none',
-  themeVariant: 'none',
-  clickToCreate: false,
-  dragToCreate: true,
-  dragToMove: true,
-  dragToResize: true,
+  theme: 'windows',
+  themeVariant: 'light',
+  clickToCreate: true,
+  dragToCreate: false,
+  dragToMove: false,
+  dragToResize: false,
   eventDelete: true,
 });
 
@@ -40,6 +40,14 @@ export class ScheduleComponent implements OnInit {
         weekDays: 'MO,TU,WE,TH,FR',
       },
     },
+    {
+      start: '17:00',
+      end: '18:00',
+      recurring: {
+        repeat: 'weekly',
+        weekDays: 'MO,TU,WE,TH,FR',
+      },
+    },
   ];
   constructor(private http: HttpClient) {}
 
@@ -50,7 +58,7 @@ export class ScheduleComponent implements OnInit {
       startDay: 1,
       endDay: 5,
       startTime: '08:00',
-      endTime: '17:00',
+      endTime: '18:00',
     },
   };
 
@@ -71,14 +79,22 @@ export class ScheduleComponent implements OnInit {
   myEvents: MbscCalendarEvent[] = [
     {
       start: '2023-05-01T08:00',
-      end: '2023-05-01T17:00',
+      end: '2023-05-01T09:00',
       title: 'service',
       resource: [1, 3],
       color: '#35bb5a',
     },
     {
+      start: '2023-05-01T09:00',
+      end: '2023-05-01T10:00',
+      title: 'service',
+      resource: [1, 3],
+      color: '#35bb5a',
+    },
+
+    {
       start: '2023-05-02T08:00',
-      end: '2023-05-02T17:00',
+      end: '2023-05-02T14:00',
       title: 'service',
       resource: [1, 2, 3],
       color: '#35bb5a',
@@ -103,7 +119,7 @@ export class ScheduleComponent implements OnInit {
       title: 'service',
       resource: [1, 2, 3],
       color: '#35bb5a',
-    }
+    },
   ];
 
   myResources: MbscResource[] = [
