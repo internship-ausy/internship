@@ -60,6 +60,7 @@ namespace ServiceManager.Api.Controllers
             }
             return Ok(response);
         }
+        
         [HttpGet("GetReservationByID")]
         public async Task<ActionResult<ServiceResponse<GetReservationDto>>> GetReservationByID(int reservationID)
         {
@@ -69,14 +70,12 @@ namespace ServiceManager.Api.Controllers
                 return BadRequest(response);
             }
             return Ok(response);
-    
+        }
+        
         [HttpGet("GetSchedule")]
         public async Task<ActionResult<ServiceResponse<List<GetScheduleDto>>>> GetSchedule()
         {
             return Ok(await _reservationService.GetSchedule());
         }
-    }
-    }    
-
-
+    } 
 }
