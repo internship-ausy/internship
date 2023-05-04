@@ -4,9 +4,15 @@ using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Reflection.Metadata;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace ServiceManager.Dal.Repository
 {
@@ -32,9 +38,10 @@ namespace ServiceManager.Dal.Repository
             return newReservation.Id;
         }
 
-        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation)
+        public async Task<List<Reservation>> GetReservationsByWorkStation(int workStation, int id = 0)
         {
-            return await _context.Reservations.Where(r => r.WorkStation == workStation).ToListAsync();
+            return await _context.Reservations
+                .Where(r => r.WorkStation == workStation && r.Id != id).ToListAsync();
         }
 
         public async Task<List<Reservation>> DeleteReservation(int id)
@@ -45,6 +52,49 @@ namespace ServiceManager.Dal.Repository
             await _context.SaveChangesAsync();
 
             return await _context.Reservations.ToListAsync();
+        }
+
+        public int GetUserId(ClaimsPrincipal user) => int.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
+        
+        public async Task<List<Reservation>> GetReservationsByUser(int userID)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userID);
+            return user.Reservations;
+        }
+
+
+        public async Task<Reservation> EditReservations(Reservation editedReservation)
+        {
+            var reservation = await _context.Reservations.FirstOrDefaultAsync(r => r.Id == editedReservation.Id);
+            if (reservation == null)
+            {
+                throw new KeyNotFoundException("Reservation not found");
+            }
+            reservation.FirstName = editedReservation.FirstName;
+            reservation.LastName = editedReservation.LastName;
+            reservation.Description = editedReservation.Description;
+            reservation.CarMake = editedReservation.CarMake;
+            reservation.CarModel = editedReservation.CarModel;
+            reservation.Date = editedReservation.Date;
+            reservation.WorkStation = editedReservation.WorkStation;
+            reservation.Estimate = editedReservation.Estimate;
+            reservation.Description = editedReservation.Description;
+            reservation.PlateNumber = editedReservation.PlateNumber;
+            await _context.SaveChangesAsync();
+            return reservation;
+        }
+
+        public async Task<bool> ReservationExists(int id)
+        {
+            if (await _context.Reservations.AnyAsync(r => r.Id == id))
+            {
+                return true;
+            }
+            return false;
+        }
+        public async Task<Reservation> GetReservationsByID(int reservationID)
+        {
+            return await _context.Reservations.SingleOrDefaultAsync(r => r.Id == reservationID);
         }
 
         public async Task<List<Reservation>> GetSchedule()

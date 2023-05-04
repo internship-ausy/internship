@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using ServiceManager.Application.Dtos.Reservation;
+using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
@@ -48,10 +49,10 @@ namespace ServiceManager.Application.Services
             return response;
         }
 
-        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date)
+        private async Task<bool> ValidateReservation(int workStation, int estimate, DateTime date, int id = 0)
         {
             var isReservationValid = true;
-            var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation);
+            var reservationsByWorkStation = await _reservationRepository.GetReservationsByWorkStation(workStation, id);
             var reservationsBeforeDate = reservationsByWorkStation.Where(r => r.Date <= date).ToList();
             var reservationsAfterDate = reservationsByWorkStation.Where(r => r.Date > date).ToList();
             
@@ -129,12 +130,40 @@ namespace ServiceManager.Application.Services
             return serviceResponse;
         }
 
+        public async Task<ServiceResponse<GetReservationDto>> EditService(EditServiceDto editedReservation)
+        {
+            if (!await ValidateReservation(
+                editedReservation.WorkStation,
+                editedReservation.Estimate,
+                editedReservation.Date,
+                editedReservation.Id
+                ))
+                throw new HttpRequestException("Reservation not valid");
+            var response = new ServiceResponse<GetReservationDto>();
+            var reservation = _mapper.Map<Reservation>(editedReservation);
+            var edit = await _reservationRepository.EditReservations(reservation);
+            if (edit == null)
+            {
+                throw new KeyNotFoundException("Reservation not found");
+            }
+            response.Data = _mapper.Map<GetReservationDto>(edit);
+            response.Success = true;
+            return response;
+        }
         public async Task<ServiceResponse<List<GetReservationDto>>> DeleteReservation(int id)
         {
             var serviceResponse = new ServiceResponse<List<GetReservationDto>>();
             var reservations = await _reservationRepository.DeleteReservation(id);
             serviceResponse.Data = reservations.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
             return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetReservationDto>> getReservationByID(int reservationID)
+        {
+            var response = new ServiceResponse<GetReservationDto>();
+            var reservation = await _reservationRepository.GetReservationsByID(reservationID);
+            response.Data = _mapper.Map<GetReservationDto>(reservation);
+            return response;
         }
 
         public async Task<ServiceResponse<List<GetScheduleDto>>> GetSchedule()

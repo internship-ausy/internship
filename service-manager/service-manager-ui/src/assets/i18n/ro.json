@@ -53,7 +53,37 @@
     "successPopover": "Un mail a fost trimis la adresa "
   },
   "editService": {
-    "title": "Adauga / Editeaza o programare",
+    "title": "Editeaza o programare",
+    "fullName": "Nume complet (nume + prenume)",
+    "plateNumber": "Numar de inmatriculare (ex: AA 123 ABC)",
+    "carMake": "Marca auto",
+    "carModel": "Model auto",
+    "description": "Descriere",
+    "date": "Data (ex: zz.ll.aaaa)",
+    "hour": "Ora",
+    "WS": "Statie de lucru (1-3)",
+    "workloadEstimate": "Durata estimata in ore",
+    "notes": "Mentiuni",
+    "saveButton": "Salveaza",
+    "cancelButton": "Anuleaza",
+    "errorRequired": "Campul nu este completat",
+    "errorInvalidName": "Nume invalid",
+    "errorInvalidPlateNumber": "Numar de inmatriculare incorect",
+    "errorInvalidCarMake": "Marca auto incorecta",
+    "errorInvalidCarModel": "Model auto incorect",
+    "errorInvalidDate": "Data incorecta",
+    "errorInvalidHour": "Ora incorecta",
+    "errorInvalidWS": "Statia de lucru nu exista",
+    "errorInvalidWorkloadEstimate": "Durata estimata incorecta",
+    "successPopover": "Modificarile au fost salvate cu success",
+    "saveTitle" : "Atenție!",
+    "saveMessage" : "Salvând modificările vei pierde accesul la datele vechi.",
+    "cancel" : "Anulează",
+    "cancelTitle":"Atenție!",
+    "cancelMessage": "Această acțiune te va redirecționa către ultima pagină vizitată"
+  },
+  "addService": {
+    "title": "Adauga o programare",
     "fullName": "Nume complet (nume + prenume)",
     "plateNumber": "Numar de inmatriculare (ex: AA 123 ABC)",
     "carMake": "Marca auto",
@@ -82,5 +112,11 @@
     "fullName": "Nume : ",
     "ws": "Statia : ",
     "estimate": "Durata estimata : "
+  },
+  "actionPopover": {
+    "deleteTitle": "Aceasta rezervare va fi stearsa definitiv",
+    "deleteMessage": "Esti sigur ca vrei sa stergi aceasta rezervare?",
+    "deleteCancel": "Anuleaza",
+    "deleteAction": "OK"
   }
 }

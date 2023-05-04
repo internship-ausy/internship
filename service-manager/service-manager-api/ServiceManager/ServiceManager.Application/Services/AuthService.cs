@@ -52,8 +52,6 @@ namespace ServiceManager.Application.Services
             response.Message = "Registration Successfully";
 
             return response;
-
-           
         }
         public async Task<ServiceResponse<string>> Login(string username, string password)
         {
@@ -70,6 +68,21 @@ namespace ServiceManager.Application.Services
             }
             else
             {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings:Token").Value);
+
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
+                };
+
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
                 response.Data = CreateAuthToken(user);
                 response.Message = "Authentification Succeeded";
             }

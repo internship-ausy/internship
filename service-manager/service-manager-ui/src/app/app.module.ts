@@ -33,6 +33,7 @@ import { HistoryComponent } from './dashboard-feature/logs/history/history.compo
 import { UpcomingComponent } from './dashboard-feature/logs/upcoming/upcoming.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorInterceptorService } from './shared/core/Interceptors/error-interceptor.service';
+import { AddServiceComponent } from './dashboard-feature/add-service/add-service.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ErrorInterceptorService } from './shared/core/Interceptors/error-interc
     ActionPopoverComponent,
     HistoryComponent,
     UpcomingComponent,
+    AddServiceComponent,
   ],
   imports: [
     BrowserModule,

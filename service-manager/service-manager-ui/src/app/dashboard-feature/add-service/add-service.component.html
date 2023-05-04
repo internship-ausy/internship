@@ -1,0 +1,115 @@
+<mat-card>
+    <mat-card-content>
+      <h1>{{ "addService.title" | translate }}</h1>
+      <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
+        <div class="form-content">
+          <div class="form-col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.fullName" | translate }}</mat-label>
+              <input matInput type="text" formControlName="fullName" required />
+              <mat-error *ngIf="this.addServiceForm.controls['fullName'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+              <mat-error *ngIf="this.addServiceForm.controls['fullName'].hasError('fullNameNotValid')">
+                {{ "addService.errorInvalidName" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.plateNumber" | translate }}</mat-label>
+              <input matInput type="text" formControlName="plateNumber" required />
+              <mat-error *ngIf="this.addServiceForm.controls['plateNumber'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+              <mat-error *ngIf="this.addServiceForm.controls['plateNumber'].hasError('plateNumberNotValid')">
+                {{ "addService.errorInvalidPlateNumber" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.carMake" | translate }}</mat-label>
+              <input matInput type="text" formControlName="carMake" required />
+              <mat-error *ngIf="this.addServiceForm.controls['carMake'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.carModel" | translate }}</mat-label>
+              <input matInput type="text" formControlName="carModel" required />
+              <mat-error *ngIf="this.addServiceForm.controls['carModel'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.description" | translate }}</mat-label>
+              <input matInput type="text" formControlName="description" required />
+              <mat-error *ngIf="this.addServiceForm.controls['description'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.date" | translate }}</mat-label>
+              <input matInput formControlName="date" [matDatepicker]="picker" [matDatepickerFilter]="noWeekendsFilter" required />
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="this.addServiceForm.controls['date'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+              <mat-error *ngIf="this.addServiceForm.controls['date'].hasError('matDatepickerFilter')">
+                {{ "addService.errorInvalidDate" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.hour" | translate }}</mat-label>
+              <mat-select formControlName="hour" required>
+                <mat-option *ngFor="let hour of hours" [value]="hour">
+                  {{ hour }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="this.addServiceForm.controls['hour'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+              <mat-error *ngIf="this.addServiceForm.controls['hour'].hasError('hourNotValid')">
+                {{ "addService.errorInvalidHour" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.WS" | translate }}</mat-label>
+              <input matInput type="text" formControlName="WS" required />
+              <mat-error *ngIf="this.addServiceForm.controls['WS'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+              <mat-error *ngIf="this.addServiceForm.controls['WS'].hasError('WSNotValid')">
+                {{ "addService.errorInvalidWS" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.workloadEstimate" | translate }}</mat-label>
+              <input matInput type="text" formControlName="workloadEstimate" required />
+              <mat-error *ngIf="this.addServiceForm.controls['workloadEstimate'].hasError('required')">
+                {{ "addService.errorRequired" | translate }}
+              </mat-error>
+              <mat-error *ngIf="this.addServiceForm.controls['workloadEstimate'].hasError('workloadEstimateNotValid')">
+                {{ "addService.errorInvalidWorkloadEstimate" | translate }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "addService.notes" | translate }}</mat-label>
+              <input matInput type="text" formControlName="notes" />
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-card-actions>
+          <button type="button" class="btn-secondary" [disabled]="loading" (click)="onCancel()">
+            {{ "addService.cancelButton" | translate }}
+            <div [class.spinner]="loading"></div>
+          </button>
+          <button type="submit" class="btn-primary" [class.btn-secondary]="loading" [disabled]="loading">
+            {{ "addService.saveButton" | translate }}
+            <div [class.spinner]="loading"></div>
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
