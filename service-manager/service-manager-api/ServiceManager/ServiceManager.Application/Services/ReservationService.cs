@@ -186,7 +186,7 @@ namespace ServiceManager.Application.Services
                 allSchedule.Add(schedule);
             }
 
-            serviceResponse.Data = allSchedule.ToList();
+            serviceResponse.Data = allSchedule;
 
             return serviceResponse;
         }
