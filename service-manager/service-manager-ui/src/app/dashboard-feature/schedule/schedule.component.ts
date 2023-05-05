@@ -6,7 +6,7 @@ import {
   MbscResource,
   formatDate,
 } from '@mobiscroll/angular';
-import { HttpClient } from '@angular/common/http';
+import { DashboardService } from '../dashboard.service';
 
 setOptions({
   theme: 'windows',
@@ -82,7 +82,15 @@ export class ScheduleComponent implements OnInit {
       color: 'var(--tertiary-container)',
     },
   ];
-  constructor(private http: HttpClient) {}
+  constructor(
+    private dashboardService: DashboardService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getSchedule();
+  }
+
+  getSchedule() {
+    this.dashboardService.getSchedule().subscribe(res => this.myEvents = res.data)
+  }
 }
