@@ -9,6 +9,7 @@ import * as moment from "moment";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 // import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter";
+import { StateDashboardService } from "../state-dashboard.service";
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -45,7 +46,8 @@ export class AddServiceComponent implements OnInit {
     private location: Location,
     private dashboardService: DashboardService,
     private popoverService: PopoverService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private stateDashboardService: StateDashboardService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,7 @@ export class AddServiceComponent implements OnInit {
 
       serviceObservable.subscribe({
         next: (res) => {
+          this.stateDashboardService.addReservation();
           this.loading = false;
           this.popoverService.openSnackBarSuccess(this.translate.instant("addService.successPopover"), "OK");
           this.addServiceForm.reset();
