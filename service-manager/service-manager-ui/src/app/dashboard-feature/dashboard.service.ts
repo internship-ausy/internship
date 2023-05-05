@@ -61,4 +61,11 @@ export class DashboardService {
     { headers: this.headers }
   );
   }
+
+  getSchedule() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetSchedule`,
+      { headers: this.headers }
+    )
+  }
 }
