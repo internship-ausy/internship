@@ -11,10 +11,16 @@ export class StateDashboardService {
     private shouldUpdateReservation$ = new BehaviorSubject<Reservation>(null);
     private deleteReservation$ = new Subject<number>();
     private updateReservation$ = new Subject<Reservation>();
+    private addReservation$ = new Subject<boolean>();
 
     constructor(private dashboardService: DashboardService) {
         this.dashboardService.getDashboardCards()
             .subscribe(reservations => this.reservations$.next(reservations.data));
+
+        this.addReservation$.subscribe(() => {
+            this.dashboardService.getDashboardCards()
+                .subscribe(reservations => this.reservations$.next(reservations.data));
+        });
 
         this.deleteReservation$.subscribe((id: number) => {
             this.reservations$.next(this.reservations$.getValue()
@@ -28,6 +34,10 @@ export class StateDashboardService {
                 return reservation.id === editedReservation.id ? editedReservation : reservation;
             }))
         });
+    }
+
+    addReservation() {
+        this.addReservation$.next(true);
     }
 
     deleteReservation(id: number) {
