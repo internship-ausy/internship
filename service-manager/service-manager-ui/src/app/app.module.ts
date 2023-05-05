@@ -1,3 +1,4 @@
+import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +27,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
+  HttpClientJsonpModule,
   HttpClientModule,
 } from '@angular/common/http';
 import { DashboardComponent } from './dashboard-feature/dashboard/dashboard.component';
@@ -60,6 +62,7 @@ import { AddServiceComponent } from './dashboard-feature/add-service/add-service
     AddServiceComponent,
   ],
   imports: [
+    MbscModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -67,6 +70,7 @@ import { AddServiceComponent } from './dashboard-feature/add-service/add-service
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
