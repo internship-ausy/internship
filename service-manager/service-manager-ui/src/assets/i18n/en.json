@@ -118,5 +118,8 @@
     "deleteMessage": "Are you sure you want to delete this reservation?",
     "deleteCancel": "Cancel",
     "deleteAction": "OK"
+  },
+  "schedule": {
+    "title": "Schedule"
   }
 }

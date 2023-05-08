@@ -109,7 +109,19 @@
   border-color: black;
 }
 
-.mbsc-windows.mbsc-schedule-all-day-item:after, .mbsc-windows.mbsc-schedule-column, .mbsc-windows.mbsc-schedule-item, .mbsc-windows.mbsc-schedule-resource, .mbsc-windows.mbsc-schedule-resource-group, .mbsc-windows.mbsc-schedule-time-col, .mbsc-windows.mbsc-timeline-column, .mbsc-windows.mbsc-timeline-day:after, .mbsc-windows.mbsc-timeline-footer, .mbsc-windows.mbsc-timeline-footer-date, .mbsc-windows.mbsc-timeline-header, .mbsc-windows.mbsc-timeline-header-column, .mbsc-windows.mbsc-timeline-header-date, .mbsc-windows.mbsc-timeline-header-month, .mbsc-windows.mbsc-timeline-header-week, .mbsc-windows.mbsc-timeline-resource, .mbsc-windows.mbsc-timeline-resource-footer-cont, .mbsc-windows.mbsc-timeline-resource-header-cont, .mbsc-windows.mbsc-timeline-row, .mbsc-windows.mbsc-timeline-row-date, .mbsc-windows.mbsc-timeline-row-group:after, .mbsc-windows.mbsc-timeline-sidebar-footer-cont, .mbsc-windows.mbsc-timeline-sidebar-header-cont, .mbsc-windows.mbsc-timeline-sidebar-resource, .mbsc-windows.mbsc-timeline-slot-header, .mbsc-windows.mbsc-timeline-slots {
+.mbsc-windows.mbsc-schedule-all-day-item:after, .mbsc-windows.mbsc-schedule-column, 
+.mbsc-windows.mbsc-schedule-item, .mbsc-windows.mbsc-schedule-resource, 
+.mbsc-windows.mbsc-schedule-resource-group, .mbsc-windows.mbsc-schedule-time-col, 
+.mbsc-windows.mbsc-timeline-column, .mbsc-windows.mbsc-timeline-day:after, 
+.mbsc-windows.mbsc-timeline-footer, .mbsc-windows.mbsc-timeline-footer-date, 
+.mbsc-windows.mbsc-timeline-header, .mbsc-windows.mbsc-timeline-header-column, 
+.mbsc-windows.mbsc-timeline-header-date, .mbsc-windows.mbsc-timeline-header-month, 
+.mbsc-windows.mbsc-timeline-header-week, .mbsc-windows.mbsc-timeline-resource, 
+.mbsc-windows.mbsc-timeline-resource-footer-cont, .mbsc-windows.mbsc-timeline-resource-header-cont, 
+.mbsc-windows.mbsc-timeline-row, .mbsc-windows.mbsc-timeline-row-date, 
+.mbsc-windows.mbsc-timeline-row-group:after, .mbsc-windows.mbsc-timeline-sidebar-footer-cont, 
+.mbsc-windows.mbsc-timeline-sidebar-header-cont, .mbsc-windows.mbsc-timeline-sidebar-resource, 
+.mbsc-windows.mbsc-timeline-slot-header, .mbsc-windows.mbsc-timeline-slots {
   border-color: black;
 }
 
@@ -156,4 +168,12 @@ h1 {
 
 .mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-title {
   font-weight: 400;
+}
+
+.mbsc-schedule-item {
+  pointer-events: none;
+}
+
+.mbsc-schedule-event-background::after {
+  display: none;
 }
