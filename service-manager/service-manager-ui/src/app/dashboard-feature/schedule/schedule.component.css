@@ -1,10 +1,7 @@
-.header-template-container {
-  padding: 10px;
-}
 
 .header-template-date {
   text-align: center;
-  line-height: 20px;
+  line-height: 15px;
 }
 
 .header-template-day-name {
@@ -15,196 +12,148 @@
   font-size: 12px;
 }
 
-.header-template-task {
-  position: absolute;
-  top: 14px;
-  right: 10px;
-  font-size: 12px;
-  line-height: 22px;
-  padding: 0 10px;
-  border-radius: 12px;
-  color: #555;
-}
-
 .header-resource-template-content {
   position: relative;
+}
+
+.header-resource-avatar {
+  max-height: 40px;
+  max-width: 40px;
 }
 
 .header-resource-name {
   font-size: 14px;
 }
 
+.scheduler {
+  width: 80vw;
+}
+
 .mbsc-schedule-column {
   padding: 0;
 }
 
-.mbsc-schedule-event {
-  z-index: 0;
-}
-
-.mbsc-windows.mbsc-schedule-color,
-.mbsc-windows.mbsc-schedule-invalid {
-  z-index: 0;
-  background-color: grey;
-}
-
-.mbsc-schedule-grid-scroll {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.mbsc-schedule-time {
-  font-size: 0.75em;
-  line-height: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid black;
-  border-right: none;
-  border-left: none;
-  position: relative;
-  top: -0.7em;
-}
-
-.mbsc-windows.mbsc-schedule-time-wrapper-end {
-  border-bottom: 0px solid #e6e6e6;
-}
-.mbsc-windows.mbsc-schedule-time-col.mbsc-ltr {
-  margin-top: -9px !important;
-}
-
-.mbsc-windows.mbsc-schedule-time-wrapper {
-  border-color: black;
-}
-.mbsc-schedule-time-col.mbsc-ltr {
-  border-right: 1px solid black;
-  border-left: 3px solid black;
-  border-bottom: 1px solid black;
-}
-.mbsc-eventcalendar {
-  padding: 3rem;
-  box-shadow: var(--box-shadow);
-  width: 80vw;
-}
-.mbsc-schedule-item {
-  border-top: 0px solid;
-  border: 1px solid black;
-  height: 3.125em;
-  position: relative;
+.mbsc-schedule-event-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 1px;
 }
 
 .mbsc-schedule-events.mbsc-ltr {
   left: 0;
   right: 0;
-  margin: 0 2px;
-}
-.mbsc-schedule-events {
-  height: 100%;
-  position: absolute;
-}
-.mbsc-schedule-column.mbsc-ltr {
-  border-left-style: solid;
-  border-left-width: 0px;
-}
-.mbsc-schedule-resource-group.mbsc-ltr {
-  border-left-style: solid;
-  border-left-width: 0px;
-}
-.mbsc-schedule-column-inner {
-  position: relative;
-  left: 2px !important;
-}
-.mbsc-schedule-resource {
-  border: 1px solid black;
-  border-top: 3px solid black;
 }
 
-.header-template-container {
-  padding: 10px;
-  border-left: 1px solid black;
-  border-right: 2px solid black;
-}
-.mbsc-schedule-resource-title {
-  font-size: 0.875em;
-  font-weight: 600;
-  padding: 0.5em;
-  text-align: center;
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-}
-.mbsc-schedule-resource-group {
-  box-sizing: border-box;
-  flex-basis: 16em;
-}
-mbsc-calendar-today {
-  display: none;
+.mbsc-schedule-color, .mbsc-schedule-invalid {
+  z-index: 0;
 }
 
-.mbsc-flex {
-  transform: translateX(0px) !important;
+.mbsc-schedule-event {
+  z-index: 0;
+  box-sizing: content-box;
 }
 
-.mbsc-schedule-fake-scroll-y {
-  max-height: 0px;
-  overflow-y: hidden;
-}
-.mbsc-calendar-controls {
-  border: 3px solid black;
-  border-bottom: none;
-}
-.mbsc-schedule-wrapper {
-  overflow: auto;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+.mbsc-schedule-resource-group:first-child {
+  border-left: 2px solid;
 }
 
 .mbsc-schedule-time-indicator {
   display: none;
 }
 
-mbsc-windows.mbsc-schedule-all-day-item:after,
-.mbsc-windows.mbsc-schedule-column,
-.mbsc-windows.mbsc-schedule-item,
-.mbsc-windows.mbsc-schedule-resource,
-.mbsc-windows.mbsc-schedule-resource-group,
-.mbsc-windows.mbsc-schedule-time-col,
-.mbsc-windows.mbsc-timeline-column,
-.mbsc-windows.mbsc-timeline-day:after,
-.mbsc-windows.mbsc-timeline-footer,
-.mbsc-windows.mbsc-timeline-footer-date,
-.mbsc-windows.mbsc-timeline-header,
-.mbsc-windows.mbsc-timeline-header-column,
-.mbsc-windows.mbsc-timeline-header-date,
-.mbsc-windows.mbsc-timeline-header-month,
-.mbsc-windows.mbsc-timeline-header-week,
-.mbsc-windows.mbsc-timeline-resource,
-.mbsc-windows.mbsc-timeline-resource-footer-cont,
-.mbsc-windows.mbsc-timeline-resource-header-cont,
-.mbsc-windows.mbsc-timeline-row,
-.mbsc-windows.mbsc-timeline-row-date,
-.mbsc-windows.mbsc-timeline-row-group:after,
-.mbsc-windows.mbsc-timeline-sidebar-footer-cont,
-.mbsc-windows.mbsc-timeline-sidebar-header-cont,
-.mbsc-windows.mbsc-timeline-sidebar-resource,
-.mbsc-windows.mbsc-timeline-slot-header,
-.mbsc-windows.mbsc-timeline-slots {
+.mbsc-schedule-resource-group {
+  overflow: hidden;
+}
+
+.mbsc-schedule-resource {
+  overflow: hidden;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.mbsc-schedule-resource:nth-child(1) {
+  border-left: 0;
+}
+
+.mbsc-windows.mbsc-schedule-invalid {
+  background-color: #bdc0c3;
+}
+
+.mbsc-schedule-time-cont-inner {
+  padding: 0;
+  box-sizing: unset;
+}
+
+.mbsc-schedule-time {
+  top: -0.5em;
+}
+
+.mbsc-schedule-grid-scroll {
+  overflow-y: hidden;
+}
+
+.mbsc-schedule-fake-scroll-x, .mbsc-schedule-fake-scroll-y {
+  display: none;
+}
+
+.mbsc-windows.mbsc-schedule-item {
   border-color: black;
+}
+
+.mbsc-windows.mbsc-schedule-column {
+  border-color: black;
+}
+.mbsc-windows.mbsc-schedule-time-wrapper {
+  border-color: black;
+}
+
+.mbsc-windows.mbsc-schedule-all-day-item:after, .mbsc-windows.mbsc-schedule-column, .mbsc-windows.mbsc-schedule-item, .mbsc-windows.mbsc-schedule-resource, .mbsc-windows.mbsc-schedule-resource-group, .mbsc-windows.mbsc-schedule-time-col, .mbsc-windows.mbsc-timeline-column, .mbsc-windows.mbsc-timeline-day:after, .mbsc-windows.mbsc-timeline-footer, .mbsc-windows.mbsc-timeline-footer-date, .mbsc-windows.mbsc-timeline-header, .mbsc-windows.mbsc-timeline-header-column, .mbsc-windows.mbsc-timeline-header-date, .mbsc-windows.mbsc-timeline-header-month, .mbsc-windows.mbsc-timeline-header-week, .mbsc-windows.mbsc-timeline-resource, .mbsc-windows.mbsc-timeline-resource-footer-cont, .mbsc-windows.mbsc-timeline-resource-header-cont, .mbsc-windows.mbsc-timeline-row, .mbsc-windows.mbsc-timeline-row-date, .mbsc-windows.mbsc-timeline-row-group:after, .mbsc-windows.mbsc-timeline-sidebar-footer-cont, .mbsc-windows.mbsc-timeline-sidebar-header-cont, .mbsc-windows.mbsc-timeline-sidebar-resource, .mbsc-windows.mbsc-timeline-slot-header, .mbsc-windows.mbsc-timeline-slots {
+  border-color: black;
+}
+
+.mbsc-windows.mbsc-calendar-wrapper-fixed {
+  border-bottom: none;
 }
 
 .mbsc-windows.mbsc-schedule-event-inner {
   color: var(--primary) !important;
   text-align: center;
-  margin-top: 11px;
+  margin-top: 10px;
   font-weight: 700;
 }
+
+.container {
+  padding-bottom: 30px;
+  border: 2px solid;
+}
+
+.outer-container {
+  padding: 30px;
+  box-shadow: var(--box-shadow);
+}
+
 .mbsc-schedule-event-range {
   display: none;
 }
-.mbsc-windows.mbsc-calendar-wrapper-fixed {
-  border-bottom: none;
+
+app-schedule {
+  text-align: center;
 }
-.mbsc-schedule-color-end,
-.mbsc-schedule-invalid-end {
-  padding-bottom: 0em;
+
+h1 {
+  margin-bottom: 0px !important;
+}
+
+.mbsc-calendar-header-today {
+  display: none;
+}
+
+.mbsc-calendar-month, .mbsc-calendar-year {
+  color: var(--primary);
+}
+
+.mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-title {
+  font-weight: 400;
 }
