@@ -118,5 +118,8 @@
     "deleteMessage": "Esti sigur ca vrei sa stergi aceasta rezervare?",
     "deleteCancel": "Anuleaza",
     "deleteAction": "OK"
+  },
+  "schedule": {
+    "title": "Programari"
   }
 }

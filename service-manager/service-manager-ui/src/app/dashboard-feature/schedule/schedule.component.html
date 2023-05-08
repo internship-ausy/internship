@@ -1,29 +1,36 @@
-<mbsc-eventcalendar
-  class="scheduler"
-  [view]="view"
-  [data]="myEvents"
-  groupBy="date"
-  [resources]="myResources"
-  [resourceTemplate]="resourceTemp"
-  [dayTemplate]="dayTemp"
-  [invalid]="invalid"
->
-  <ng-template #resourceTemp let-resource>
-    <div class="header-resource-template-content">
-      <div class="header-resource-name">{{ resource.name | uppercase }}</div>
-    </div>
-  </ng-template>
-
-  <ng-template #dayTemp let-day>
-    <div class="header-template-container">
-      <div class="header-template-date">
-        <div class="header-template-day-name">
-          {{ formatDate("DDD", day.date) }}
+<h1>{{ "schedule.title" | translate }}</h1>
+<div class="outer-container">
+  <div class="container">
+  
+    <mbsc-eventcalendar
+      class="scheduler"
+      [view]="view"
+      [data]="myEvents"
+      groupBy="date"
+      [resources]="myResources"
+      [resourceTemplate]="resourceTemp"
+      [dayTemplate]="dayTemp"
+      [invalid]="invalid"
+    >
+      <ng-template #resourceTemp let-resource>
+        <div class="header-resource-template-content">
+          <div class="header-resource-name">{{ resource.name | uppercase }}</div>
         </div>
-        <div class="header-template-day">
-          {{ formatDate("DD", day.date) }}
+      </ng-template>
+    
+      <ng-template #dayTemp let-day>
+        <div class="header-template-container">
+          <div class="header-template-date">
+            <div class="header-template-day-name">
+              {{ formatDate("DDD", day.date) }}
+            </div>
+            <div class="header-template-day">
+              {{ formatDate("DD", day.date) }}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </ng-template>
-</mbsc-eventcalendar>
+      </ng-template>
+    </mbsc-eventcalendar>
+  
+  </div>
+</div>
