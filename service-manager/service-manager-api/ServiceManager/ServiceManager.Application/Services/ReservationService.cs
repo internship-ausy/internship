@@ -5,6 +5,7 @@ using ServiceManager.Application.Dtos.User;
 using ServiceManager.Application.Interfaces;
 using ServiceManager.Domain.Interfaces.Repositories;
 using ServiceManager.Domain.Models;
+using System.Drawing;
 using System.Security.Claims;
 
 namespace ServiceManager.Application.Services
@@ -163,6 +164,31 @@ namespace ServiceManager.Application.Services
             var reservation = await _reservationRepository.GetReservationsByID(reservationID);
             response.Data = _mapper.Map<GetReservationDto>(reservation);
             return response;
+        }
+
+        public async Task<ServiceResponse<List<GetScheduleDto>>> GetSchedule()
+        {
+            var serviceResponse = new ServiceResponse<List<GetScheduleDto>>();
+            var reservations = await _reservationRepository.GetSchedule();
+            var allSchedule = new List<GetScheduleDto>();
+
+            foreach (var reservation in reservations)
+            {
+                var schedule = new GetScheduleDto();
+                
+                schedule.Id = reservation.Id;
+                schedule.Title = reservation.PlateNumber;
+                schedule.Start = reservation.Date;
+                schedule.End = CalculateEndDate(reservation.Date, reservation.Estimate);
+                schedule.Resource = reservation.WorkStation;
+                schedule.Reservation = reservation;
+                
+                allSchedule.Add(schedule);
+            }
+
+            serviceResponse.Data = allSchedule;
+
+            return serviceResponse;
         }
     }
 }
