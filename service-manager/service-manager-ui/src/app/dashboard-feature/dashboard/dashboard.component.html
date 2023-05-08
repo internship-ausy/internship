@@ -3,7 +3,7 @@
         <app-card [reservation]="reservation"></app-card>
     </div>
 </div>
-<div class="see-more">
+<div class="see-more" *ngIf="reservationsDisplayed.length < reservations.length">
     <mat-icon (click)="onSeeMore()" class="icon">add</mat-icon>
     <span (click)="onSeeMore()" class="see-more-text">See more</span>
 </div>

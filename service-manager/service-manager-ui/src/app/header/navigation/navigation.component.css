@@ -1,4 +1,5 @@
 .menu-item {
+    position: relative;
     display: flex;
     align-items: center;
     color: white;
@@ -17,25 +18,37 @@
 }
 
 .menu {
+    position: sticky; 
+    top: 0px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: calc(100vh - 50px);
+    flex-grow: 1;
+    z-index: 100;
+    bottom: 0px;
+    overflow-y: auto;
 }
 
 .mat-drawer {
+    top: 0px;
+    position: sticky;
     display: block;
     width: 100%;
     height: calc(100vh - 50px);
     background-color: var(--primary);
     border: none;
+    bottom: 0px;
+    overflow-y: auto;
 }
 
 .copyright {
+    position: sticky;
     color: white;
     padding: 0 16px;
     margin-bottom: 16px;
     white-space: nowrap;
+    top: 0px;
 }
 
 .copyright .mat-icon {
