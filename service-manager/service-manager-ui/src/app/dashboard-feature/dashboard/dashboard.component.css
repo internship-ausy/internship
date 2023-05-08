@@ -1,9 +1,11 @@
 .dashboard-container {
-    min-height: calc(100vh - 164px);
+    height: calc(100vh - 164px);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
     align-items: center;
+    overflow-y: scroll;
+    grid-gap: 20px;
 }
 
 .dashboard-card {
