@@ -116,8 +116,10 @@
   "actionPopover": {
     "deleteTitle": "This reservation will be permanently deleted",
     "deleteMessage": "Are you sure you want to delete this reservation?",
-    "deleteCancel": "Cancel",
-    "deleteAction": "OK"
+    "editTitle": "You are about to edit this reservation",
+    "editMessage": "Do you want to edit this reservation?",
+    "cancel": "Cancel",
+    "action": "OK"
   },
   "schedule": {
     "title": "Schedule"

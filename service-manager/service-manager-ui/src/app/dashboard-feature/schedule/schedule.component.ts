@@ -7,6 +7,10 @@ import {
   formatDate,
 } from '@mobiscroll/angular';
 import { DashboardService } from '../dashboard.service';
+import { Router } from '@angular/router';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
+import { take } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 setOptions({
   theme: 'windows',
@@ -83,7 +87,10 @@ export class ScheduleComponent implements OnInit {
     },
   ];
   constructor(
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private router: Router,
+    private popoverService: PopoverService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -92,5 +99,22 @@ export class ScheduleComponent implements OnInit {
 
   getSchedule() {
     this.dashboardService.getSchedule().subscribe(res => this.myEvents = res.data)
+  }
+
+  onEventDoubleClick(event: any) {
+    let id = event.event.id;
+    this.popoverService.openSnackBarAction(
+      this.translate.instant("actionPopover.editTitle"),
+      this.translate.instant("actionPopover.editMessage"),
+      this.translate.instant("actionPopover.cancel"),
+      this.translate.instant("actionPopover.action")
+    )
+
+    this.popoverService.actionPopoverEmitter.pipe(take(1))
+      .subscribe(okButtonPressed => {
+        if (okButtonPressed) {
+          this.router.navigate([`edit-service/${id}`])
+        }
+      })
   }
 }

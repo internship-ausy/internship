@@ -35,8 +35,8 @@ export class CardComponent implements OnInit {
     this.popoverService.openSnackBarAction(
       this.translate.instant("actionPopover.deleteTitle"),
       this.translate.instant("actionPopover.deleteMessage"),
-      this.translate.instant("actionPopover.deleteCancel"),
-      this.translate.instant("actionPopover.deleteAction")
+      this.translate.instant("actionPopover.cancel"),
+      this.translate.instant("actionPopover.action")
     );
     this.popoverService.actionPopoverEmitter.pipe(take(1))
       .subscribe(okButtonPressed => {
