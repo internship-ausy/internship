@@ -3,6 +3,9 @@
   <div class="container">
   
     <mbsc-eventcalendar
+      (onEventDoubleClick)="onEventDoubleClick($event)"
+      (onCellDoubleClick)="onCell($event)"
+      (onCellRightClick)="onCellRightClick($event)"
       class="scheduler"
       [view]="view"
       [data]="myEvents"
