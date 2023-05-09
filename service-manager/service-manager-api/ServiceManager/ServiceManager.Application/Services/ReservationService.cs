@@ -123,8 +123,10 @@ namespace ServiceManager.Application.Services
         public async Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards()
         {
             var serviceResponse = new ServiceResponse<List<GetDashboardCardDto>>();
-            var dashboardCards = await _reservationRepository.GetDashboardCards();
-            serviceResponse.Data = dashboardCards.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
+            var reservations = await _reservationRepository.GetDashboardCards();
+            var dashboardCards = reservations.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
+            dashboardCards.ForEach(res => res.EndDate = CalculateEndDate(res.Date, res.Estimate));
+            serviceResponse.Data = dashboardCards;
             return serviceResponse;
         }
 

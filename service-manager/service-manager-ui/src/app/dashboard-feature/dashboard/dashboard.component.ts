@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
       this.reservationCount = reservations.length;
       this.reservations = this.reservations
         .filter((r) => {
-          return new Date(r.date) > new Date(Date());
+          return new Date(r.endDate) > new Date(Date());
         })
         .sort((a, b) => {
           return new Date(a.date).getTime() - new Date(b.date).getTime();
