@@ -117,12 +117,4 @@ export class ScheduleComponent implements OnInit {
         }
       })
   }
-
-  onCell(event: any) {
-    console.log(event);
-  }
-
-  onCellRightClick(event: any) {
-    console.log(event);
-  }
 }
