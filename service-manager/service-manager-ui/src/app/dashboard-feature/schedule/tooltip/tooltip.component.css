@@ -1,0 +1,31 @@
+/* Warning !!!*/
+/* will modify the styles from all the application*/
+
+.tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 155;
+  height: 195px;
+  background-color: var(--neutral);
+  filter: var(--drop-shadow);
+  color: black;
+  padding: 1rem 0;
+  font-size: 16px;
+}
+
+.mdc-snackbar__label {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mdc-snackbar__surface {
+  padding-right: 0;
+}
+
+.mat-typography p
+ {
+  margin: 0 0 0 1rem;
+ }
