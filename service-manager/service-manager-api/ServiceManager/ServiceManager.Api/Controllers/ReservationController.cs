@@ -77,5 +77,31 @@ namespace ServiceManager.Api.Controllers
         {
             return Ok(await _reservationService.GetSchedule());
         }
+
+        [HttpPut("EditUpcomingReservation")]
+        public async Task<ActionResult<ServiceResponse<GetReservationDto>>> EditUpcomingReservation(EditReservationDto reservation)
+        {
+            var response = await _reservationService.EditUpcomingReservation(reservation);
+
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpDelete("DeleteUpcomingReservation")]
+        public async Task<ActionResult<ServiceResponse<List<GetReservationDto>>>> DeleteUpcomingReservation(int upcomingReservationId)
+        {
+            var response = await _reservationService.DeleteUpcomingReservation(upcomingReservationId);
+
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
     } 
 }

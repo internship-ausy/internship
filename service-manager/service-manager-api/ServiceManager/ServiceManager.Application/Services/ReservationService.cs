@@ -188,5 +188,45 @@ namespace ServiceManager.Application.Services
 
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<GetReservationDto>> EditUpcomingReservation(EditReservationDto upcomingReservation)
+        {
+            var isValidReservation = await ValidateReservation(
+                upcomingReservation.WorkStation,
+                upcomingReservation.Estimate,
+                upcomingReservation.Date,
+                upcomingReservation.Id
+                );
+
+            if (!isValidReservation)
+            {
+                throw new HttpRequestException("Reservation not valid");
+            }
+
+            var response = new ServiceResponse<GetReservationDto>();
+            var reservation = _mapper.Map<Reservation>(upcomingReservation);
+            var edit = await _reservationRepository.EditUpcomingReservation(reservation);
+            
+            if (edit == null)
+            {
+                throw new KeyNotFoundException("Reservation not found");
+            }
+            
+            response.Data = _mapper.Map<GetReservationDto>(edit);
+            response.Success = true;
+            
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<GetReservationDto>>> DeleteUpcomingReservation(int upcomingReservationId)
+        {
+            var response = new ServiceResponse<List<GetReservationDto>>();
+            var reservations = await _reservationRepository.DeleteUpcomingReservation(upcomingReservationId);
+
+            response.Data = reservations.Select(r => _mapper.Map<GetReservationDto>(r)).ToList();
+            response.Success = true;
+
+            return response;
+        }
     }
 }
