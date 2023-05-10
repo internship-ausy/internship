@@ -48,11 +48,12 @@
 }
 
 .mbsc-schedule-color, .mbsc-schedule-invalid {
-  z-index: 0;
+  z-index: 1;
+  opacity: 0.9;
 }
 
 .mbsc-schedule-event {
-  z-index: 0;
+  opacity: 0.5;
   box-sizing: content-box;
 }
 
@@ -183,7 +184,7 @@ h1 {
 }
 
 .mbsc-schedule-item {
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .mbsc-schedule-event-background::after {
