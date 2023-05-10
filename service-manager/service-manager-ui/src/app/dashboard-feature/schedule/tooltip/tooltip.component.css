@@ -7,7 +7,7 @@
   justify-content: space-around;
   width: 155;
   height: 195px;
-  background-color: var(--neutral);
+  background-color: white;
   filter: var(--drop-shadow);
   color: black;
   padding: 1rem 0;

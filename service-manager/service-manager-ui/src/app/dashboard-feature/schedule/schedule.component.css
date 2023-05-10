@@ -9,7 +9,8 @@
 }
 
 .header-template-day {
-  font-size: 12px;
+  font-size: 14px;
+  margin: 2px 0 4px;
 }
 
 .header-resource-template-content {
@@ -81,6 +82,16 @@
   background-color: #bdc0c3;
 }
 
+.mbsc-windows.mbsc-schedule-time {
+  text-transform: uppercase;
+  top: 11px;
+  font-size: 14px;
+}
+
+.mbsc-schedule-time-col.mbsc-ltr {
+  text-align: center;
+}
+
 .mbsc-schedule-time-cont-inner {
   padding: 0;
   box-sizing: unset;
@@ -109,18 +120,18 @@
   border-color: black;
 }
 
-.mbsc-windows.mbsc-schedule-all-day-item:after, .mbsc-windows.mbsc-schedule-column, 
-.mbsc-windows.mbsc-schedule-item, .mbsc-windows.mbsc-schedule-resource, 
-.mbsc-windows.mbsc-schedule-resource-group, .mbsc-windows.mbsc-schedule-time-col, 
-.mbsc-windows.mbsc-timeline-column, .mbsc-windows.mbsc-timeline-day:after, 
-.mbsc-windows.mbsc-timeline-footer, .mbsc-windows.mbsc-timeline-footer-date, 
-.mbsc-windows.mbsc-timeline-header, .mbsc-windows.mbsc-timeline-header-column, 
-.mbsc-windows.mbsc-timeline-header-date, .mbsc-windows.mbsc-timeline-header-month, 
-.mbsc-windows.mbsc-timeline-header-week, .mbsc-windows.mbsc-timeline-resource, 
-.mbsc-windows.mbsc-timeline-resource-footer-cont, .mbsc-windows.mbsc-timeline-resource-header-cont, 
-.mbsc-windows.mbsc-timeline-row, .mbsc-windows.mbsc-timeline-row-date, 
-.mbsc-windows.mbsc-timeline-row-group:after, .mbsc-windows.mbsc-timeline-sidebar-footer-cont, 
-.mbsc-windows.mbsc-timeline-sidebar-header-cont, .mbsc-windows.mbsc-timeline-sidebar-resource, 
+.mbsc-windows.mbsc-schedule-all-day-item:after, .mbsc-windows.mbsc-schedule-column,
+.mbsc-windows.mbsc-schedule-item, .mbsc-windows.mbsc-schedule-resource,
+.mbsc-windows.mbsc-schedule-resource-group, .mbsc-windows.mbsc-schedule-time-col,
+.mbsc-windows.mbsc-timeline-column, .mbsc-windows.mbsc-timeline-day:after,
+.mbsc-windows.mbsc-timeline-footer, .mbsc-windows.mbsc-timeline-footer-date,
+.mbsc-windows.mbsc-timeline-header, .mbsc-windows.mbsc-timeline-header-column,
+.mbsc-windows.mbsc-timeline-header-date, .mbsc-windows.mbsc-timeline-header-month,
+.mbsc-windows.mbsc-timeline-header-week, .mbsc-windows.mbsc-timeline-resource,
+.mbsc-windows.mbsc-timeline-resource-footer-cont, .mbsc-windows.mbsc-timeline-resource-header-cont,
+.mbsc-windows.mbsc-timeline-row, .mbsc-windows.mbsc-timeline-row-date,
+.mbsc-windows.mbsc-timeline-row-group:after, .mbsc-windows.mbsc-timeline-sidebar-footer-cont,
+.mbsc-windows.mbsc-timeline-sidebar-header-cont, .mbsc-windows.mbsc-timeline-sidebar-resource,
 .mbsc-windows.mbsc-timeline-slot-header, .mbsc-windows.mbsc-timeline-slots {
   border-color: black;
 }
@@ -132,7 +143,7 @@
 .mbsc-windows.mbsc-schedule-event-inner {
   color: var(--primary) !important;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 12px;
   font-weight: 700;
 }
 
@@ -144,6 +155,7 @@
 .outer-container {
   padding: 30px;
   box-shadow: var(--box-shadow);
+  border: 1px solid var(--box-border);
 }
 
 .mbsc-schedule-event-range {
