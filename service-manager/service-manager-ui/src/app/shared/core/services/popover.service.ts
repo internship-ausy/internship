@@ -9,6 +9,7 @@ import { ActionPopoverComponent } from '../../action-popover/action-popover.comp
 import { Subject } from 'rxjs';
 import { SuccessPopoverComponent } from '../../success-popover/success-popover.component';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -65,4 +66,5 @@ export class PopoverService {
       duration: 100000,
     });
   }
+
 }

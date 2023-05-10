@@ -95,7 +95,7 @@ namespace ServiceManager.Application.Services
 
             if (reservationEndDate > todayEndHours)
             {
-                var remainingTime = (reservationEndDate - todayEndHours).Hours;
+                var remainingTime = (reservationEndDate - todayEndHours).TotalHours;
                 var nextDayStartHours = todayStartHours.AddDays(1);
                 var nextDayEndHours = todayEndHours.AddDays(1);
                 reservationEndDate = nextDayStartHours.AddHours(remainingTime);
@@ -105,7 +105,7 @@ namespace ServiceManager.Application.Services
                     reservationEndDate = reservationEndDate.AddHours(launchBreak);
                 }
                 if (reservationEndDate > nextDayEndHours)
-                    reservationEndDate = CalculateEndDate(nextDayStartHours, remainingTime);
+                    reservationEndDate = CalculateEndDate(nextDayStartHours, (int)remainingTime);
             }
 
             if (reservationEndDate.DayOfWeek == DayOfWeek.Saturday)
