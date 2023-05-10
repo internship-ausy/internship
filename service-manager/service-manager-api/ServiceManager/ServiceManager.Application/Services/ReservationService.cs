@@ -95,7 +95,7 @@ namespace ServiceManager.Application.Services
 
             if (reservationEndDate > todayEndHours)
             {
-                var remainingTime = (reservationEndDate - todayEndHours).Hours;
+                var remainingTime = (reservationEndDate - todayEndHours).TotalHours;
                 var nextDayStartHours = todayStartHours.AddDays(1);
                 var nextDayEndHours = todayEndHours.AddDays(1);
                 reservationEndDate = nextDayStartHours.AddHours(remainingTime);
@@ -105,7 +105,7 @@ namespace ServiceManager.Application.Services
                     reservationEndDate = reservationEndDate.AddHours(launchBreak);
                 }
                 if (reservationEndDate > nextDayEndHours)
-                    reservationEndDate = CalculateEndDate(nextDayStartHours, remainingTime);
+                    reservationEndDate = CalculateEndDate(nextDayStartHours, (int)remainingTime);
             }
 
             if (reservationEndDate.DayOfWeek == DayOfWeek.Saturday)
@@ -123,8 +123,10 @@ namespace ServiceManager.Application.Services
         public async Task<ServiceResponse<List<GetDashboardCardDto>>> GetDashboardCards()
         {
             var serviceResponse = new ServiceResponse<List<GetDashboardCardDto>>();
-            var dashboardCards = await _reservationRepository.GetDashboardCards();
-            serviceResponse.Data = dashboardCards.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
+            var reservations = await _reservationRepository.GetDashboardCards();
+            var dashboardCards = reservations.Select(d => _mapper.Map<GetDashboardCardDto>(d)).ToList();
+            dashboardCards.ForEach(res => res.EndDate = CalculateEndDate(res.Date, res.Estimate));
+            serviceResponse.Data = dashboardCards;
             return serviceResponse;
         }
 

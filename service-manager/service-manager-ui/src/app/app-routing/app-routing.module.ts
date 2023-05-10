@@ -33,6 +33,12 @@ const routes: Routes = [
 
   },
   {
+    path: 'add-service/:date/:hour/:ws',
+    component: AddServiceComponent,
+    canActivate: [AuthGuard],
+
+  },
+  {
     path: 'edit-service/:id',
     component: EditServiceComponent,
     canActivate: [AuthGuard],

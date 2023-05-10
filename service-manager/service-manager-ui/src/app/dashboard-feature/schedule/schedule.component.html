@@ -1,9 +1,12 @@
 <h1>{{ "schedule.title" | translate }}</h1>
 <div class="outer-container">
   <div class="container">
-  
+
     <mbsc-eventcalendar
       (onEventDoubleClick)="onEventDoubleClick($event)"
+      (onCellDoubleClick)="onCellDoubleClick($event)"
+      (onEventHoverIn)="hoverIn($event)"
+      (onEventHoverOut)="hoverOut()"
       class="scheduler"
       [view]="view"
       [data]="myEvents"
@@ -18,7 +21,7 @@
           <div class="header-resource-name">{{ resource.name | uppercase }}</div>
         </div>
       </ng-template>
-    
+
       <ng-template #dayTemp let-day>
         <div class="header-template-container">
           <div class="header-template-date">
@@ -32,6 +35,6 @@
         </div>
       </ng-template>
     </mbsc-eventcalendar>
-  
+
   </div>
 </div>

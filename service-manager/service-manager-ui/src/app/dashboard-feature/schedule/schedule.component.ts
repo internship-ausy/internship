@@ -11,6 +11,11 @@ import { Router } from '@angular/router';
 import { PopoverService } from 'src/app/shared/core/services/popover.service';
 import { take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { Tooltip } from 'src/app/shared/models/tooltip.model';
+import { SnackbarTooltip } from 'src/app/shared/models/snackbarTooltip.model';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
+import { TooltipComponent } from './tooltip/tooltip.component';
+import { TooltipService } from './tooltip/tooltip.service';
 
 setOptions({
   theme: 'windows',
@@ -20,6 +25,7 @@ setOptions({
   dragToMove: false,
   dragToResize: false,
   eventDelete: true,
+  showEventTooltip: false,
 });
 
 @Component({
@@ -30,6 +36,7 @@ setOptions({
 })
 export class ScheduleComponent implements OnInit {
   formatDate = formatDate;
+  snack: MatSnackBarRef<TooltipComponent>;
 
   invalid = [
     {
@@ -86,10 +93,12 @@ export class ScheduleComponent implements OnInit {
       color: 'var(--tertiary-container)',
     },
   ];
+
   constructor(
     private dashboardService: DashboardService,
     private router: Router,
     private popoverService: PopoverService,
+    private tooltipService: TooltipService,
     private translate: TranslateService
   ) {}
 
@@ -98,23 +107,83 @@ export class ScheduleComponent implements OnInit {
   }
 
   getSchedule() {
-    this.dashboardService.getSchedule().subscribe(res => this.myEvents = res.data)
+    this.dashboardService
+      .getSchedule()
+      .subscribe((res) => (this.myEvents = res.data));
   }
 
   onEventDoubleClick(event: any) {
     let id = event.event.id;
     this.popoverService.openSnackBarAction(
-      this.translate.instant("actionPopover.editTitle"),
-      this.translate.instant("actionPopover.editMessage"),
-      this.translate.instant("actionPopover.cancel"),
-      this.translate.instant("actionPopover.action")
-    )
+      this.translate.instant('actionPopover.editTitle'),
+      this.translate.instant('actionPopover.editMessage'),
+      this.translate.instant('actionPopover.cancel'),
+      this.translate.instant('actionPopover.action')
+    );
 
-    this.popoverService.actionPopoverEmitter.pipe(take(1))
-      .subscribe(okButtonPressed => {
+    this.popoverService.actionPopoverEmitter
+      .pipe(take(1))
+      .subscribe((okButtonPressed) => {
         if (okButtonPressed) {
-          this.router.navigate([`edit-service/${id}`])
+          this.router.navigate([`edit-service/${id}`]);
         }
-      })
+      });
+  }
+
+  onCellDoubleClick(event: any) {
+    let isoFullDate: string = event.date.toISOString();
+    let date = isoFullDate.slice(0, 10);
+    let hour =
+      new Date(isoFullDate)
+        .toLocaleTimeString()
+        .replace(/([\d])(:[\d]{2})(.*)/, '$1') +
+      (new Date(isoFullDate).getHours() > 12 ? ' PM' : ' AM');
+    let ws = event.resource;
+
+    this.popoverService.openSnackBarAction(
+      this.translate.instant('actionPopover.addTitle'),
+      this.translate.instant('actionPopover.addMessage'),
+      this.translate.instant('actionPopover.cancel'),
+      this.translate.instant('actionPopover.action')
+    );
+
+    this.popoverService.actionPopoverEmitter
+      .pipe(take(1))
+      .subscribe((okButtonPressed) => {
+        if (okButtonPressed) {
+          this.router.navigate([`add-service/${date}/${hour}/${ws}`]);
+        }
+      });
+  }
+
+  hoverIn(event: any) {
+    let currentReservation: Tooltip = event.event.reservation;
+    let date = currentReservation.date.slice(0, 10);
+    let hour =
+      new Date(currentReservation.date)
+        .toLocaleTimeString()
+        .replace(/([\d])(:[\d]{2})(.*)/, '$1') +
+      (new Date(event.event.reservation.date).getHours() > 12 ? ' PM' : ' AM');
+
+    let tooltip: SnackbarTooltip = new SnackbarTooltip(
+      currentReservation.firstName,
+      currentReservation.lastName,
+      currentReservation.plateNumber,
+      currentReservation.carMake,
+      currentReservation.carModel,
+      currentReservation.description,
+      date,
+      hour,
+      currentReservation.workStation,
+      currentReservation.estimate
+    );
+    this.snack = this.tooltipService.openSnackBarTooltip(tooltip);
+    console.log(event.event.reservation);
+  }
+
+  hoverOut() {
+    setTimeout(() => {
+      this.snack.dismiss();
+    }, 500);
   }
 }

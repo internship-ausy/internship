@@ -10,6 +10,7 @@ namespace ServiceManager.Application.Dtos.Reservation
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        public DateTime EndDate { get; set; }
         public string PlateNumber { get; set; } = String.Empty;
         public string FullName { get; set; } = String.Empty;
         public int WorkStation { get; set; }
