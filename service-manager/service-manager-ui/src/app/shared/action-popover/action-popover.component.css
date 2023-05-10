@@ -11,6 +11,7 @@
   filter: var(--drop-shadow);
   color: white;
   padding: 2rem 3rem;
+  border-radius: var(--smallBorderRadius);
 }
 
 .action-buttons {
@@ -35,7 +36,7 @@
   background-color: var(--secondary);
   border-color: var(--secondary);
   box-shadow: var(--box-shadow);
-  border-radius: 5px;
+  border-radius: var(--smallBorderRadius);
   width: 80px;
   height: 21.95px;
   margin-right: 1rem;
