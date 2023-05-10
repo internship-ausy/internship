@@ -118,6 +118,8 @@
     "deleteMessage": "Esti sigur ca vrei sa stergi aceasta rezervare?",
     "editTitle": "Esti pe cale sa editezi aceasta rezervare",
     "editMessage": "Vrei sa editezi aceasta rezervare?",
+    "addTitle": "Esti pe cale sa adaugi o noua rezervare",
+    "addMessage": "Vrei sa adaugi o noua rezervare?",
     "cancel": "Anuleaza",
     "action": "OK"
   },

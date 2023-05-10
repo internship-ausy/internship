@@ -25,7 +25,7 @@ setOptions({
   dragToMove: false,
   dragToResize: false,
   eventDelete: true,
-  showEventTooltip: false
+  showEventTooltip: false,
 });
 
 @Component({
@@ -130,6 +130,32 @@ export class ScheduleComponent implements OnInit {
       });
   }
 
+  onCellDoubleClick(event: any) {
+    let isoFullDate: string = event.date.toISOString();
+    let date = isoFullDate.slice(0, 10);
+    let hour =
+      new Date(isoFullDate)
+        .toLocaleTimeString()
+        .replace(/([\d])(:[\d]{2})(.*)/, '$1') +
+      (new Date(isoFullDate).getHours() > 12 ? ' PM' : ' AM');
+    let ws = event.resource;
+
+    this.popoverService.openSnackBarAction(
+      this.translate.instant('actionPopover.addTitle'),
+      this.translate.instant('actionPopover.addMessage'),
+      this.translate.instant('actionPopover.cancel'),
+      this.translate.instant('actionPopover.action')
+    );
+
+    this.popoverService.actionPopoverEmitter
+      .pipe(take(1))
+      .subscribe((okButtonPressed) => {
+        if (okButtonPressed) {
+          this.router.navigate([`add-service/${date}/${hour}/${ws}`]);
+        }
+      });
+  }
+
   hoverIn(event: any) {
     let currentReservation: Tooltip = event.event.reservation;
     let date = currentReservation.date.slice(0, 10);
@@ -150,16 +176,14 @@ export class ScheduleComponent implements OnInit {
       hour,
       currentReservation.workStation,
       currentReservation.estimate
-    )
+    );
     this.snack = this.tooltipService.openSnackBarTooltip(tooltip);
     console.log(event.event.reservation);
   }
 
   hoverOut() {
-    console.log('out');
     setTimeout(() => {
-
       this.snack.dismiss();
-    }, 500)
+    }, 500);
   }
 }
