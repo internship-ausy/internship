@@ -17,5 +17,6 @@ namespace ServiceManager.Application.Interfaces
         Task<ServiceResponse<List<GetScheduleDto>>> GetSchedule();
         Task<ServiceResponse<GetReservationDto>> EditService(EditServiceDto editedReservation);
         Task<ServiceResponse<GetReservationDto>> getReservationByID(int reservationID);
+        Task<ServiceResponse<List<LogsDto>>> GetHistoryReservations();
     }
 }

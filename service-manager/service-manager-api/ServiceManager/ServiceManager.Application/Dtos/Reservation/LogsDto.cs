@@ -8,10 +8,13 @@ namespace ServiceManager.Application.Dtos.Reservation
 {
     public class LogsDto
     {
-        public string? FullName { get; set; }
-        public string? PlateNumber { get; set; }
+        public int Id { get; set; }
+        public string FullName { get; set; } = string.Empty;
+        public string PlateNumber { get; set; } = string.Empty;
         public DateTime Date { get; set; }
+        public DateTime EndDate { get; set; }
+        public int Estimate { get; set; }
         public int WorkStation { get; set; }
-        public string? Description { get; set; }
+        public string Description { get; set; } = string.Empty;
     }
 }

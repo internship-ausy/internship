@@ -55,6 +55,9 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login']);
         }
         else this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
       }
     })
   }
