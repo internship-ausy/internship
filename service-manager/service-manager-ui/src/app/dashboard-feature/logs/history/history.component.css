@@ -1,0 +1,60 @@
+/* Structure */
+table {
+    width: 80vw;
+}
+  
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-mdc-paginator-navigation-first {
+    order: 1;
+}
+
+.mat-mdc-paginator-navigation-previous {
+    order: 2;
+}
+
+.mat-mdc-paginator-range-label {
+    order: 3;
+}
+
+.mat-mdc-paginator-navigation-next {
+    order: 4;
+}
+
+.mat-mdc-paginator-navigation-last {
+    order: 5;
+}
+
+.mat-mdc-form-field {
+    width: auto;
+    align-self: flex-end;
+}
+
+.heading {
+    margin: auto;
+    padding-left: 10%;
+}
+
+.history-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-icon {
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.mat-column-buttons {
+    text-align: right !important;
+}
