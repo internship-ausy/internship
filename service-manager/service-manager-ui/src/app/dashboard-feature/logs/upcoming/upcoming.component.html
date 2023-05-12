@@ -1,1 +1,74 @@
-<p>upcoming works!</p>
+
+<div class="upcoming">
+  
+    <div class="upcoming-header">
+      <div class="heading">
+        <h1>Upcoming</h1>
+      </div>
+  
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+    </div>
+  
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let reservation"> {{reservation.fullName}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="plateNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Plate no </th>
+          <td mat-cell *matCellDef="let reservation"> {{reservation.plateNumber}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <td mat-cell *matCellDef="let reservation"> {{reservation.date | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="workstation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> WS </th>
+          <td mat-cell *matCellDef="let reservation"> {{reservation.workStation}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let reservation"> {{reservation.description}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="buttons">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let reservation">
+            <mat-icon
+              class="info-icon"
+              aria-hidden="false">
+              remove_red_eye
+            </mat-icon>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    
+      <div class="paginator">
+        <mat-paginator 
+          class="paginator"
+          [pageSize]="10"
+          [hidePageSize]="true"
+          [showFirstLastButtons]="true"
+          aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+  
+  </div>
