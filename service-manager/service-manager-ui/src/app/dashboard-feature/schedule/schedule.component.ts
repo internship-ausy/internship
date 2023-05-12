@@ -171,7 +171,7 @@ export class ScheduleComponent implements OnInit {
       currentReservation.plateNumber,
       currentReservation.carMake,
       currentReservation.carModel,
-      currentReservation.description,
+      currentReservation.description.replaceAll('; ',';\n-    '),
       date,
       hour,
       currentReservation.workStation,

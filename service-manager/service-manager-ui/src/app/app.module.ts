@@ -36,6 +36,7 @@ import { UpcomingComponent } from './dashboard-feature/logs/upcoming/upcoming.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorInterceptorService } from './shared/core/Interceptors/error-interceptor.service';
 import { AddServiceComponent } from './dashboard-feature/add-service/add-service.component';
+import { ViewDetailsPopoverComponent } from './shared/view-details-popover/view-details-popover.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AddServiceComponent } from './dashboard-feature/add-service/add-service
     HistoryComponent,
     UpcomingComponent,
     AddServiceComponent,
+    ViewDetailsPopoverComponent,
   ],
   imports: [
     MbscModule,

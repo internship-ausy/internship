@@ -1,0 +1,103 @@
+/* Warning !!!*/
+/* will modify the styles from all the application*/
+
+.snackbar-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 752px;
+  height: 340px;
+  background-color: var(--primary);
+  color: white;
+  filter: var(--drop-shadow);
+  box-shadow: var(--box-shadow-view);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: var(--mediumBorderRadius);
+  padding: 20px 24px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: var(--primary);
+
+}
+
+.mdc-snackbar__surface {
+  padding-right: 0;
+  background-color: var(--primary);
+
+
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: var(--mediumBorderRadius);
+  box-shadow: none;
+  max-width: 800px;
+  transform: translateY(70%);
+
+}
+
+.view-row {
+  display: flex;
+}
+
+.view-field {
+  background-color: white;
+  margin-right: 24px !important;
+  border-color: white;
+  color: black;
+  padding: 4px 1rem;
+  width: 148px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow-view);
+  border-radius: var(--extraSmallBorderRadius);
+}
+
+.view-field-ws {
+  text-align: center;
+  width: 76px;
+}
+
+.medium-width {
+  width: 98px;
+}
+
+.view-field-description {
+  height: 120px;
+  width: calc(100% - 74px);
+  white-space: pre-wrap;
+}
+
+.view-field-close {
+  color: var(--primary);
+  align-self: flex-end;
+  width: 48px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+.mdc-snackbar__label {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+
+.mat-typography p {
+  margin: 0 0 0 1rem;
+}
+
+li {
+  list-style-type: none;
+}
