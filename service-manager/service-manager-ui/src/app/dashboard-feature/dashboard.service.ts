@@ -68,4 +68,11 @@ export class DashboardService {
       { headers: this.headers }
     )
   }
+
+  getHistoryReservations() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetHistoryReservations`,
+      { headers: this.headers }
+    )
+  }
 }
