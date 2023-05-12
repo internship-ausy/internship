@@ -67,24 +67,5 @@ export class PopoverService {
       duration: 100000,
     });
   }
-  openSnackBarView(tooltip: SnackbarTooltip) {
-    return this.snackBar.openFromComponent(ViewDetailsPopoverComponent, {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-      data: {
-        firstName: tooltip.firstName,
-        lastName: tooltip.lastName,
-        plate: tooltip.plateNumber,
-        carMake: tooltip.carMake,
-        carModel: tooltip.carModel,
-        date: tooltip.date,
-        hour: tooltip.hour,
-        ws: tooltip.workStation,
-        estimate: tooltip.estimate,
-        description: tooltip.description,
-        snackBar: this.snackBar,
-      },
-      duration: 1000000,
-    });
-  }
+ 
 }
