@@ -54,3 +54,7 @@ table {
     color: var(--primary);
     cursor: pointer;
 }
+
+.mat-column-buttons {
+    text-align: right !important;
+}

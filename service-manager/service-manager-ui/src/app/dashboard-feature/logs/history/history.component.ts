@@ -2,8 +2,8 @@ import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild, ViewEncap
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { StateDashboardService } from '../../state-dashboard.service';
-import { Reservation } from 'src/app/shared/models/reservation.model';
+import { DashboardService } from '../../dashboard.service';
+import { HistoryLog } from 'src/app/shared/models/historyLog.model';
 
 @Component({
   selector: 'app-history',
@@ -13,13 +13,13 @@ import { Reservation } from 'src/app/shared/models/reservation.model';
 })
 export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit {
   displayedColumns: string[] = ['name', 'plateNumber', 'date', 'workstation', 'description', 'buttons'];
-  dataSource: MatTableDataSource<Reservation>;
+  dataSource: MatTableDataSource<HistoryLog>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private stateDashboardService: StateDashboardService
+    private dashboardService: DashboardService
   ) {}
   
   ngOnInit(): void {
@@ -28,22 +28,16 @@ export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      let historyReservations: Reservation[];
-      this.stateDashboardService.reservations$
-        .subscribe((reservations: Reservation[]) => {
-          historyReservations = reservations
-            .filter(r => {
-              return new Date(r.endDate) < new Date(Date());
-            })
-            .sort((a, b) => {
-              return new Date(b.date).getTime() - new Date(a.date).getTime();
-            })
+      let historyReservations: HistoryLog[];
+      
+      this.dashboardService.getHistoryReservations()
+        .subscribe((reservations) => {
+          historyReservations = reservations.data;
           this.dataSource = new MatTableDataSource(historyReservations);
           this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        })
+        });
 
-    })
+    });
   }
 
   ngAfterViewChecked(): void {
@@ -65,4 +59,3 @@ export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit
   }
 
 }
-
