@@ -32,6 +32,10 @@ namespace ServiceManager.Application.AutoMapper
                     opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[0]))
                 .ForMember(r => r.LastName,
                     opts => opts.MapFrom(src => src.FullName.Split(' ', StringSplitOptions.None)[1]));
+
+            CreateMap<Reservation, LogsDto>()
+                .ForMember(log => log.FullName,
+                    opts => opts.MapFrom(src => src.FirstName + ' ' + src.LastName));
         }
     }
 }

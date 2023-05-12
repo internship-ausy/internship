@@ -190,5 +190,20 @@ namespace ServiceManager.Application.Services
 
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<List<LogsDto>>> GetHistoryReservations()
+        {
+            var response = new ServiceResponse<List<LogsDto>>();
+            var reservations = await _reservationRepository.GetSchedule();
+            var logs = reservations.Select(r => _mapper.Map<LogsDto>(r)).ToList();
+            logs.ForEach(r => r.EndDate = CalculateEndDate(r.Date, r.Estimate));
+
+            response.Data = logs
+                .Where(r => r.EndDate < DateTime.Now.Date)
+                .OrderByDescending(r => r.Date)
+                .ToList();
+
+            return response;
+        }
     }
 }
