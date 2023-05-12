@@ -75,4 +75,11 @@ export class DashboardService {
       { headers: this.headers }
     )
   }
+
+  getUpcomingReservations() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetUpcomingReservations`,
+      { headers: this.headers }
+    )
+  }
 }

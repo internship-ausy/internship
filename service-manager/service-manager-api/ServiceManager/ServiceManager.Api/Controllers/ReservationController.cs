@@ -83,5 +83,11 @@ namespace ServiceManager.Api.Controllers
         {
             return Ok(await _reservationService.GetHistoryReservations());
         }
+
+        [HttpGet("GetUpcomingReservations")]
+        public async Task<ActionResult<ServiceResponse<List<LogsDto>>>> GetUpcomingReservations()
+        {
+            return Ok(await _reservationService.GetUpcomingReservations());
+        }
     } 
 }
