@@ -6,7 +6,6 @@ import {
 } from '@angular/material/snack-bar';
 import { SnackbarTooltip } from 'src/app/shared/models/snackbarTooltip.model';
 import { TooltipComponent } from './tooltip.component';
-import { ViewDetailsPopoverComponent } from 'src/app/shared/view-details-popover/view-details-popover.component';
 
 @Injectable({
   providedIn: 'root',
@@ -38,24 +37,4 @@ export class TooltipService {
     });
   }
 
-  openSnackBarView(tooltip: SnackbarTooltip) {
-    return this.snackBar.openFromComponent(ViewDetailsPopoverComponent, {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-      data: {
-        firstName: tooltip.firstName,
-        lastName: tooltip.lastName,
-        plate: tooltip.plateNumber,
-        carMake: tooltip.carMake,
-        carModel: tooltip.carModel,
-        date: tooltip.date,
-        hour: tooltip.hour,
-        ws: tooltip.workStation,
-        estimate: tooltip.estimate,
-        description: tooltip.description,
-        snackBar: this.snackBar,
-      },
-      duration: 1000000,
-    });
-  }
 }

@@ -37,7 +37,6 @@ export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit
           historyReservations = reservations.data;
           this.dataSource = new MatTableDataSource(historyReservations);
           this.dataSource.paginator = this.paginator;
-          console.log(reservations);
         });
 
     });

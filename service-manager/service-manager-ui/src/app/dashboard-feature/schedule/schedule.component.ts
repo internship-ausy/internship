@@ -171,15 +171,13 @@ export class ScheduleComponent implements OnInit {
       currentReservation.plateNumber,
       currentReservation.carMake,
       currentReservation.carModel,
-      currentReservation.description.replaceAll('; ',';\n-    '),
+      currentReservation.description,
       date,
       hour,
       currentReservation.workStation,
       currentReservation.estimate
     );
     this.snack = this.tooltipService.openSnackBarTooltip(tooltip);
-    this.tooltipService.openSnackBarView(tooltip);
-    console.log(event.event.reservation);
   }
 
   hoverOut() {
