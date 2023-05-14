@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HistoryLog } from 'src/app/shared/models/historyLog.model';
 import { DashboardService } from '../../dashboard.service';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
 
 @Component({
   selector: 'app-upcoming',
@@ -18,17 +19,18 @@ export class UpcomingComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private popoverService: PopoverService
   ) {}
-  
+
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       let upcomingReservations: HistoryLog[];
-      
+
       this.dashboardService.getUpcomingReservations()
         .subscribe((reservations) => {
           upcomingReservations = reservations.data;
@@ -57,4 +59,7 @@ export class UpcomingComponent {
     }
   }
 
+  onViewUpcomingReservation(reservation: any) {
+    this.popoverService.openSnackBarView(reservation);
+  }
 }

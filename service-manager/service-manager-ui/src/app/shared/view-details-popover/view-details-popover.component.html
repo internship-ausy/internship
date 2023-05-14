@@ -9,7 +9,7 @@
     <p class="view-field">Car model : {{ data.carModel }}</p>
   </div>
   <div class="view-row">
-    <p class="view-field medium-width">Date : {{ data.date }}</p>
+    <p class="view-field medium-width">Date : {{ data.date  | date: 'dd/MM/yyyy'}}</p>
     <p class="view-field medium-width">Hour : {{ data.hour }}</p>
     <p class="view-field view-field-ws">WS : {{ data.ws }}</p>
     <p class="view-field medium-width">Estimate : {{ data.estimate }}</p>

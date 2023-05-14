@@ -50,7 +50,7 @@
   border-color: white;
   color: black;
   padding: 4px 1rem;
-  width: 148px;
+  width: 149px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: var(--box-shadow-view);
   border-radius: var(--extraSmallBorderRadius);
@@ -62,13 +62,14 @@
 }
 
 .medium-width {
-  width: 98px;
+  width: 99px;
 }
 
 .view-field-description {
   height: 120px;
   width: calc(100% - 74px);
   white-space: pre-wrap;
+  margin-left: 16px;
 }
 
 .view-field-close {

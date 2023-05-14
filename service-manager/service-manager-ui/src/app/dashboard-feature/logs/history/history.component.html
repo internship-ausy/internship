@@ -44,7 +44,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let reservation">
           <mat-icon
-          (click)="onViewReservation()"
+          (click)="onViewHistoryReservation(reservation)"
             class="info-icon"
             aria-hidden="false">
             remove_red_eye

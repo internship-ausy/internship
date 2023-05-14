@@ -8,8 +8,8 @@ import {
 import { ActionPopoverComponent } from '../../action-popover/action-popover.component';
 import { Subject } from 'rxjs';
 import { SuccessPopoverComponent } from '../../success-popover/success-popover.component';
-import { SnackbarTooltip } from '../../models/snackbarTooltip.model';
 import { ViewDetailsPopoverComponent } from '../../view-details-popover/view-details-popover.component';
+import { HistoryLog } from '../../models/historyLog.model';
 
 @Injectable({
   providedIn: 'root',
@@ -67,5 +67,21 @@ export class PopoverService {
       duration: 100000,
     });
   }
- 
+
+    openSnackBarView(view: HistoryLog) {
+    return this.snackBar.openFromComponent(ViewDetailsPopoverComponent, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      data: {
+        fullName: view.fullName,
+        plate: view.plateNumber,
+        date: view.date,
+        ws: view.workStation,
+        estimate: view.estimate,
+        description: view.description,
+        snackBar: this.snackBar,
+      },
+      duration: 1000000,
+    });
+  }
 }
