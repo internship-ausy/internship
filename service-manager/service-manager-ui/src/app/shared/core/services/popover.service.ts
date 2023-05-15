@@ -79,6 +79,8 @@ export class PopoverService {
         date: view.date,
         hour: view.date,
         ws: view.workStation,
+        carMake: view.carMake,
+        carModel: view.carModel,
         estimate: view.estimate,
         description: view.description.replaceAll('; ',';\n-    '),
         snackBar: this.snackBar,
