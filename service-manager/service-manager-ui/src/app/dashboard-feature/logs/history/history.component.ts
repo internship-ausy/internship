@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DashboardService } from '../../dashboard.service';
 import { HistoryLog } from 'src/app/shared/models/historyLog.model';
+import { PopoverService } from 'src/app/shared/core/services/popover.service';
 
 @Component({
   selector: 'app-history',
@@ -19,17 +20,18 @@ export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private popoverService: PopoverService
   ) {}
-  
+
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       let historyReservations: HistoryLog[];
-      
+
       this.dashboardService.getHistoryReservations()
         .subscribe((reservations) => {
           historyReservations = reservations.data;
@@ -45,9 +47,7 @@ export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit
     let numberOfPages = this.paginator.getNumberOfPages().toString();
     let currentPage = (this.paginator.pageIndex + 1).toString();
     paginatorLabel.innerHTML = currentPage + ' of ' + numberOfPages;
-
 }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -58,4 +58,7 @@ export class HistoryComponent implements AfterViewInit, AfterViewChecked, OnInit
     }
   }
 
+  onViewHistoryReservation(reservation: any) {
+    this.popoverService.openSnackBarView(reservation);
+  }
 }

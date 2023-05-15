@@ -178,7 +178,6 @@ export class ScheduleComponent implements OnInit {
       currentReservation.estimate
     );
     this.snack = this.tooltipService.openSnackBarTooltip(tooltip);
-    console.log(event.event.reservation);
   }
 
   hoverOut() {

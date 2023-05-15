@@ -8,7 +8,8 @@ import {
 import { ActionPopoverComponent } from '../../action-popover/action-popover.component';
 import { Subject } from 'rxjs';
 import { SuccessPopoverComponent } from '../../success-popover/success-popover.component';
-
+import { ViewDetailsPopoverComponent } from '../../view-details-popover/view-details-popover.component';
+import { HistoryLog } from '../../models/historyLog.model';
 
 @Injectable({
   providedIn: 'root',
@@ -67,4 +68,30 @@ export class PopoverService {
     });
   }
 
+    openSnackBarView(view: HistoryLog) {
+    return this.snackBar.openFromComponent(ViewDetailsPopoverComponent, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      data: {
+        firstName: view.fullName.split(' ', 1),
+        lastName: this.lastName(view),
+        plate: view.plateNumber,
+        date: view.date,
+        hour: view.date,
+        ws: view.workStation,
+        carMake: view.carMake,
+        carModel: view.carModel,
+        estimate: view.estimate,
+        description: view.description.replaceAll('; ',';\n-    '),
+        snackBar: this.snackBar,
+      },
+      duration: 1000000,
+    });
+  }
+  lastName(view: HistoryLog) {
+    let fullName = view.fullName.split(' ', 2);
+    return fullName[1];
+
+
+  }
 }

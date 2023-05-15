@@ -16,5 +16,7 @@ namespace ServiceManager.Application.Dtos.Reservation
         public int Estimate { get; set; }
         public int WorkStation { get; set; }
         public string Description { get; set; } = string.Empty;
+        public string? CarMake { get; set; }
+        public string? CarModel { get; set; }
     }
 }
