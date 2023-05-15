@@ -68,4 +68,18 @@ export class DashboardService {
       { headers: this.headers }
     )
   }
+
+  getHistoryReservations() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetHistoryReservations`,
+      { headers: this.headers }
+    )
+  }
+
+  getUpcomingReservations() {
+    return this.http.get<ServiceResponseData>(
+      `${this.baseUrl}/GetUpcomingReservations`,
+      { headers: this.headers }
+    )
+  }
 }
