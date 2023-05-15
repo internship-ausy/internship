@@ -101,5 +101,53 @@ namespace ServiceManager.Dal.Repository
         {
             return await _context.Reservations.ToListAsync();
         }
+
+        private static bool isUpcomingReservation(DateTime date)
+        {
+            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+            var utc = DateTime.UtcNow.Add(offset);
+            return utc < date;
+        }
+
+        public async Task<Reservation> EditUpcomingReservation(Reservation upcomingReservation)
+        {
+            var reservation = await _context.Reservations.FirstOrDefaultAsync(r => r.Id == upcomingReservation.Id);
+            
+            if (reservation == null || !isUpcomingReservation(upcomingReservation.Date))
+            {
+                throw new KeyNotFoundException("Reservation not found");
+            }
+            
+            reservation.FirstName = upcomingReservation.FirstName;
+            reservation.LastName = upcomingReservation.LastName;
+            reservation.Description = upcomingReservation.Description;
+            reservation.CarMake = upcomingReservation.CarMake;
+            reservation.CarModel = upcomingReservation.CarModel;
+            reservation.Date = upcomingReservation.Date;
+            reservation.WorkStation = upcomingReservation.WorkStation;
+            reservation.Estimate = upcomingReservation.Estimate;
+            reservation.Description = upcomingReservation.Description;
+            reservation.PlateNumber = upcomingReservation.PlateNumber;
+            
+            await _context.SaveChangesAsync();
+            
+            return reservation;
+        }
+
+        public async Task<List<Reservation>> DeleteUpcomingReservation(int upcomingReservationId)
+        {
+            var reservation = await _context.Reservations.FirstOrDefaultAsync(c => c.Id == upcomingReservationId);
+
+            if (reservation == null || !isUpcomingReservation(reservation.Date))
+            {
+                throw new Exception($"Reservation with Id '{upcomingReservationId}' not found");
+            }
+
+            _context.Reservations.Remove(reservation);
+            await _context.SaveChangesAsync();
+
+            return await _context.Reservations.ToListAsync();
+
+        }
     }
 }
