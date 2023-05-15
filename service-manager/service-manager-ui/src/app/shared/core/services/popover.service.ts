@@ -73,15 +73,23 @@ export class PopoverService {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       data: {
-        fullName: view.fullName,
+        firstName: view.fullName.split(' ', 1),
+        lastName: this.lastName(view),
         plate: view.plateNumber,
         date: view.date,
+        hour: view.date,
         ws: view.workStation,
         estimate: view.estimate,
-        description: view.description,
+        description: view.description.replaceAll('; ',';\n-    '),
         snackBar: this.snackBar,
       },
       duration: 1000000,
     });
+  }
+  lastName(view: HistoryLog) {
+    let fullName = view.fullName.split(' ', 2);
+    return fullName[1];
+
+
   }
 }
